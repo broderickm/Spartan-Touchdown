@@ -1,6 +1,8 @@
 /**
  *@file main.cpp
  *@author Shlok
+ *
+ *main file for the project
 */
 
 #include "pch.h"
