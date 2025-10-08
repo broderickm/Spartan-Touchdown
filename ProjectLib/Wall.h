@@ -10,7 +10,15 @@
 
 
 
-class Wall {
+/**
+ * Class that describes the walls
+ */
+class Wall
+{
+
+private:
+
+public:
 
 };
 

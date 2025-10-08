@@ -5,4 +5,5 @@
  * Class that describes Platforms
  */
 
+#include "pch.h"
 #include "Platform.h"

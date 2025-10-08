@@ -27,10 +27,10 @@ private:
     /// Y-position
     double mYPos;
 
-    ///
+    /// item image
     std::unique_ptr<wxImage> mItemImage;
 
-    ///
+    ///item bitmap
     std::unique_ptr<wxBitmap> mItemBitmap;
 
 

@@ -12,7 +12,8 @@
 /**
  * Class that describes the power ups
  */
-class PowerUp : public Item{
+class PowerUp : public Item
+{
 
 
 private:

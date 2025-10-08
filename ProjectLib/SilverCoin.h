@@ -5,9 +5,9 @@
  * Class that describes silver coins
  */
 
-#include "Coin.h"
 #ifndef SILVERCOIN_H
 #define SILVERCOIN_H
+#include "Coin.h"
 
 
 /**

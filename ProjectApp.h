@@ -8,7 +8,10 @@
 #ifndef PROJECT1_PROJECTAPP_H
 #define PROJECT1_PROJECTAPP_H
 
-
+/**
+ *
+ * Class that describes the Project App
+ */
 class ProjectApp : public wxApp
 {
 private:

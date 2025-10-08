@@ -5,4 +5,5 @@
  * Class that describes  wall
  */
 
+#include "pch.h"
 #include "Wall.h"
