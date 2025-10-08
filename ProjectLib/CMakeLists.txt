@@ -25,6 +25,8 @@ set(SOURCE_FILES temp.cpp pch.h
         SilverCoin.h
         GoldCoin.cpp
         GoldCoin.h
+        PowerUp.cpp
+        PowerUp.h
 )
 
 set(wxBUILD_PRECOMP OFF)
