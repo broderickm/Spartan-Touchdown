@@ -7,12 +7,12 @@
 
 #ifndef POWERUP_H
 #define POWERUP_H
-#include "MovingItem.h"
+#include "Item.h"
 
 /**
  * Class that describes the power ups
  */
-class PowerUp:public MovingItem{
+class PowerUp : public Item{
 
 
 private:

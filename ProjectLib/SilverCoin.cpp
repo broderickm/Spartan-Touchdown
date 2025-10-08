@@ -7,6 +7,5 @@
 
 using namespace std;
 
-
 #include "pch.h"
 #include "SilverCoin.h"

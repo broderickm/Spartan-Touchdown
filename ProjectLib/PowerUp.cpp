@@ -8,5 +8,4 @@
 using namespace std;
 
 #include "pch.h"
-
 #include "PowerUp.h"
