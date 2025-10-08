@@ -27,10 +27,8 @@ set(SOURCE_FILES temp.cpp pch.h
         GoldCoin.h
         PowerUp.cpp
         PowerUp.h
-        BrickWall.cpp
-        BrickWall.h
-        CautionWall.cpp
-        CautionWall.h
+        Wall.cpp
+        Wall.h
 )
 
 set(wxBUILD_PRECOMP OFF)
