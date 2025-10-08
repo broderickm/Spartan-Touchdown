@@ -8,12 +8,12 @@
 #ifndef PROJECT1_FOOTBALL_H
 #define PROJECT1_FOOTBALL_H
 #include <memory>
-#include "Item.h"
+#include "MovingItem.h"
 
 /**
  *  Class that describes a football
  */
-class Football : public Item
+class Football : public MovingItem
 {
 private:
     /// Tells if the football is still alive

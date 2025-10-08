@@ -7,12 +7,12 @@
 
 #ifndef PROJECT1_ENEMY_H
 #define PROJECT1_ENEMY_H
-#include "Item.h"
+#include "MovingItem.h"
 
 /**
  * Class that describes enemy
  */
-class Enemy : public Item
+class Enemy : public MovingItem
 {
 private:
 

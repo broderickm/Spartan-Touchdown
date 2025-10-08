@@ -15,6 +15,10 @@ set(SOURCE_FILES temp.cpp pch.h
         UMichEnemy.h
         NDEnemy.cpp
         NDEnemy.h
+        MovingItem.cpp
+        MovingItem.h
+        Level.cpp
+        Level.h
 )
 
 set(wxBUILD_PRECOMP OFF)

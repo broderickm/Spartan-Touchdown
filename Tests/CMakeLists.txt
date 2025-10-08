@@ -2,6 +2,7 @@ project(Tests)
 
 set(TEST_FILES
         EmptyTest.cpp
+        gtest_main.cpp
 )
 
 # Get Google Tests
@@ -28,4 +29,4 @@ target_link_libraries(Tests_run ${APPLICATION_LIBRARY} ${wxWidgets_LIBRARIES} )
 # linking Tests_run with the Google Test libraries
 target_link_libraries(Tests_run gtest)
 
-target_precompile_headers(Tests_run PRIVATE ../${APPLICATION_LIBRARY}/pch.h)
+target_precompile_headers(Tests_run PRIVATE ${CMAKE_SOURCE_DIR}/${APPLICATION_LIBRARY}/pch.h)
