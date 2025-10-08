@@ -29,6 +29,8 @@ set(SOURCE_FILES temp.cpp pch.h
         PowerUp.h
         Wall.cpp
         Wall.h
+        Platform.cpp
+        Platform.cpp
 )
 
 set(wxBUILD_PRECOMP OFF)

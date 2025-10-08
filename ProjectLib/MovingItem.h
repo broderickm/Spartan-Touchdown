@@ -2,7 +2,7 @@
  * @file MovingItem.h
  * @author Shlok
  *
- *header for methods shared between moving items
+ *
  */
 
 #ifndef PROJECT1_MOVINGITEM_H
