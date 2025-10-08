@@ -31,6 +31,8 @@ set(SOURCE_FILES temp.cpp pch.h
         Wall.h
         Platform.cpp
         Platform.cpp
+        GameView.cpp
+        GameView.h
 )
 
 set(wxBUILD_PRECOMP OFF)
