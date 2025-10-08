@@ -27,17 +27,8 @@ set(SOURCE_FILES temp.cpp pch.h
         GoldCoin.h
         PowerUp.cpp
         PowerUp.h
-<<<<<<< HEAD
-        BrickWall.cpp
-        BrickWall.h
-        CautionWall.cpp
-        CautionWall.h
-=======
         Platform.cpp
         Platform.h
-        Surface.cpp
-        Surface.h
->>>>>>> 885bbca (added Surface base class and Platform class)
 )
 
 set(wxBUILD_PRECOMP OFF)
