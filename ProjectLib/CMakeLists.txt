@@ -19,6 +19,12 @@ set(SOURCE_FILES temp.cpp pch.h
         MovingItem.h
         Level.cpp
         Level.h
+        Coin.cpp
+        Coin.h
+        SilverCoin.cpp
+        SilverCoin.h
+        GoldCoin.cpp
+        GoldCoin.h
 )
 
 set(wxBUILD_PRECOMP OFF)
