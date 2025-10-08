@@ -11,11 +11,13 @@
 
 
 /**
- * Class that describes the coin for silvercoin
+ * Class that describes the coin for silver coin
  */
-class SilverCoin: public Coin{
-
+class SilverCoin: public Coin
+{
 private:
+    /// Value from a silver coin
+    int mValue = 10;
 
 public:
 
