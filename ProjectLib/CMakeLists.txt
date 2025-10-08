@@ -27,8 +27,8 @@ set(SOURCE_FILES temp.cpp pch.h
         GoldCoin.h
         PowerUp.cpp
         PowerUp.h
-        Platform.cpp
-        Platform.h
+        Wall.cpp
+        Wall.h
 )
 
 set(wxBUILD_PRECOMP OFF)
