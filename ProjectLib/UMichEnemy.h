@@ -9,6 +9,9 @@
 #define PROJECT1_UMICHENEMY_H
 #include "Enemy.h"
 
+/**
+ * Class that describes the Michigan Wolverine enemy
+ */
 class UMichEnemy : public Enemy
 {
 private:

@@ -7,8 +7,12 @@
 
 #ifndef PROJECT1_NDENEMY_H
 #define PROJECT1_NDENEMY_H
+
 #include "Enemy.h"
 
+/**
+ * Class that describes the enemy from Notre Dame
+ */
 class NDEnemy : public Enemy
 {
 private:
