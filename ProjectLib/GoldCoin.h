@@ -13,9 +13,10 @@
 /**
  * Class that describes the coin for goldcoin
  */
-class GoldCoin: public Coin{
-
+class GoldCoin: public Coin
+{
 private:
+    int mValue = 100;
 
 public:
 
