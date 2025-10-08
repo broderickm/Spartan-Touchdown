@@ -15,11 +15,7 @@ include(${wxWidgets_USE_FILE})
 add_subdirectory(${APPLICATION_LIBRARY})
 include_directories(${APPLICATION_LIBRARY})
 
-#please add app to source files whenever you implement it
-set(SOURCE_FILES main.cpp pch.h
-        ProjectLib/MainFrame.cpp
-        ProjectLib/MainFrame.h
-        )
+set(SOURCE_FILES main.cpp pch.h ProjectApp.cpp ProjectApp.h)
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
 

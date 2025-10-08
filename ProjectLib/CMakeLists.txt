@@ -5,7 +5,17 @@ set(SOURCE_FILES temp.cpp pch.h
         Game.h
         MainFrame.cpp
         MainFrame.h
-        )
+        Football.cpp
+        Football.h
+        Item.cpp
+        Item.h
+        Enemy.cpp
+        Enemy.h
+        UMichEnemy.cpp
+        UMichEnemy.h
+        NDEnemy.cpp
+        NDEnemy.h
+)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
