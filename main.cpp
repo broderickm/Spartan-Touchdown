@@ -1,16 +1,48 @@
-#include <iostream>
+/**
+ *@file main.cpp
+ *@author Shlok
+*/
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+#include "pch.h"
+#include <MainFrame.h>
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
 
-    return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
+/**
+ * ok so
+ * I know someone else was going to do the app, but
+ * I needed the app to function in order to be able to add the testing module
+ * since the main function ideally just initializes the app from the app class
+ * so I took basically what the aquariumapp did and added it as a nested class in main
+ * whoever needs to implement app can take the app functions and move them to their own class
+ * the only necessary part of this that will need to be kept is the wximplement call in the last line
+ */
+class GameApp : public wxApp
+{
+    public:
+    bool OnInit() override;
+};
+
+bool GameApp::OnInit()
+{
+#ifdef WIN32
+    // Enable memory leak detection in debug mode
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
+
+    // Call base class initialization
+    if (!wxApp::OnInit())
+        return false;
+
+    // Initialize image handlers for loading images
+    wxInitAllImageHandlers();
+
+    // Create and show the main frame
+    auto frame = new MainFrame();
+
+    // Initialize function will be implemented within the app later
+    //frame->Initialize();
+
+    return true;
 }
+
+wxIMPLEMENT_APP(GameApp);
