@@ -16,7 +16,8 @@
 class Coin : public Item
 {
 private:
-
+    /// Default value of a coin
+    int mValue = 0;
 
 public:
 };
