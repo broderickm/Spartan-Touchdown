@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "MainFrame.h"
 #include "GameView.h"
+#include "ids.h"
 
 void MainFrame::Initialize()
 {
@@ -29,7 +30,29 @@ void MainFrame::Initialize()
     // Layout (place) the child windows.
     Layout();
 
-    // Initialize Menu Here
+    // Initialize Menu
+    auto menuBar = new wxMenuBar( );
+
+    auto fileMenu = new wxMenu();
+    auto levelMenu = new wxMenu();
+    auto helpMenu = new wxMenu();
+    auto aboutMenu = new wxMenu();
+
+    menuBar->Append(fileMenu, L"&File");
+    menuBar->Append(levelMenu, L"&Level");
+    menuBar->Append(helpMenu, L"&Help");
+    menuBar->Append(aboutMenu, L"&About");
+
+    fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
+    // Right now is no dialogue for showing this!
+    aboutMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+    levelMenu->Append(IDM_LEVELZERO, L"&Level Zero");
+    levelMenu->Append(IDM_LEVELONE, L"&Level One");
+    levelMenu->Append(IDM_LEVELTWO, L"&Level Two");
+    levelMenu->Append(IDM_LEVELTHREE, L"&Level Three");
+
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
+
 }
 
 

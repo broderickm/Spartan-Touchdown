@@ -49,7 +49,7 @@ public:
      * @param x X coordinate.
      * @param y Y coordinate.
      */
-    void SetLocation(double x, double y);
+    void SetLocation(double x, double y) { mXPos = x; mYPos = y;}
 
     /// Get the X location of the item
     double GetX() const { return mXPos; }

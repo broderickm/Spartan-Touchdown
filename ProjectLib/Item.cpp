@@ -23,14 +23,3 @@ Item::Item(Game* game) : mGame(game)
 Item::~Item()
 {
 }
-
-/**
- * Set the item location.
- * @param x X coordinate.
- * @param y Y coordinate.
- */
-void Item::SetLocation(double x, double y)
-{
-    mX = x;
-    mY = y;
-}
