@@ -37,6 +37,7 @@ set(SOURCE_FILES temp.cpp pch.h
         ScoreBoard.h
         GoalPost.cpp
         GoalPost.h
+        ids.h
 )
 
 set(wxBUILD_PRECOMP OFF)

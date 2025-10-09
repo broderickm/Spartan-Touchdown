@@ -35,15 +35,37 @@ private:
 
 
 public:
-    /// function hitTest checks whether an item was hit when coordinates are passed in.
+    /**
+     * Constructor.
+     * @param game The game this item is part of.
+     */
+    Item(Game* game, const std::wstring& filename);
+
+    /// Destructor.
+    virtual ~Item();
+
+    /**
+     * Set the item location.
+     * @param x X coordinate.
+     * @param y Y coordinate.
+     */
+    void SetLocation(double x, double y) { mXPos = x; mYPos = y;}
+
+    /// Get the X location of the item
+    double GetX() const { return mXPos; }
+
+    /// Get the Y location of the item
+    double GetY() const { return mYPos; }
+
+    /// Get the game this item belongs to
+    Game* GetGame() const { return mGame; }
+
+    /**
+     * Initialize the item .
+     */
+    virtual void Initialize() {}
+
     virtual bool HitTest(int x, int y);
-
-    /// function getX, getY
-    /// ive added these getter functions to get the X and Y of the current position for the hitest function
-    /// @venkata pandiri
-    int GetX(){return mXPos;}
-    int GetY(){return mYPos;}
-
 };
 
 
