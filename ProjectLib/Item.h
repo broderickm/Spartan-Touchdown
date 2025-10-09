@@ -39,7 +39,7 @@ public:
      * Constructor.
      * @param game The game this item is part of.
      */
-    Item(Game* game);
+    Item(Game* game, const std::wstring& filename);
 
     /// Destructor.
     virtual ~Item();
