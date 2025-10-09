@@ -4,11 +4,10 @@
  *
  * Class that describes coins
  */
-#include "Item.h"
 
 #ifndef COIN_H
 #define COIN_H
-
+#include "Item.h"
 
 /**
  * Class that describes coins
