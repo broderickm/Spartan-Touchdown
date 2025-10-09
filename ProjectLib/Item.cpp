@@ -56,7 +56,7 @@ bool Item::HitTest(int x, int y)
     }
 
 
-    /// make sure the position we hit relative to the left corner of the image is not transparent
+    /// make sure the position we hit relative to the left corner of the image is not transparent.
     return !mItemImage->IsTransparent((int)testX, (int)testY);
 
 
