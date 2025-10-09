@@ -35,6 +35,35 @@ private:
 
 
 public:
+    /**
+     * Constructor.
+     * @param game The game this item is part of.
+     */
+    Item(Game* game);
+
+    /// Destructor.
+    virtual ~Item();
+
+    /**
+     * Set the item location.
+     * @param x X coordinate.
+     * @param y Y coordinate.
+     */
+    void SetLocation(double x, double y);
+
+    /// Get the X location of the item
+    double GetX() const { return mXPos; }
+
+    /// Get the Y location of the item
+    double GetY() const { return mYPos; }
+
+    /// Get the game this item belongs to
+    Game* GetGame() const { return mGame; }
+
+    /**
+     * Initialize the item .
+     */
+    virtual void Initialize() {}
 };
 
 
