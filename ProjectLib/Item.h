@@ -39,7 +39,7 @@ public:
     virtual bool HitTest(int x, int y);
 
     /// function getX, getY
-    /// ive added these getter functions to get the X and Y of the current position
+    /// ive added these getter functions to get the X and Y of the current position for the hitest function
     /// @venkata pandiri
     int GetX(){return mXPos;}
     int GetY(){return mYPos;}
