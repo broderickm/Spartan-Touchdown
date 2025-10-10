@@ -17,6 +17,15 @@ class UMichEnemy : public Enemy
 private:
 
 public:
+    /// disable default constructor
+    UMichEnemy() = delete;
+    /// disable default copy constructor
+    UMichEnemy(UMichEnemy const & UMichEnemy) = delete;
+
+    /// disable = copy operator
+    void operator=(UMichEnemy const & UMichEnemy) = delete;
+
+    UMichEnemy(Game * game);
 };
 
 
