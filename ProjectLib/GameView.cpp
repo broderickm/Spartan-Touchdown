@@ -18,6 +18,8 @@
  * at the end
  */
 
+#include <wx/graphics.h>
+
 #include "ids.h"
 
 /**
@@ -88,21 +90,28 @@ void GameView::OnKeyDown(wxKeyEvent& event)
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+    // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
-    wxBrush background(*wxWHITE);
+    // Clear the image to black
+    wxBrush background(*wxBLACK);
     dc.SetBackground(background);
     dc.Clear();
 
-    // Compute the time that has elapsed
-    // since the last call to OnPaint.
+    // Compute the time that has elapsed since the last call to OnPaint
     auto newTime = mStopWatch.Time();
     auto elapsed = (double)(newTime - mTime) * 0.001;
     mTime = newTime;
 
-    /// commented out the game functions, make sure to add back when the game is ready
-    //mGame.Update(elapsed);
-    //mGame.OnDraw(&dc);
+    // Update the game
+    mGame.Update(elapsed);
+
+    // Create a graphics context
+    auto size = GetClientSize();
+    auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
+
+    // Tell the game class to draw
+    mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight());
 }
 
 /** timer event function (basically just updates the frame every tick)

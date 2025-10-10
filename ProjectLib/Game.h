@@ -16,8 +16,20 @@
 class Game
 {
 private:
-
+    /// Game area height in virtual pixels
+    const static int Height = 1024;
+    /// Scale from virtual pixels to screen pixels
+    double mScale = 0;
+    /// All items in the game
+    std::vector<std::shared_ptr<Item>> mItems;
 public:
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+
+    /**
+     * Update the game state
+     * @param elapsed Time elapsed since last update in seconds
+     */
+    void Update(double elapsed);
 };
 
 

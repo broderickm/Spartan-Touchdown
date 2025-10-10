@@ -5,6 +5,9 @@
 
 #include "pch.h"
 #include "Item.h"
+
+#include <wx/graphics.h>
+
 #include "Game.h"
 
 using namespace std;

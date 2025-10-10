@@ -77,7 +77,16 @@ public:
      * Derived classes (like Platform, Wall, Coin, GoalPost) will override this.
      * @param graphics The graphics context to draw on
      */
+
+    /// added default implementation to draw, can be overriden by future classes if necessary
+    /// but honestly everything draws the same so I'm not sure it'll need to be overridden
     virtual void Draw(wxGraphicsContext* graphics) {}
+
+    /**
+     * Update the item
+     * @param elapsed Time elapsed since last update in seconds
+     */
+    virtual void Update(double elapsed) {}
 
 };
 
