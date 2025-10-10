@@ -37,6 +37,8 @@ private:
 
 public:
     void Initialize(wxFrame* parent);
+
+    Game* GetGame() { return &mGame; }
 };
 
 
