@@ -8,6 +8,8 @@
 #ifndef COIN_H
 #define COIN_H
 #include "Item.h"
+#include <wx/graphics.h>
+
 
 /**
  * Class that describes coins
@@ -15,10 +17,37 @@
 class Coin : public Item
 {
 private:
-    /// Default value of a coin
-    int mValue = 0;
+    /// The image used for this coin
+    wxBitmap mCoinImage;
+
+    /// The value of this coin in points
+    int mCoinValue = 0;
+
+    /// The display size of the coin in virtual pixels
+    static const int COIN_SIZE = 48;
+
 
 public:
+    /**
+     * Constructor.
+     * @param game  The game this coin belongs to
+     * @param image The filename of the coin image (e.g., L"images/coin10.png")
+     * @param value The point value for this coin (e.g., 10 or 100)
+     */
+    Coin(Game* game, const std::wstring& image, int value);
+
+    /**
+     * Draws the coin on the screen at its current position.
+     * @param graphics The graphics context used to draw
+     */
+    void Draw(wxGraphicsContext* graphics) override;
+
+    /**
+     * Get the coin's point value.
+     * @return The current value of this coin
+     */
+    int GetValue() const { return mCoinValue; }
+
 };
 
 

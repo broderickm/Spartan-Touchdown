@@ -18,9 +18,11 @@ class GoldCoin: public Coin
 
 private:
     /// Value from a gold coin
-    int mValue = 100;
+   /// int mValue = 100;
 
 public:
+    explicit GoldCoin(Game* game);
+
 
 };
 

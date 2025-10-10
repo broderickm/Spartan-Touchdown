@@ -8,16 +8,45 @@
 #ifndef PROJECT1_GOALPOST_H
 #define PROJECT1_GOALPOST_H
 
+#include "Item.h"
+#include <wx/graphics.h>
+
+
 /**
  *
  *class that describes goal post
  */
 
-class GoalPost
+class GoalPost: public Item
 {
 private:
+ /// The image used for the goalpost
+ wxBitmap mGoalpostImage;
+
+ /// Default width and height of the goalpost
+ double mGoalpostWidth = 80;
+ double mGoalpostHeight = 160;
 
 public:
+ /**
+     * Constructor.
+     * @param game  The game this goalpost belongs to
+     * @param image The filename of the goalpost image
+     */
+ GoalPost(Game* game, const std::wstring& image);
+
+ /**
+  * Draw the goalpost on the screen.
+  * @param graphics The graphics context used to draw
+  */
+ void Draw(wxGraphicsContext* graphics) override;
+
+ /**
+  * Set a custom size for the goalpost.
+  * @param width  New width
+  * @param height New height
+  */
+ void SetGoalpostSize(double width, double height);
 };
 
 

@@ -17,9 +17,11 @@ class SilverCoin: public Coin
 {
 private:
     /// Value from a silver coin
-    int mValue = 10;
+    ///int mValue = 10;
 
 public:
+    explicit SilverCoin(Game* game);
+
 
 };
 

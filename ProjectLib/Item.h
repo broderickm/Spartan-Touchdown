@@ -66,6 +66,15 @@ public:
     virtual void Initialize() {}
 
     virtual bool HitTest(int x, int y);
+
+    ///sanika here , just adding the draw function for my platform class
+    /**
+     * Draws the item on the screen.
+     * Derived classes (like Platform, Wall, Coin, GoalPost) will override this.
+     * @param graphics The graphics context to draw on
+     */
+    virtual void Draw(wxGraphicsContext* graphics) {}
+
 };
 
 

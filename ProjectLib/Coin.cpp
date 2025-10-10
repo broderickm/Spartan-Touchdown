@@ -7,3 +7,33 @@
 
 #include "pch.h"
 #include "Coin.h"
+#include "Game.h"
+
+/**
+ * Create a coin with an image and a point value.
+ * @param game  The game this coin belongs to
+ * @param image The image filename (e.g., L"images/coin10.png" or L"images/coin100.png")
+ * @param value The point value (10 for silver coin, 100 for gold coin)
+ */
+Coin::Coin(Game* game, const std::wstring& image, int value)
+        : Item(game, image),
+          mCoinImage(image, wxBITMAP_TYPE_ANY),
+          mCoinValue(value)
+{
+}
+
+/**
+ * Draw the coin at its current position on the screen.
+ */
+void Coin::Draw(wxGraphicsContext* graphics)
+{
+    if (!graphics)
+    {
+        return; // Nothing to draw on
+    }
+
+    double drawX = GetX() - COIN_SIZE / 2;
+    double drawY = GetY() - COIN_SIZE / 2;
+
+    graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
+}
