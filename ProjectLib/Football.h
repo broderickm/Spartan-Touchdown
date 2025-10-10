@@ -41,6 +41,25 @@ private:
     std::unique_ptr<wxBitmap> mRightBitmap;
 
 public:
+    /**
+     *Venkata here, i've added the constructors and disabled the default copy constructor, constructor
+     *and assingment operator, i've done this so i can load the image in for the football.
+     *
+     *Feel free to make any changes.
+     */
+
+
+    /// constructor for the football
+    Football(Game * game);
+
+    /// disable default constructor
+    Football() = delete;
+    /// disable copy construactor
+    Football(Football const & football) = delete;
+    /// disable the assignment operator
+    void operator=(Football const & football) = delete;
+
+
 };
 
 
