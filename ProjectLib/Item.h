@@ -22,10 +22,10 @@ private:
     Game *mGame;
 
     /// X-positons
-    double mXPos;
+    double mXPos = 0;
 
     /// Y-position
-    double mYPos;
+    double mYPos = 0;
 
     /// item image
     std::unique_ptr<wxImage> mItemImage;

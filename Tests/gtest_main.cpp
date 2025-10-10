@@ -9,5 +9,8 @@ int main(int argc, char** argv) {
     wxSetWorkingDirectory(L"..");
     wxInitAllImageHandlers();
 
+    // Suppress PNG color profile warnings
+    wxLog::SetLogLevel(wxLOG_Error);
+
     return RUN_ALL_TESTS();
 }
