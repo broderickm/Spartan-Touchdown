@@ -1,8 +1,8 @@
 /**
  * @file GameView.h
  * @author Venkata Pandiri
- *class that describes gameview
  *
+ * Class that describes the game view
  */
 
 #ifndef PROJECT1_GAMEVIEW_H
@@ -23,8 +23,6 @@ private:
     void OnPaint(wxPaintEvent& event);
     void OnTimer(wxTimerEvent& event);
 
-
-
     /// object for the game/frame itself
     Game mGame;
     /// The timer that allows for animation
@@ -33,6 +31,7 @@ private:
     wxStopWatch mStopWatch;
     /// The last stopwatch time
     long mTime = 0;
+
 public:
     void Initialize(wxFrame* parent);
 };

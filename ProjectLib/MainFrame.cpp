@@ -8,6 +8,9 @@
 #include "GameView.h"
 #include "ids.h"
 
+/**
+ * Initialize the main frame of view of the app
+ */
 void MainFrame::Initialize()
 {
     Create(nullptr, wxID_ANY, L"SpartanTouchdown",
@@ -18,14 +21,14 @@ void MainFrame::Initialize()
     auto sizer = new wxBoxSizer( wxVERTICAL );
 
     // Create the gameview class object as a child of MainFrame
-    //auto gameView = new GameView();
-    //gameView->Initialize(this);
+    auto gameView = new GameView();
+    gameView->Initialize(this);
 
     // Add it to the sizer
-    //sizer->Add(gameView,1, wxEXPAND | wxALL );
+    sizer->Add(gameView,1, wxEXPAND | wxALL );
 
     // Set the sizer for this frame
-    //SetSizer( sizer );
+    SetSizer( sizer );
 
     // Layout (place) the child windows.
     Layout();
@@ -36,20 +39,23 @@ void MainFrame::Initialize()
     auto fileMenu = new wxMenu();
     auto levelMenu = new wxMenu();
     auto helpMenu = new wxMenu();
-    auto aboutMenu = new wxMenu();
 
     menuBar->Append(fileMenu, L"&File");
     menuBar->Append(levelMenu, L"&Level");
     menuBar->Append(helpMenu, L"&Help");
-    menuBar->Append(aboutMenu, L"&About");
+
+    SetMenuBar(menuBar);
 
     fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
-    // Right now is no dialogue for showing this!
-    aboutMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+
     levelMenu->Append(IDM_LEVELZERO, L"&Level Zero");
     levelMenu->Append(IDM_LEVELONE, L"&Level One");
     levelMenu->Append(IDM_LEVELTWO, L"&Level Two");
     levelMenu->Append(IDM_LEVELTHREE, L"&Level Three");
+
+    helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+
+    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 

@@ -23,9 +23,9 @@ bool ProjectApp::OnInit()
     wxInitAllImageHandlers();
 
     // Will add code below back in once MainFrame has code
-    //auto frame = new MainFrame();
-    //frame->Initialize();
-    //frame->Show(true);
+    auto frame = new MainFrame();
+    frame->Initialize();
+    frame->Show(true);
 
     return true;
 }
