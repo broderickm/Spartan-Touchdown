@@ -53,16 +53,26 @@ void MainFrame::Initialize()
     levelMenu->Append(IDM_LEVELTWO, L"&Level Two");
     levelMenu->Append(IDM_LEVELTHREE, L"&Level Three");
 
-    helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+    helpMenu->Append(wxID_ABOUT, "&About\tF1");
 
     CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 
 }
 
-
-
+/**
+* About menu option handlers -> Dialogue box
+ * @param event
+*/
+void MainFrame::OnAbout(wxCommandEvent& event)
+{
+    wxMessageBox(L"SpartanTouchdown",
+            L"About Spartan Touchdown",
+            wxOK,
+            this);
+}
 
 
 /**
