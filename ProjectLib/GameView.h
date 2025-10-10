@@ -23,6 +23,9 @@ private:
     void OnPaint(wxPaintEvent& event);
     void OnTimer(wxTimerEvent& event);
 
+    /// key press event handlers
+    void OnKeyDown(wxKeyEvent& event);
+
     /// object for the game/frame itself
     Game mGame;
     /// The timer that allows for animation

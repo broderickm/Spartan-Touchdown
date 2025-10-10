@@ -38,12 +38,48 @@ void GameView::Initialize(wxFrame* parent)
      * add anything concrete until we have a mechanism for loading in the xml files
      */
 
+    Bind(wxEVT_KEY_DOWN, &GameView::OnKeyDown, this);
+
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     Bind(wxEVT_TIMER, &GameView::OnTimer, this);
 
     mStopWatch.Start();
+}
+
+/**
+ * Handle key down events for player control
+ * @param event The key event
+ */
+void GameView::OnKeyDown(wxKeyEvent& event)
+{
+    auto keyCode = event.GetKeyCode();
+
+    /// similarly to above, other items will need to be added in (like the ball)
+    /// before this function can be made functional
+
+    switch(keyCode)
+    {
+    case WXK_LEFT:
+        // Move football left
+        // mGame.MoveFootballLeft();
+        break;
+
+    case WXK_RIGHT:
+        // Move football right
+        // mGame.MoveFootballRight();
+        break;
+
+    case WXK_SPACE:
+        // Make football jump/bounce
+        // mGame.FootballJump();
+        break;
+
+    default:
+        event.Skip();  // Allow other handlers to process unhandled keys
+        break;
+    }
 }
 
 /**
