@@ -23,8 +23,10 @@ private:
  /// The image used for the goalpost
  wxBitmap mGoalpostImage;
 
- /// Default width and height of the goalpost
+ /// Default width of the goalpost
  double mGoalpostWidth = 80;
+
+ /// Default height of the goalpost
  double mGoalpostHeight = 160;
 
 public:

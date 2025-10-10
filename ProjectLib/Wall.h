@@ -21,8 +21,10 @@ private:
  /// The wall tile image (one segment of the wall)
  wxBitmap mWallImage;
 
- /// Total width and height of this wall (in virtual pixels)
+ /// Total width aof this wall (in virtual pixels)
  double mWallWidth = 0;
+
+ /// Default height of the wall
  double mWallHeight = 0;
 
  /// Each tile is 64 px tall/wide

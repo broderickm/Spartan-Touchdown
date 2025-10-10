@@ -1,8 +1,8 @@
 /**
  * @file MovingItem.h
  * @author Shlok
- *class that describes a moving item
  *
+ * Class that describes a moving item
  */
 
 #ifndef PROJECT1_MOVINGITEM_H
@@ -10,15 +10,16 @@
 #include "Item.h"
 
 /**
- *class that describes a moving item
- *
+ * Class that describes a moving item
  */
 class MovingItem : public Item
 {
 private:
-    double mSpeedX=0; ///x speed
-    double mSpeedY=0;/// y speed
+    /// Speed in the x-direction
+    double mSpeedX=0;
 
+    /// Speed in the y-direction
+    double mSpeedY=0;
 
 public:
 };
