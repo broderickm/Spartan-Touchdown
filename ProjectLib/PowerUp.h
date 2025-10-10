@@ -19,7 +19,14 @@ class PowerUp : public Item
 private:
 
 public:
+    /// disable default constructor
+    PowerUp() = delete;
+    /// disable default copy assingment
+    PowerUp(PowerUp const & powerup) = delete;
 
+    void operator=(PowerUp const & powerup) = delete;
+
+    PowerUp(Game* game);
 
 };
 
