@@ -22,6 +22,23 @@ private:
     double mSpeedY=0;
 
 public:
+
+    /**
+     *venkata here,
+     *I've added the constructors for this class, so we can load in images
+     *if there are changes to be made dont hesistate to change the functions
+     */
+
+    /// disable default constructor
+    MovingItem() = delete;
+    /// disbale copy constructor
+    MovingItem(MovingItem const & movingItem) = delete;
+    /// disable '=' copy operator
+    void operator=(const MovingItem &) = delete;
+
+    /// note: this might be protected member, for now i am making it public.
+    MovingItem(Game * game, const std::wstring& filename);
+
 };
 
 
