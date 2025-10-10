@@ -17,7 +17,17 @@ class NDEnemy : public Enemy
 {
 private:
 
+
 public:
+    /// disable default constructor
+    NDEnemy() = delete;
+    /// disable default copy constructor
+    NDEnemy(NDEnemy const & ndEnemy) = delete;
+
+    /// disable = copy operator
+    void operator=(NDEnemy const & ndEnemy) = delete;
+
+    NDEnemy(Game * game);
 };
 
 
