@@ -35,13 +35,9 @@ private:
 
 
 public:
-    /**
-     * Constructor.
-     * @param game The game this item is part of.
-     */
     Item(Game* game, const std::wstring& filename);
 
-    /// Destructor.
+    // Destructor.
     virtual ~Item();
 
     /**
@@ -51,23 +47,31 @@ public:
      */
     void SetLocation(double x, double y) { mXPos = x; mYPos = y;}
 
-    /// Get the X location of the item
+    /**
+     * Get the X location of the item
+     * @return the X positon
+     */
     double GetX() const { return mXPos; }
 
-    /// Get the Y location of the item
+    /**
+     * Get the Y location of the item
+     * @return the Y position
+     */
     double GetY() const { return mYPos; }
 
-    /// Get the game this item belongs to
+    /**
+     * Getter for the pointer to the Game the item is apart of
+     * @return the pointer to the game object
+     */
     Game* GetGame() const { return mGame; }
 
     /**
-     * Initialize the item .
+     * Initialize the item
      */
     virtual void Initialize() {}
 
     virtual bool HitTest(int x, int y);
 
-    ///sanika here , just adding the draw function for my platform class
     /**
      * Draws the item on the screen.
      * Derived classes (like Platform, Wall, Coin, GoalPost) will override this.

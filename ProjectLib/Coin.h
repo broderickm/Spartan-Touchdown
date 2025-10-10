@@ -28,18 +28,8 @@ private:
 
 
 public:
-    /**
-     * Constructor.
-     * @param game  The game this coin belongs to
-     * @param image The filename of the coin image (e.g., L"images/coin10.png")
-     * @param value The point value for this coin (e.g., 10 or 100)
-     */
     Coin(Game* game, const std::wstring& image, int value);
 
-    /**
-     * Draws the coin on the screen at its current position.
-     * @param graphics The graphics context used to draw
-     */
     void Draw(wxGraphicsContext* graphics) override;
 
     /**

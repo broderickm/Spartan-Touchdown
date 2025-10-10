@@ -22,8 +22,7 @@ const wstring FootballMidImageName = L"Images/footballMid.png";
 
 /**
  * Constructor
- * @param game, the game we are adding this enemy to
- * @param filename Filename for the image we use
+ * @param game the game we are adding this football to
  */
 Football::Football(Game* game): MovingItem(game, FootballLeftImageName)
 {

@@ -13,8 +13,7 @@ const wstring UMichImageName = L"Images/ND.png";
 
 /**
  * Constructor
- * @param game, the game we are adding this enemy to
- * @param filename Filename for the image we use
+ * @param game the game we are adding this enemy to
  */
 NDEnemy::NDEnemy(Game* game): Enemy(game, UMichImageName)
 {

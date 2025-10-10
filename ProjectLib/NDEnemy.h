@@ -19,12 +19,13 @@ private:
 
 
 public:
-    /// disable default constructor
+    // Disable default constructor
     NDEnemy() = delete;
-    /// disable default copy constructor
+
+    // Disable default copy constructor
     NDEnemy(NDEnemy const & ndEnemy) = delete;
 
-    /// disable = copy operator
+    // Disable = copy operator
     void operator=(NDEnemy const & ndEnemy) = delete;
 
     NDEnemy(Game * game);

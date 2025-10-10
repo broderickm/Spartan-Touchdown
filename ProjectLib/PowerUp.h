@@ -14,14 +14,13 @@
  */
 class PowerUp : public Item
 {
-
-
 private:
 
 public:
-    /// disable default constructor
+    // Disable default constructor
     PowerUp() = delete;
-    /// disable default copy assingment
+
+    // Disable default copy assignment
     PowerUp(PowerUp const & powerup) = delete;
 
     void operator=(PowerUp const & powerup) = delete;

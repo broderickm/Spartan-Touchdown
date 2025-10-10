@@ -16,14 +16,17 @@
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
+/**
+ * Class that describes the game view
+ */
 class GameView : public wxWindow
 {
 private:
-    /// paint and timer functions to update the frame whenever things change
+    /// Paint and timer functions to update the frame whenever things change
     void OnPaint(wxPaintEvent& event);
     void OnTimer(wxTimerEvent& event);
 
-    /// key press event handlers
+    /// Key press event handlers
     void OnKeyDown(wxKeyEvent& event);
 
     /// object for the game/frame itself
@@ -38,6 +41,10 @@ private:
 public:
     void Initialize(wxFrame* parent);
 
+    /**
+     * Getter for the game
+     * @return pointer to the game object
+     */
     Game* GetGame() { return &mGame; }
 };
 

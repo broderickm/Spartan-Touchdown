@@ -29,14 +29,14 @@ public:
      *if there are changes to be made dont hesistate to change the functions
      */
 
-    /// disable default constructor
+    // Disable default constructor
     MovingItem() = delete;
-    /// disbale copy constructor
+
+    // Disable copy constructor
     MovingItem(MovingItem const & movingItem) = delete;
-    /// disable '=' copy operator
     void operator=(const MovingItem &) = delete;
 
-    /// note: this might be protected member, for now i am making it public.
+    // note: this might be protected member, for now i am making it public.
     MovingItem(Game * game, const std::wstring& filename);
 
 };

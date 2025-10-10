@@ -24,6 +24,7 @@ Coin::Coin(Game* game, const std::wstring& image, int value)
 
 /**
  * Draw the coin at its current position on the screen.
+ * @param graphics The graphics context used to draw
  */
 void Coin::Draw(wxGraphicsContext* graphics)
 {

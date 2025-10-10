@@ -16,7 +16,8 @@ Item::~Item() = default;
 
 /**
  * Constructor.
- * @param game The game this item is part of.
+ * @param game The game this item is part of
+ * @param filename The filename used for the image
  */
 Item::Item(Game* game, const std::wstring& filename)
 {
