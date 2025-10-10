@@ -42,3 +42,18 @@ TEST(ItemTest, GettersSetters) {
     ASSERT_NEAR(-52, item.GetX(), 0.0001);
     ASSERT_NEAR(-106, item.GetY(), 0.0001);
 }
+
+
+TEST(ItemTest, HitTest)
+{
+    Game game;
+    ItemMock item(&game);
+
+    item.SetLocation(150,250);
+    /// hit the item exactly at its cordinates should return TRUE
+    ASSERT_TRUE(item.HitTest(150,250));
+    /// will add more to this once items functionality is expanded upon, as we need make sure hit test returns
+    /// false when a transparent pixel is hit.
+    ///
+
+}
