@@ -12,11 +12,18 @@ using namespace std;
 
 // using random background image for testing
 static const std::wstring kTestImage = L"Images/background0.png";
+static const std::wstring TestFootBallImage = L"Images/footballLeft.png";
 
 /** Mock class for testing the Item class */
 class ItemMock : public Item {
 public:
     ItemMock(Game* game) : Item(game, kTestImage) {}
+};
+
+class ItemMockWithNewImage: public Item
+{
+public:
+    ItemMockWithNewImage(Game* game) : Item(game, TestFootBallImage) {};
 };
 
 TEST(ItemTest, Construct) {
@@ -47,13 +54,29 @@ TEST(ItemTest, GettersSetters) {
 TEST(ItemTest, HitTest)
 {
     Game game;
-    ItemMock item(&game);
-
+    ItemMockWithNewImage item(&game);
+    /// dimensions of the football are: 64 x 96 wid = 64 hit = 96,  32 = wid/2, and 48 = hit/2
     item.SetLocation(150,250);
     /// hit the item exactly at its cordinates should return TRUE
     ASSERT_TRUE(item.HitTest(150,250));
-    /// will add more to this once items functionality is expanded upon, as we need make sure hit test returns
-    /// false when a transparent pixel is hit.
     ///
+    /// hit football to the left
+    ASSERT_TRUE(item.HitTest(150-25,250));
+    /// hit football to the right
+    ASSERT_TRUE(item.HitTest(150+25,250));
+    /// hit football above
+    ASSERT_TRUE(item.HitTest(150,250+5));
+    /// hit football below
+    ASSERT_TRUE(item.HitTest(150,250-5));
+
+    /// make sure returning false when clicking out of the image
+    ASSERT_FALSE(item.HitTest(150+50,250));
+    ASSERT_FALSE(item.HitTest(150-50,250));
+    ASSERT_FALSE(item.HitTest(150+70,250+70));
+
+    /// make sure to the return false when hitting a transparent pixel(lower left region is a transparent pixel
+    ASSERT_FALSE(item.HitTest(150-29, 250+46));
+
+
 
 }
