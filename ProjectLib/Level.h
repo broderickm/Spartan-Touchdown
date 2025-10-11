@@ -22,6 +22,7 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 public:
+    void XmlItem(wxXmlNode* node);
 };
 
 

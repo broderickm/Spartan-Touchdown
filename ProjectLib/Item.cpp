@@ -62,6 +62,20 @@ bool Item::HitTest(int x, int y)
 
     /// make sure the position we hit relative to the left corner of the image is not transparent.
     return !mItemImage->IsTransparent((int)testX, (int)testY);
+}
 
 
+/**
+ * Load the attributes for an item node.
+ *
+ * This is the  base class version that loads the attributes
+ * common to all items. Override this to load custom attributes
+ * for specific items.
+ *
+ * @param node The Xml node we are loading the item from
+ */
+void Item::XmlLoad(wxXmlNode *node)
+{
+    node->GetAttribute(L"x", L"0").ToDouble(&mXPos);
+    node->GetAttribute(L"y", L"0").ToDouble(&mYPos);
 }

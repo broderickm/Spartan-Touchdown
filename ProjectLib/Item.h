@@ -88,6 +88,8 @@ public:
      */
     virtual void Update(double elapsed) {}
 
+    virtual void XmlLoad(wxXmlNode* node);
+
 };
 
 
