@@ -28,7 +28,7 @@ public:
     // Disable = copy operator
     void operator=(NDEnemy const & ndEnemy) = delete;
 
-    NDEnemy(Game * game);
+    NDEnemy(Level* level);
 };
 
 

@@ -12,9 +12,9 @@ using namespace std;
 
 /**
  * Silver coin constructor
- * @param game the game the coin is in
+ * @param level the level the coin is in
  */
-SilverCoin::SilverCoin(Game* game)
-        : Coin(game, L"images/coin10.png", 10)
+SilverCoin::SilverCoin(Level *level)
+        : Coin(level, L"images/coin10.png", 10)
 {
 }

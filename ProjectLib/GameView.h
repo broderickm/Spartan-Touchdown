@@ -25,6 +25,7 @@ private:
     /// Paint and timer functions to update the frame whenever things change
     void OnPaint(wxPaintEvent& event);
     void OnTimer(wxTimerEvent& event);
+    void OnFileOpen(wxCommandEvent& event);
 
     /// Key press event handlers
     void OnKeyDown(wxKeyEvent& event);
@@ -46,6 +47,11 @@ public:
      * @return pointer to the game object
      */
     Game* GetGame() { return &mGame; }
+
+    /**
+     * Stop the timer so the window can close
+     */
+    void Stop() {mTimer.Stop();}
 };
 
 

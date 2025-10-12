@@ -19,10 +19,10 @@ Item::~Item() = default;
 
 /**
  * Constructor.
- * @param game The game this item is part of
+ * @param level The level this item is part of
  * @param filename The filename used for the image
  */
-Item::Item(Game* game, const std::wstring& filename)
+Item::Item(Level *level, const std::wstring& filename)
 {
     mItemImage = std::make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
     if (mItemImage && mItemImage->IsOk())

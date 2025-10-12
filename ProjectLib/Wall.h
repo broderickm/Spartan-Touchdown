@@ -41,10 +41,10 @@ private:
 public:
  /**
      * Constructor.
-     * @param game  The game this wall belongs to
+     * @param level  The level this wall belongs to
      * @param image The filename of the wall image
      */
- Wall(Game* game, const std::wstring& image);
+ Wall(Level *level, const std::wstring& image);
 
  /**
   * Draw the wall on the screen.

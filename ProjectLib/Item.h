@@ -10,9 +10,10 @@
 
 #include <memory>
 #include <wx/xml/xml.h>
+#include "Level.h"
 
 // Forward reference allowing Game to draw this
-class Game;
+class Level;
 
 /**
  * Base class that describes an Item
@@ -20,8 +21,8 @@ class Game;
 class Item
 {
 private:
-    /// The game that item is contained in
-    Game *mGame;
+    /// The level that item is contained in
+    Level* mLevel;
 
     /// X-positons
     double mXPos = 0;
@@ -36,7 +37,10 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
 public:
-    Item(Game* game, const std::wstring& filename);
+    /// Disable default constructor
+    Item() = delete;
+
+    Item(Level* level, const std::wstring& filename);
 
     // Destructor.
     virtual ~Item();
@@ -61,10 +65,10 @@ public:
     double GetY() const { return mYPos; }
 
     /**
-     * Getter for the pointer to the Game the item is apart of
-     * @return the pointer to the game object
+     * Getter for the pointer to the level the item is apart of
+     * @return the pointer to the level object
      */
-    Game* GetGame() const { return mGame; }
+    Level* GetLevel() const { return mLevel; }
 
     /**
      * Initialize the item

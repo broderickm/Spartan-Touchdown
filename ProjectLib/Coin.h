@@ -28,7 +28,7 @@ private:
 
 
 public:
-    Coin(Game* game, const std::wstring& image, int value);
+    Coin(Level *level, const std::wstring& image, int value);
 
     void Draw(wxGraphicsContext* graphics) override;
 

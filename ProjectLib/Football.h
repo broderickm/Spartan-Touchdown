@@ -50,7 +50,7 @@ public:
 
 
     /// constructor for the football
-    Football(Game * game);
+    Football(Level *level);
 
     /// disable default constructor
     Football() = delete;

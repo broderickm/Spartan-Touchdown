@@ -15,9 +15,9 @@ const wstring UMichImageName = L"Images/U-M.png";
 
 /**
  * Constructor
- * @param game the game we are adding this enemy to
+ * @param level the level we are adding this enemy to
  */
-UMichEnemy::UMichEnemy(Game* game): Enemy(game, UMichImageName)
+UMichEnemy::UMichEnemy(Level *level): Enemy(level, UMichImageName)
 {
 
 }

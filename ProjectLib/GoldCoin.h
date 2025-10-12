@@ -21,7 +21,10 @@ private:
    /// int mValue = 100;
 
 public:
-    explicit GoldCoin(Game* game);
+    /// Disable default constructor
+    GoldCoin() = delete;
+
+    GoldCoin(Level* level);
 
 
 };

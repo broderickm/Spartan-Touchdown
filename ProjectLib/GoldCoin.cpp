@@ -11,7 +11,7 @@ using namespace std;
 #include "pch.h"
 #include "GoldCoin.h"
 
-GoldCoin::GoldCoin(Game* game)
-        : Coin(game, L"images/coin100.png", 100)
+GoldCoin::GoldCoin(Level *level)
+        : Coin(level, L"images/coin100.png", 100)
 {
 }

@@ -11,8 +11,8 @@
 /**
  * Construct a goalpost using the provided image.
  */
-GoalPost::GoalPost(Game* game, const std::wstring& image)
-        : Item(game, image),
+GoalPost::GoalPost(Level *level, const std::wstring& image)
+        : Item(level, image),
           mGoalpostImage(image, wxBITMAP_TYPE_ANY)
 {
 }

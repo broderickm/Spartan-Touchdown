@@ -15,9 +15,9 @@ const wstring PowerUpImageName = L"Images/sparty.png";
 
 /**
  * Constructor of the PowerUp
- * @param game the game the powerup is in
+ * @param level the level the powerup is in
  */
-PowerUp::PowerUp(Game* game): Item(game, PowerUpImageName)
+PowerUp::PowerUp(Level* level): Item(level, PowerUpImageName)
 {
 
 }

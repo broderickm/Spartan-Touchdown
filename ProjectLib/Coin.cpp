@@ -11,12 +11,12 @@
 
 /**
  * Create a coin with an image and a point value.
- * @param game  The game this coin belongs to
+ * @param level  The level this coin belongs to
  * @param image The image filename (e.g., L"images/coin10.png" or L"images/coin100.png")
  * @param value The point value (10 for silver coin, 100 for gold coin)
  */
-Coin::Coin(Game* game, const std::wstring& image, int value)
-        : Item(game, image),
+Coin::Coin(Level *level, const std::wstring& image, int value)
+        : Item(level, image),
           mCoinImage(image, wxBITMAP_TYPE_ANY),
           mCoinValue(value)
 {

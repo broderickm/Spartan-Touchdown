@@ -8,6 +8,7 @@
 #ifndef PROJECT1_MAINFRAME_H
 #define PROJECT1_MAINFRAME_H
 #include <wx/osx/frame.h>
+#include "GameView.h"
 
 /**
  *
@@ -16,6 +17,7 @@
 class MainFrame : public wxFrame
 {
 private:
+    GameView* mGameView = nullptr;
 
 public:
     void Initialize();

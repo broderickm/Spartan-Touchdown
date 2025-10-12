@@ -28,7 +28,7 @@ public:
     void operator=(const Enemy &) = delete;
 
     // note: this might be a protected member, for now I am making it public
-    Enemy(Game * game, const std::wstring& filename);
+    Enemy(Level *level, const std::wstring& filename);
 };
 
 

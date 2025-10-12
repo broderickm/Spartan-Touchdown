@@ -51,7 +51,7 @@ public:
      * @param middleFile The middle section image
      * @param rightFile The right edge image
      */
-    Platform(Game* game,
+    Platform(Level *level,
              const std::wstring& leftFile,
              const std::wstring& middleFile,
              const std::wstring& rightFile);

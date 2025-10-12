@@ -122,3 +122,21 @@ void GameView::OnTimer(wxTimerEvent &event)
     Refresh();
 }
 
+/**
+ * File>Open menu handler
+ * @param event Menu event
+ */
+void GameView::OnFileOpen(wxCommandEvent& event)
+{
+    wxFileDialog loadFileDialog(this, L"Load Level file", L"levels", L"level1.xml",
+            L"Level Files (*.xml)|*.xml", wxFD_OPEN);
+
+    if (loadFileDialog.ShowModal() == wxID_CANCEL)
+    {
+        return;
+    }
+
+    auto filename = loadFileDialog.GetPath();
+    mGame.GetLevel()->Load(filename);
+    Refresh();
+}

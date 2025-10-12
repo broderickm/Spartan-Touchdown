@@ -32,10 +32,10 @@ private:
 public:
  /**
      * Constructor.
-     * @param game  The game this goalpost belongs to
+     * @param level  The level this goalpost belongs to
      * @param image The filename of the goalpost image
      */
- GoalPost(Game* game, const std::wstring& image);
+ GoalPost(Level *level, const std::wstring& image);
 
  /**
   * Draw the goalpost on the screen.

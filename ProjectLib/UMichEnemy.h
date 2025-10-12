@@ -26,7 +26,7 @@ public:
     // Disable = copy operator
     void operator=(UMichEnemy const & UMichEnemy) = delete;
 
-    UMichEnemy(Game * game);
+    UMichEnemy(Level *level);
 };
 
 

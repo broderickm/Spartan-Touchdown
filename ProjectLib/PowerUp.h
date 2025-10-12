@@ -25,7 +25,7 @@ public:
 
     void operator=(PowerUp const & powerup) = delete;
 
-    PowerUp(Game* game);
+    PowerUp(Level* level);
 
 };
 

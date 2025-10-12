@@ -13,12 +13,17 @@
 /**
  * Make a new platform using three images:
  * left edge, middle part, and right edge.
+ *
+ * @param level the level this platform is in
+ * @param leftFile the left platform image file
+ * @param middleFile the middle platform image file
+ * @param rightFile the right platform image file
  */
-Platform::Platform(Game* game,
+Platform::Platform(Level *level,
                    const std::wstring& leftFile,
                    const std::wstring& middleFile,
                    const std::wstring& rightFile)
-        : Item(game, middleFile),
+        : Item(level, middleFile),
           mLeftImage(leftFile, wxBITMAP_TYPE_ANY),
           mMiddleImage(middleFile, wxBITMAP_TYPE_ANY),
           mRightImage(rightFile, wxBITMAP_TYPE_ANY)
@@ -26,7 +31,10 @@ Platform::Platform(Game* game,
 }
 
 /**
- * Helper function that draws one full row of platform tiles.
+ * Helper function that draws one full row of platform tiles
+ * @param graphics the virtual pixel graphics used
+ * @param startX the starting x position
+ * @param middleTiles the number of middle tiles in the platform
  */
 void Platform::DrawPlatformRow(wxGraphicsContext* graphics, double startX, int middleTiles)
 {
@@ -48,7 +56,8 @@ void Platform::DrawPlatformRow(wxGraphicsContext* graphics, double startX, int m
 }
 
 /**
- * Draws this platform on the screen.
+ * Draws this platform on the screen
+ * @param graphics the virtual pixel graphics used
  */
 void Platform::Draw(wxGraphicsContext* graphics)
 {
@@ -73,7 +82,9 @@ void Platform::Draw(wxGraphicsContext* graphics)
 }
 
 /**
- * Sets how big this platform should be.
+ * Sets how big this platform should be
+ * @param width the width of the platform
+ * @param height the height of the platform
  */
 void Platform::SetPlatformSize(double width, double height)
 {

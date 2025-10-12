@@ -7,12 +7,13 @@
 
 #ifndef PROJECT1_SCOREBOARD_H
 #define PROJECT1_SCOREBOARD_H
+#include "Item.h"
 
 /**
  *class that describes a scoreboard
  *
  */
-class ScoreBoard
+class ScoreBoard : public Item
 {
 private:
 

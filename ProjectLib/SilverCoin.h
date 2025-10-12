@@ -20,7 +20,10 @@ private:
     ///int mValue = 10;
 
 public:
-    explicit SilverCoin(Game* game);
+    /// Default constructor disabled
+    SilverCoin() = delete;
+
+    SilverCoin(Level* level);
 
 
 };

@@ -37,7 +37,9 @@ public:
     void operator=(const MovingItem &) = delete;
 
     // note: this might be protected member, for now i am making it public.
-    MovingItem(Game * game, const std::wstring& filename);
+    MovingItem(Level* level, const std::wstring& filename);
+
+    void XmlLoad(wxXmlNode* node) override;
 
 };
 

@@ -12,8 +12,8 @@
 /**
  * Make a new wall using one image that repeats vertically.
  */
-Wall::Wall(Game* game, const std::wstring& image)
-        : Item(game, image),
+Wall::Wall(Level *level, const std::wstring& image)
+        : Item(level, image),
           mWallImage(image, wxBITMAP_TYPE_ANY)
 {
 }
