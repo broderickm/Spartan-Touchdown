@@ -7,7 +7,9 @@
 
 #ifndef PROJECT1_ITEM_H
 #define PROJECT1_ITEM_H
+
 #include <memory>
+#include <wx/xml/xml.h>
 
 // Forward reference allowing Game to draw this
 class Game;
@@ -32,7 +34,6 @@ private:
 
     ///item bitmap
     std::unique_ptr<wxBitmap> mItemBitmap;
-
 
 public:
     Item(Game* game, const std::wstring& filename);
