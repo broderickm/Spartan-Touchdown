@@ -18,6 +18,17 @@ const wstring FootballRightImageName = L"Images/footballRight.png";
 /// Football filename Mid
 const wstring FootballMidImageName = L"Images/footballMid.png";
 
+/// Gravity in virtual pixels per second per second
+const double Gravity = 1000.0;
+
+/// Horizontal speed in pixels per second
+const double HorizontalSpeed = 500.0;
+
+/// Upwards vertical speed for bouncing
+const double BounceSpeed = -800;
+
+/// Small value to prevent getting stuck in collision
+const double Epsilon = 0.01;
 
 
 /**

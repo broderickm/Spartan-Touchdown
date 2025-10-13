@@ -40,6 +40,25 @@ private:
     /// Right bitmap
     std::unique_ptr<wxBitmap> mRightBitmap;
 
+    /// The velocity of the football
+    Vector mV = Vector(0, 0);
+
+    /**
+     * Handle vertical collisions
+     * @param collided The item we collided with
+     * @param newV The velocity vector being updated
+     * @param newP The position vector being updated
+     */
+    void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
+
+    /**
+     * Handle horizontal collisions
+     * @param collided The item we collided with
+     * @param newV The velocity vector being updated
+     * @param newP The position vector being updated
+     */
+    void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
+
 public:
     /**
      *Venkata here, i've added the constructors and disabled the default copy constructor, constructor
@@ -61,6 +80,11 @@ public:
     /// disable the assignment operator
     void operator=(Football const & football) = delete;
 
+    /**
+     * Update the football each frame
+     * @param elapsed Time elapsed since last update
+     */
+    void Update(double elapsed) override;
 
 };
 
