@@ -52,6 +52,10 @@ public:
      * Stop the timer so the window can close
      */
     void Stop() {mTimer.Stop();}
+
+    void OnLevelZero(wxCommandEvent& event);
+    void OnLevelOne(wxCommandEvent& event);
+    void OnLevelTwo(wxCommandEvent& event);
 };
 
 

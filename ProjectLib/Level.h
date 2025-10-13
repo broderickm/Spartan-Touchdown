@@ -40,7 +40,7 @@ private:
     double mInitialY = 0;
 
     /// Map holding ids and image filenames
-    std::map<wxString, wxString> mObjDeclarations;
+    std::map<wxString, std::wstring> mObjDeclarations;
 
     /// All of the items present in the level
     std::vector<std::shared_ptr<Item>> mItems;

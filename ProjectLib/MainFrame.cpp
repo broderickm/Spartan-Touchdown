@@ -18,7 +18,7 @@ void MainFrame::Initialize()
 
     // Create a sizer that will lay out child windows vertically
     // one above each other
-    auto sizer = new wxBoxSizer( wxVERTICAL );
+    auto sizer = new wxBoxSizer( wxVERTICAL);
 
     // Create the gameview class object as a child of MainFrame
     auto gameView = new GameView();
@@ -61,10 +61,6 @@ void MainFrame::Initialize()
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 
-    //Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelZero, this, IDM_LEVELZERO);
-    //Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelZero, this, IDM_LEVELONE);
-    //Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelZero, this, IDM_LEVELTWO);
-    //Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelZero, this, IDM_LEVELTHREE);
 
 }
 
@@ -79,7 +75,6 @@ void MainFrame::OnAbout(wxCommandEvent& event)
             wxOK,
             this);
 }
-
 
 /**
  * Exit menu option handlers

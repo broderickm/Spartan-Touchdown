@@ -31,14 +31,14 @@ void GameView::Initialize(wxFrame* parent)
     Create(parent, wxID_ANY);
     SetBackgroundColour(*wxWHITE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
+    //mGame.GetLevel()->Load(L"levels/level1.xml");
 
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 
-    /**
-     * this is where the event handlers that initialize the game go, I am not sure
-     * about specifically what needs to be added first here and will likely not be able to
-     * add anything concrete until we have a mechanism for loading in the xml files
-     */
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelZero, this, IDM_LEVELZERO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELONE);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelTwo, this, IDM_LEVELTWO);
+    //parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLeveThree, this, IDM_LEVELTHREE);
 
     Bind(wxEVT_KEY_DOWN, &GameView::OnKeyDown, this);
 
@@ -137,6 +137,34 @@ void GameView::OnFileOpen(wxCommandEvent& event)
     }
 
     auto filename = loadFileDialog.GetPath();
-    mGame.GetLevel()->Load(filename);
+    //mGame.GetLevel()->Load(filename);
     Refresh();
+}
+
+
+void GameView::OnLevelZero(wxCommandEvent& event)
+{
+    Level* level = this->GetGame()->GetLevel();
+    level->Load(L"levels/level0.xml");
+
+    Refresh();
+    Update();
+}
+
+void GameView::OnLevelOne(wxCommandEvent& event)
+{
+    Level* level = this->GetGame()->GetLevel();
+    level->Load(L"levels/level1.xml");
+
+    Refresh();
+    Update();
+}
+
+void GameView::OnLevelTwo(wxCommandEvent& event)
+{
+    Level* level = this->GetGame()->GetLevel();
+    level->Load(L"levels/level2.xml");
+
+    Refresh();
+    Update();
 }

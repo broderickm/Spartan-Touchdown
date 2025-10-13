@@ -4,8 +4,17 @@
  */
 
 #include "pch.h"
+#include <wx/string.h>
 #include "Level.h"
 #include "Game.h"
+#include "GoalPost.h"
+#include "Platform.h"
+#include "Wall.h"
+#include "GoldCoin.h"
+#include "SilverCoin.h"
+#include "PowerUp.h"
+#include "NDEnemy.h"
+#include "UMichEnemy.h"
 #include "Football.h"
 
 using namespace std;
@@ -17,7 +26,7 @@ Level::Level(Game* game) : mGame(game)
 {
     // Default of level 1 loaded
     mBackground = make_unique<wxBitmap>(
-            L"images/background1.png", wxBITMAP_TYPE_ANY);
+            L"Images/background2.png", wxBITMAP_TYPE_ANY);
 }
 
 /**
@@ -102,9 +111,12 @@ void Level::Load(const wxString &filename)
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
+
+    // Use to set playing area?
     root->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     root->GetAttribute(L"height", L"0").ToDouble(&mHeight);
 
+    // Use to place football originally?
     root->GetAttribute(L"start-x", L"0").ToDouble(&mInitialX);
     root->GetAttribute(L"start-y", L"0").ToDouble(&mInitialY);
 
@@ -145,33 +157,97 @@ void Level::XmlItems(wxXmlNode *node)
     for( ; child; child=child->GetNext())
     {
         auto type = child->GetName();
+        auto id = child->GetAttribute(L"id");
+
+        double x = 0;
+        double y = 0;
+        child->GetAttribute(L"x").ToDouble(&x);
+        child->GetAttribute(L"y").ToDouble(&y);
 
         // A pointer for the item we are loading
         shared_ptr<Item> item;
 
-        // We have an item. What id?
-        auto id = node->GetAttribute(L"id");
-
-        // Background
-        if (id == L"i001")
+        // Backgrounds
+        if (id == L"i001" || id == L"i002")
         {
-            //item = make_shared<Item>(this, mObjDeclarations["i001"]);
+            item = make_shared<Item>(this, L"Images/" +mObjDeclarations[id]);
+        }
+
+        // Grass Platform
+        else if (id == L"i003")
+        {
+            // Get left, right, and middle images
+            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+                L"Images/grassMid.png", L"Images/grassRight.png");
         }
 
         // Snow Platform
-        if (id == L"i004")
+        else if (id == L"i004")
         {
             // Get left, right, and middle images
-            //item = make_shared<powerup>(this);
+            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+                L"Images/snowMid.png", L"Images/snowRight.png");
         }
 
+        // Metal Platform
+        else if (id == L"i005")
+        {
+            // Get left, right, and middle images
+            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+                L"Images/metalMid.png", L"Images/metalRight.png");
+        }
+
+        // Wall 1 or 2
+        else if (id == L"i006" || id == L"i007")
+        {
+            item = make_shared<Wall>(this, L"Images/" + mObjDeclarations[id]);
+        }
+
+        // Coin 10 -> silver coin
+        else if (id == L"i008")
+        {
+            item = make_shared<SilverCoin>(this);
+        }
+
+        // Coin 100 -> gold coin
+        else if (id == L"i009")
+        {
+            item = make_shared<GoldCoin>(this);
+        }
+
+        // Power-Up
+        else if (id == L"i010")
+        {
+            item = make_shared<PowerUp>(this);
+        }
+
+        // GoalPost
+        else if (id == L"i011")
+        {
+            item = make_shared<GoalPost>(this, L"Images/" + mObjDeclarations[id]);
+        }
+
+        // UMich Enemy
+        else if (id == L"i012")
+        {
+            item = make_shared<UMichEnemy>(this);
+        }
+
+        // ND Enemy
+        else if (id == L"i013")
+        {
+            item = make_shared<NDEnemy>(this);
+        }
+
+        // Init location and load
         if (item != nullptr)
         {
             // Get location here
-            //item->SetLocation(, );
-            mItems.push_back(item);
+            item->SetLocation(x, y);
+            item->XmlLoad(child);
 
-            item->XmlLoad(node);
+            // Add to
+            mItems.push_back(item);
         }
     }
 }
@@ -189,22 +265,15 @@ void Level::XmlDeclarations(wxXmlNode* node)
         auto type = child->GetName();
         auto id = child->GetAttribute(L"id");
 
-        // Get special types first
+        // Get type with specific image attribute first
         if (type == L"platform")
         {
-            mObjDeclarations[id] = child->GetAttribute(L"image");
-        }
-        else if (type == L"coin")
-        {
-            mObjDeclarations[id] = child->GetAttribute(L"image");
+            mObjDeclarations[id] = (L"Images/" + child->GetAttribute(L"left-image")).ToStdWstring();
         }
         else
         {
-            mObjDeclarations[id] = child->GetAttribute(L"image");
+            mObjDeclarations[id] = (L"Images/" + child->GetAttribute(L"image")).ToStdWstring();
         }
-
-
-
     }
 }
 
