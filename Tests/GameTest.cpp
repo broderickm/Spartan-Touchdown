@@ -99,3 +99,17 @@ TEST_F(GameTest, Clear)
 
     ASSERT_TRUE(level.HitTest(600, 200) == nullptr);
 }
+
+
+TEST_F(GameTest, Load)
+{
+    // Create a game and level
+    Game game;
+    Level level(&game);
+
+    // Test with Easy XML I make
+    //level.Load(path);
+
+    // Hit test the items here
+
+}
