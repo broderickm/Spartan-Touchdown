@@ -6,6 +6,7 @@
 #include "pch.h"
 #include <string>
 #include "Football.h"
+#include "Game.h"
 
 using namespace std;
 

@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "MovingItem.h"
 #include "Game.h"
+#include "Level.h"
 
 /**
  * Constructor
@@ -32,5 +33,6 @@ void MovingItem::XmlLoad(wxXmlNode *node)
 
 Game* MovingItem::GetGame() const
 {
-    return mLevel->GetGame();
+    // access the Level pointer from Item, then ask Level for its Game
+    return GetLevel()->GetGame();
 }

@@ -99,7 +99,6 @@ public:
 
     /// Get height of the item
     virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
-
 };
 
 

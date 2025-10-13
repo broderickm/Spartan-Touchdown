@@ -8,7 +8,7 @@
 #ifndef PROJECT1_MOVINGITEM_H
 #define PROJECT1_MOVINGITEM_H
 #include "Item.h"
-
+class Game;
 /**
  * Class that describes a moving item
  */
@@ -40,12 +40,12 @@ public:
     MovingItem(Level* level, const std::wstring& filename);
 
     void XmlLoad(wxXmlNode* node) override;
-     /**
-     * Get the game this item belongs to.
-     * @return The game.
+
+    /**
+     * Get the game this moving item belongs to.
+     * @return Pointer to the Game object
      */
     Game* GetGame() const;
-
 };
 
 
