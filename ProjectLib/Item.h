@@ -94,6 +94,12 @@ public:
 
     virtual void XmlLoad(wxXmlNode* node);
 
+    /// Get width of the item
+    virtual double GetWidth() const { return mItemBitmap->GetWidth(); }
+
+    /// Get height of the item
+    virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
+
 };
 
 

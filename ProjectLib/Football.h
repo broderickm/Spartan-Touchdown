@@ -40,24 +40,6 @@ private:
     /// Right bitmap
     std::unique_ptr<wxBitmap> mRightBitmap;
 
-    /// The velocity of the football
-    Vector mV = Vector(0, 0);
-
-    /**
-     * Handle vertical collisions
-     * @param collided The item we collided with
-     * @param newV The velocity vector being updated
-     * @param newP The position vector being updated
-     */
-    void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
-
-    /**
-     * Handle horizontal collisions
-     * @param collided The item we collided with
-     * @param newV The velocity vector being updated
-     * @param newP The position vector being updated
-     */
-    void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
 public:
     /**
