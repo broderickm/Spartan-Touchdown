@@ -170,14 +170,14 @@ void Level::XmlItems(wxXmlNode *node)
         // Backgrounds
         if (id == L"i001" || id == L"i002")
         {
-            item = make_shared<Item>(this, L"Images/" +mObjDeclarations[id]);
+            item = make_shared<Item>(this, mObjDeclarations[id]);
         }
 
         // Grass Platform
         else if (id == L"i003")
         {
             // Get left, right, and middle images
-            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+            item = make_shared<Platform>(this, mObjDeclarations[id],
                 L"Images/grassMid.png", L"Images/grassRight.png");
         }
 
@@ -185,7 +185,7 @@ void Level::XmlItems(wxXmlNode *node)
         else if (id == L"i004")
         {
             // Get left, right, and middle images
-            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+            item = make_shared<Platform>(this, mObjDeclarations[id],
                 L"Images/snowMid.png", L"Images/snowRight.png");
         }
 
@@ -193,14 +193,14 @@ void Level::XmlItems(wxXmlNode *node)
         else if (id == L"i005")
         {
             // Get left, right, and middle images
-            item = make_shared<Platform>(this, L"Images/" +mObjDeclarations[id],
+            item = make_shared<Platform>(this, mObjDeclarations[id],
                 L"Images/metalMid.png", L"Images/metalRight.png");
         }
 
         // Wall 1 or 2
         else if (id == L"i006" || id == L"i007")
         {
-            item = make_shared<Wall>(this, L"Images/" + mObjDeclarations[id]);
+            item = make_shared<Wall>(this, mObjDeclarations[id]);
         }
 
         // Coin 10 -> silver coin
@@ -224,7 +224,7 @@ void Level::XmlItems(wxXmlNode *node)
         // GoalPost
         else if (id == L"i011")
         {
-            item = make_shared<GoalPost>(this, L"Images/" + mObjDeclarations[id]);
+            item = make_shared<GoalPost>(this, mObjDeclarations[id]);
         }
 
         // UMich Enemy

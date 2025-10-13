@@ -31,7 +31,9 @@ void GameView::Initialize(wxFrame* parent)
     Create(parent, wxID_ANY);
     SetBackgroundColour(*wxWHITE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
-    //mGame.GetLevel()->Load(L"levels/level1.xml");
+    mGame.Initialize();
+    Refresh();
+    Update();
 
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 
@@ -48,6 +50,8 @@ void GameView::Initialize(wxFrame* parent)
     Bind(wxEVT_TIMER, &GameView::OnTimer, this);
 
     mStopWatch.Start();
+
+    Refresh();
 }
 
 /**
