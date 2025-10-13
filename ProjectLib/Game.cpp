@@ -4,11 +4,14 @@
  */
 
 #include "pch.h"
+#include "Coin.h"
+
 #include "Game.h"
 #include "Level.h"
 #include "Football.h"
 
 #include <wx/graphics.h>
+
 
 
 /**
@@ -100,6 +103,36 @@ void Game::Update(double elapsed)
     {
         mLevel->Update(elapsed);
     }
+
+    ///check for collisions between coin and football
+    if (mFootball != nullptr && mLevel != nullptr)
+    {
+        const auto& items = mLevel->GetItems();
+
+        for (auto& item : items) {
+            Coin* coin = dynamic_cast<Coin*>(item.get());
+
+            if (coin != nullptr && !coin ->CoinIsCollected())
+            {
+
+                /// calculate the distance between football and coin
+                double dx = mFootball->GetX() - coin->GetX();
+                double dy = mFootball->GetY() - coin->GetY();
+                double distance = sqrt(dx * dx + dy * dy);
+
+                /// if the football is close enough, it collected the coin
+                if (distance < 50)  // 50 = approximate hit radius
+                {
+                    /// mark the coin as collected
+                    coin->SetIsCollected(true);
+
+                    /// add the coin’s value to the player score
+                    AddToPlayerScore(coin->GetTheValue());
+                }
+            }
+        }
+    }
+
 
     // Update camera to follow football
     if (mFootball != nullptr && mScreenWidth > 0)

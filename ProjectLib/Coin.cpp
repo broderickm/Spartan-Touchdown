@@ -28,7 +28,7 @@ Coin::Coin(Level *level, const std::wstring& image, int value)
  */
 void Coin::Draw(wxGraphicsContext* graphics)
 {
-    if (!graphics)
+    if (!graphics || mCoinCollected)
     {
         return; // Nothing to draw on
     }

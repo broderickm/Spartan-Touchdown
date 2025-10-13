@@ -81,6 +81,12 @@ public:
      * @return Starting Y position
      */
     double GetInitialY() const { return mInitialY; }
+
+    /**
+     * Get all items in the level
+     * @return Constant reference to vector of items
+     */
+    const std::vector<std::shared_ptr<Item>>& GetItems() const { return mItems; }
 };
 
 
