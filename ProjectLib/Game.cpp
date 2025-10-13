@@ -63,6 +63,31 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     }
 
     graphics->PopState();
+
+    ///new logic for scireboard
+    wxFont bigFont (wxSize(0,48), wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD);
+
+    ///font and color setting it up
+    graphics->SetFont(bigFont, wxColour(40,80,200));
+
+    ///calculate total seconds and minutes
+    int totalSeconds = static_cast<int>(mTimeElapsedSinceGameStarted);
+    int minutes = totalSeconds/60;
+    int seconds = totalSeconds % 60;
+
+    ///drawing tmer and draw score
+    wxString timerText = wxString::Format("%02d:%02d", minutes, seconds);
+
+    graphics->DrawText(timerText, 20, 20);
+
+    wxString scoreText = wxString::Format("%d", mPlayerScore);
+
+    wxDouble textWidth, textHeight;
+    graphics->GetTextExtent(scoreText, &textWidth, &textHeight);
+
+    graphics->DrawText(scoreText,mScreenWidth/mScale- textWidth-40,20);
+
+
 }
 
 /**
@@ -88,4 +113,44 @@ void Game::Update(double elapsed)
         double maxOffset = mLevel->GetWidth() - virtualWidth;
         mCameraOffsetX = std::max(0.0, std::min(mCameraOffsetX, maxOffset));
     }
+
+    ///logic to update scoreboard
+    mTimeElapsedSinceGameStarted += elapsed;
+
+    ///add elapsed time to score secresing timer
+    mTimerDecrease += elapsed;
+
+    ///with every second decrease player score by 1
+    ///also making sure never goes below 0
+    if (mTimerDecrease >= 1.0)
+        {
+        mPlayerScore -=1;
+
+        ///if score becomes negative , set to 0
+        if (mPlayerScore < 0)
+            {
+            mPlayerScore = 0;
+        }
+
+        ///reset the timer
+        mTimerDecrease=0.0;
+
+
+    }
+}
+
+/**add points to player score
+ *when player colets coins called at that time
+ *pounts- no of points to add
+ *
+ */
+void Game::AddToPlayerScore(int points)
+{
+    mPlayerScore += points;
+
+    if (mPlayerScore < 0)
+        {
+        mPlayerScore = 0;
+    }
+
 }

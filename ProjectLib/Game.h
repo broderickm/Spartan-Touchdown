@@ -23,6 +23,16 @@ class Football;
 class Game
 {
 private:
+    ///Elapsed time since the level started
+    double mTimeElapsedSinceGameStarted=0.0;
+
+    ///score aquired by yhte player
+    int mPlayerScore = 0;
+
+    ///timer element that tracks decreasing of the score
+    double mTimerDecrease = 0.0;
+
+
     /// Game area height in virtual pixels
     const static int Height = 1024;
 
@@ -87,6 +97,24 @@ public:
      * @return World Y position
      */
     double ScreenToWorldY(int screenY) const { return screenY / mScale; }
+
+    /**
+     *add to the current player score
+     * returns  no of points to add
+     */
+    void AddToPlayerScore(int points);
+
+    /**
+     * Get the current player score
+     * return playeers score
+     */
+    int GetPlayerScore() { return mPlayerScore; }
+
+    /**
+     * get total time since game started
+     * return time measured in seconds
+     */
+    double GetTimeElapsedSinceGameStarted() const { return mTimeElapsedSinceGameStarted; }
 };
 
 
