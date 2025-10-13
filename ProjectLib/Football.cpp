@@ -171,3 +171,13 @@ void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, V
 
     newV.SetX(0); // stop horizontal motion after collision
 }
+
+void Football::Jump()
+{
+    // Only allow jumping if the football is on a surface
+    if (mIsOnSurface)
+    {
+        mV.SetY(BounceSpeed); // Apply upward velocity (-800)
+        mIsOnSurface = false; // No longer on surface after jumping
+    }
+}

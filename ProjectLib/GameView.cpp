@@ -43,7 +43,7 @@ void GameView::Initialize(wxFrame* parent)
     //parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLeveThree, this, IDM_LEVELTHREE);
 
     Bind(wxEVT_KEY_DOWN, &GameView::OnKeyDown, this);
-
+    Bind(wxEVT_KEY_UP, &GameView::OnKeyUp, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -61,6 +61,7 @@ void GameView::Initialize(wxFrame* parent)
 void GameView::OnKeyDown(wxKeyEvent& event)
 {
     auto keyCode = event.GetKeyCode();
+    auto football = mGame.GetFootball();
 
     /// similarly to above, other items will need to be added in (like the ball)
     /// before this function can be made functional
@@ -69,21 +70,48 @@ void GameView::OnKeyDown(wxKeyEvent& event)
     {
     case WXK_LEFT:
         // Move football left
-        // mGame.MoveFootballLeft();
+        football->SetGoingLeft(true);
         break;
 
     case WXK_RIGHT:
         // Move football right
-        // mGame.MoveFootballRight();
+        football->SetGoingRight(true);
         break;
 
     case WXK_SPACE:
         // Make football jump/bounce
-        // mGame.FootballJump();
+        football->Jump();
         break;
 
     default:
         event.Skip();  // Allow other handlers to process unhandled keys
+        break;
+    }
+}
+
+void GameView::OnKeyUp(wxKeyEvent& event)
+{
+    auto keyCode = event.GetKeyCode();
+    auto football = mGame.GetFootball();
+
+    if (football == nullptr)
+    {
+        event.Skip();
+        return;
+    }
+
+    switch(keyCode)
+    {
+    case WXK_LEFT:
+        football->SetGoingLeft(false);
+        break;
+
+    case WXK_RIGHT:
+        football->SetGoingRight(false);
+        break;
+
+    default:
+        event.Skip();
         break;
     }
 }

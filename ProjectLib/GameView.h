@@ -29,6 +29,7 @@ private:
 
     /// Key press event handlers
     void OnKeyDown(wxKeyEvent& event);
+    void OnKeyUp(wxKeyEvent& event);
 
     /// object for the game/frame itself
     Game mGame;

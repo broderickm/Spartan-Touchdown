@@ -76,6 +76,22 @@ public:
     /// setter for test football
     void SetVelocity(double x, double y) { mV = Vector(x, y); }
 
+    /**
+     * Make the football jump (only if on a surface)
+     */
+    void Jump();
+
+    /**
+     * Set whether the football is moving left
+     * @param goingLeft True if moving left
+     */
+    void SetGoingLeft(bool goingLeft) { mIsGoingLeft = goingLeft; }
+
+    /**
+     * Set whether the football is moving right
+     * @param goingRight True if moving right
+     */
+    void SetGoingRight(bool goingRight) { mIsGoingRight = goingRight; }
 };
 
 
