@@ -72,6 +72,10 @@ public:
     void Update(double elapsed) override;
     void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
     void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
+
+    /// setter for test football
+    void SetVelocity(double x, double y) { mV = Vector(x, y); }
+
 };
 
 

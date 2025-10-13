@@ -28,24 +28,58 @@ private:
     double mH;
 };
 
+
+class WallMock : public Item
+{
+public:
+    WallMock(Level* level, double x, double y, double w, double h)
+        : Item(level, L"Images/wall.png"), mWidth(w), mHeight(h)
+    {
+        SetLocation(x, y); // Set the location of the wall
+    }
+
+    double GetWidth() const override { return mWidth; }
+    double GetHeight() const override { return mHeight; }
+
+private:
+    double mWidth;
+    double mHeight;
+};
+
 TEST(FootballTest, VerticalHitStopsOnPlatform)
 {
     Game game;
     Level level(&game);
 
-    // create football and a platform
-    // auto football = make_shared<Football>(&level);
-    // football->SetLocation(100, 100); // starting above platform
+    auto football = std::make_shared<Football>(&level);
+    football->SetLocation(100, 100);
 
-    // auto platform = std::make_shared<PlatformMock>(&level, 100, 200, 200, 20);
-    // level.GetItems().push_back(platform); // manually add to level
+    auto platform = std::make_shared<PlatformMock>(&level, 100, 200, 200, 20);
+    level.GetItems().push_back(platform);
 
-    // give downward velocity (falling)
-    // football->SetVelocity(0, 500);
+    // Give football downward velocity
+    football->SetVelocity(0, 500);
 
-    // simulate update for small step
-    // football->Update(0.1);
+    // Simulate update
+    football->Update(0.1);
 
-    // Verify football did not pass through platform
-    // ASSERT_LE(football->GetY(), platform->GetY() - platform->GetHeight() / 2 - football->GetHeight() / 2 + 0.01);
+    // Check that it landed correctly
+    ASSERT_LE(football->GetY(), platform->GetY() - platform->GetHeight()/2 - football->GetHeight()/2 + 0.01);
+}
+
+TEST(FootballTest, HorizontalHitStopsAtWall)
+{
+    Game game;
+    Level level(&game);
+
+    auto football = std::make_shared<Football>(&level);
+    football->SetLocation(100, 200);
+
+    auto wall = std::make_shared<WallMock>(&level, 160, 200, 20, 200);
+    level.GetItems().push_back(wall);
+
+    football->SetVelocity(500, 0); // Move right
+    football->Update(0.1);
+
+    ASSERT_LE(football->GetX(), wall->GetX() - wall->GetWidth()/2 - football->GetWidth()/2 + 0.01);
 }

@@ -90,6 +90,13 @@ public:
     const std::vector<std::shared_ptr<Item>>& GetItems() const { return mItems; }
 
     /**
+     * Get the vector of items (version for setup/tests)
+     * @return Reference to the vector of items
+     */
+    /// this is for football.cpp testing purposes
+    std::vector<std::shared_ptr<Item>>& GetItems() { return mItems; }
+
+    /**
      * Get the game this level belongs to.
      * @return The game pointer.
      */
