@@ -40,6 +40,10 @@ Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 
 }
 
+/**
+ * Update the football each frame
+ * @param elapsed Time elapsed since last update
+ */
 void Football::Update(double elapsed)
 {
     Item::Update(elapsed);
@@ -118,4 +122,43 @@ void Football::Update(double elapsed)
     // new position
     mV = newV;
     SetLocation(newP.X(), newP.Y());
+}
+
+/**
+ * Vertical collision test
+ */
+void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
+{
+    if (newV.Y() > 0) // falling down
+    {
+        // stop on top of collided item (platform)
+        newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
+        mIsOnSurface = true; // Mark as on surface
+    }
+    else if (newV.Y() < 0) // Moving upward
+    {
+        // stop just below ceiling
+        newP.SetY(collided->GetY() + collided->GetHeight() / 2 + GetHeight() / 2 + Epsilon);
+    }
+
+    newV.SetY(0); // stop vertical motion after collision
+}
+
+/**
+ * Horizontal collision test
+ */
+void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
+{
+    if (newV.X() > 0) // moving right
+    {
+        // stop at left side of collided item (wall/platform)
+        newP.SetX(collided->GetX() - collided->GetWidth() / 2 - GetWidth() / 2 - Epsilon);
+    }
+    else if (newV.X() < 0) // Moving left
+    {
+        // stop at right side of collided item (wall/platform)
+        newP.SetX(collided->GetX() + collided->GetWidth() / 2 + GetWidth() / 2 + Epsilon);
+    }
+
+    newV.SetX(0); // stop horizontal motion after collision
 }

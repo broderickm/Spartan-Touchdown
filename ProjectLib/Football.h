@@ -70,7 +70,8 @@ public:
      * @param elapsed Time elapsed since last update
      */
     void Update(double elapsed) override;
-
+    void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
+    void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 };
 
 
