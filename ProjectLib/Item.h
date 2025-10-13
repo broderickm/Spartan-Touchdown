@@ -10,7 +10,6 @@
 
 #include <memory>
 #include <wx/xml/xml.h>
-#include "Level.h"
 
 // Forward reference allowing Game to draw this
 class Level;

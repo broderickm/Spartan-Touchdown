@@ -24,7 +24,7 @@ const wstring FootballMidImageName = L"Images/footballMid.png";
  * Constructor
  * @param game the game we are adding this football to
  */
-Football::Football(Level *level): MovingItem(level, FootballLeftImageName)
+Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 {
 
 }

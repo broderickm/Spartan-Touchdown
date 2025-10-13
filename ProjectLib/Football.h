@@ -54,8 +54,10 @@ public:
 
     /// disable default constructor
     Football() = delete;
-    /// disable copy construactor
+
+    /// disable copy constructor
     Football(Football const & football) = delete;
+
     /// disable the assignment operator
     void operator=(Football const & football) = delete;
 

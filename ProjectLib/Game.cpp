@@ -21,6 +21,9 @@ void Game::Initialize()
     // Level::Load() will handle all the XML parsing and item creation
     mLevel = std::make_unique<Level>(this);
     mLevel->Load(L"levels/level1.xml");
+
+    // Initialize football in someway?
+    //mFootball = std::make_unique<Football>(mLevel.get());
 }
 
 /**
@@ -51,6 +54,12 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     if (mLevel != nullptr)
     {
         mLevel->OnDraw(graphics.get());
+    }
+
+    // Draw football?
+    if (mFootball != nullptr)
+    {
+        mFootball->Draw(graphics.get());
     }
 
     graphics->PopState();

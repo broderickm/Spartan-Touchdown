@@ -21,6 +21,7 @@ using namespace std;
 
 /**
  * Level Constructor
+ * @param game the game the level is apart of
  */
 Level::Level(Game* game) : mGame(game)
 {
@@ -31,7 +32,7 @@ Level::Level(Game* game) : mGame(game)
 
 /**
  * Draw the level area
- * @param dc The device context to draw on
+ * @param graphics The graphics context to draw on
  */
 void Level::OnDraw(wxGraphicsContext* graphics)
 {

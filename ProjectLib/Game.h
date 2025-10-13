@@ -9,7 +9,6 @@
 #ifndef PROJECT1_GAME_H
 #define PROJECT1_GAME_H
 
-#include "pch.h"
 #include "Football.h"
 #include "Item.h"
 #include "Level.h"
