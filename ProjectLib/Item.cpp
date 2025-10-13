@@ -24,6 +24,8 @@ Item::~Item() = default;
  */
 Item::Item(Level *level, const std::wstring& filename)
 {
+    mLevel = level;
+
     mItemImage = std::make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
     if (mItemImage && mItemImage->IsOk())
     {

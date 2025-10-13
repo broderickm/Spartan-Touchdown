@@ -72,6 +72,14 @@ void Football::Update(double elapsed)
     // compute new position using velocity
     Vector newP = p + newV * elapsed;
 
+    auto game = GetGame();
+    if (!game)
+    {
+        /// added thhis check bc of compiler issues
+        wxLogError("in update: game pointer is null");
+        return; // prevent crash
+    }
+
     // vertical hit test
     SetLocation(p.X(), newP.Y());  // try vertical movement only
 
