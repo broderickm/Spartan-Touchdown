@@ -289,3 +289,42 @@ void Level::Clear()
     mObjDeclarations.clear();
     mItems.clear();
 }
+
+/**
+ * Test for collision between one item and others in this level
+ * @param item The item we are testing (usually the football)
+ * @return The item it collides with, or nullptr if none
+ */
+
+std::shared_ptr<Item> Level::CollisionTest(Item* item)
+{
+    for (auto other : mItems)
+        {
+        if (other.get() == item)
+        {
+            continue; // no collision with self
+        }
+
+        // Level checks if football overlaps another item
+        // test within bounds of the box:
+
+        // double leftA = item->GetX() - item->GetWidth() / 2;
+        // double rightA = item->GetX() + item->GetWidth() / 2;
+        // double topA = item->GetY() - item->GetHeight() / 2;
+        // double bottomA = item->GetY() + item->GetHeight() / 2;
+
+        // double leftB = item->GetX() - item->GetWidth() / 2;
+        // double rightB = item->GetX() + item->GetWidth() / 2;
+        // double topB = item->GetY() - item->GetHeight() / 2;
+        // double bottomB = item->GetY() + item->GetHeight() / 2;
+
+        // bool overlapX = rightA >= leftB && leftA <= rightB;
+        // bool overlapY = bottomA >= topB && topA <= bottomB;
+
+        // if (overlapX && overlapY)
+        // {
+        //      return other;
+        // }
+    }
+    // return nullptr;
+}

@@ -187,3 +187,19 @@ void Game::AddToPlayerScore(int points)
     }
 
 }
+
+/**
+ * Test for collision between the football and any item in the level
+ * @param item The item we are testing (usually the football)
+ * @return The first item we collided with or nullptr if none
+ */
+std::shared_ptr<Item> Game::CollisionTest(Item* item)
+{
+    if (mLevel == nullptr)
+    {
+        return nullptr;
+    }
+
+    // Ask the level to perform the collision test
+    return mLevel->CollisionTest(item);
+}

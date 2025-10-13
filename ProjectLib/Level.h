@@ -57,6 +57,7 @@ public:
     void Clear();
 
     std::shared_ptr<Item> HitTest(int x, int y);
+    std::shared_ptr<Item> CollisionTest(Item* item);
 
     /**
      * Get the width of the level
