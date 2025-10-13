@@ -88,6 +88,12 @@ public:
      * @return Constant reference to vector of items
      */
     const std::vector<std::shared_ptr<Item>>& GetItems() const { return mItems; }
+
+    /**
+     * Get the game this level belongs to.
+     * @return The game pointer.
+     */
+    Game* GetGame() const { return mGame; }
 };
 
 

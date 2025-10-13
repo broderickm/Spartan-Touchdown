@@ -5,8 +5,7 @@
 
 #include "pch.h"
 #include "MovingItem.h"
-
-
+#include "Game.h"
 
 /**
  * Constructor
@@ -28,4 +27,10 @@ void MovingItem::XmlLoad(wxXmlNode *node)
 
     node->GetAttribute(L"speedX", L"0").ToDouble(&mSpeedX);
     node->GetAttribute(L"speedY", L"0").ToDouble(&mSpeedY);
+}
+
+
+Game* MovingItem::GetGame() const
+{
+    return mLevel->GetGame();
 }

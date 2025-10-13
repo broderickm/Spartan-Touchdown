@@ -9,6 +9,7 @@
 #define PROJECT1_FOOTBALL_H
 #include <memory>
 #include "MovingItem.h"
+#include "Vector.h"
 
 /**
  *  Class that describes a football
@@ -40,6 +41,8 @@ private:
     /// Right bitmap
     std::unique_ptr<wxBitmap> mRightBitmap;
 
+    /// The velocity vector of the football
+    Vector mV = Vector(0, 0);
 
 public:
     /**

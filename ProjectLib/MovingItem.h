@@ -40,6 +40,11 @@ public:
     MovingItem(Level* level, const std::wstring& filename);
 
     void XmlLoad(wxXmlNode* node) override;
+     /**
+     * Get the game this item belongs to.
+     * @return The game.
+     */
+    Game* GetGame() const;
 
 };
 
