@@ -5,13 +5,15 @@
 
 #include "pch.h"
 #include "Level.h"
+#include "Game.h"
+#include "Football.h"
 
 using namespace std;
 
 /**
  * Level Constructor
  */
-Level::Level()
+Level::Level(Game* game) : mGame(game)
 {
     // Default of level 1 loaded
     mBackground = make_unique<wxBitmap>(
@@ -22,17 +24,40 @@ Level::Level()
  * Draw the level area
  * @param dc The device context to draw on
  */
-void Level::OnDraw(wxDC *dc, std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+void Level::OnDraw(wxGraphicsContext* graphics)
 {
-    // Add the image in the background
-    dc->DrawBitmap(*mBackground, 0, 0);
+    // Draw the background
+    if (mBackground != nullptr && mBackground->IsOk())
+    {
+        int bgWidth = mBackground->GetWidth();
+        int bgHeight = mBackground->GetHeight();
+
+        // Tile the background to cover the level width
+        int numTiles = (int)(mWidth / bgWidth) + 2;
+        for (int i = 0; i < numTiles; i++)
+        {
+            graphics->DrawBitmap(*mBackground, i * bgWidth, 0, bgWidth, bgHeight);
+        }
+    }
 
     //
     // Draw in virtual pixels on the graphics context
     //
     for (auto item : mItems)
     {
-        item->Draw(graphics.get());
+        item->Draw(graphics);
+    }
+}
+
+/**
+ * Update all items in the level
+ * @param elapsed Time elapsed since last update in seconds
+ */
+void Level::Update(double elapsed)
+{
+    for (auto item : mItems)
+    {
+        item->Update(elapsed);
     }
 }
 
@@ -100,6 +125,14 @@ void Level::Load(const wxString &filename)
             XmlItems(child);
         }
     }
+
+    // Create the football at the starting position
+    auto football = make_shared<Football>(this);
+    football->SetLocation(mInitialX, mInitialY);
+    mItems.push_back(football);
+
+    // Tell the game about the football so it can track it for the camera
+    mGame->SetFootball(football);
 }
 
 /**
@@ -112,37 +145,34 @@ void Level::XmlItems(wxXmlNode *node)
     for( ; child; child=child->GetNext())
     {
         auto type = child->GetName();
-        auto id = child->GetAttribute(L"id");
 
+        // A pointer for the item we are loading
+        shared_ptr<Item> item;
 
-    }
-    // A pointer for the item we are loading
-    shared_ptr<Item> item;
+        // We have an item. What id?
+        auto id = node->GetAttribute(L"id");
 
-    // We have an item. What id?
-    auto id = node->GetAttribute(L"id");
+        // Background
+        if (id == L"i001")
+        {
+            //item = make_shared<Item>(this, mObjDeclarations["i001"]);
+        }
 
-    // Background
-    if (id == L"i001")
-    {
-        //item = make_shared<Item>(this, mObjDeclarations["i001"]);
-    }
+        // Snow Platform
+        if (id == L"i004")
+        {
+            // Get left, right, and middle images
+            //item = make_shared<powerup>(this);
+        }
 
-    // Snow Platform
-    if (id == L"i004")
-    {
-        // Get left, right, and middle images
-        //item = make_shared<powerup>(this);
-    }
+        if (item != nullptr)
+        {
+            // Get location here
+            //item->SetLocation(, );
+            mItems.push_back(item);
 
-
-    if (item != nullptr)
-    {
-        // Get location here
-        //item->SetLocation(, );
-        mItems.push_back(item);
-
-        item->XmlLoad(node);
+            item->XmlLoad(node);
+        }
     }
 }
 

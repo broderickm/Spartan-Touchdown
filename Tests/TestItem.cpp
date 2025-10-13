@@ -17,23 +17,25 @@ static const std::wstring TestFootBallImage = L"Images/footballLeft.png";
 /** Mock class for testing the Item class */
 class ItemMock : public Item {
 public:
-    ItemMock(Game* game) : Item(game, kTestImage) {}
+    ItemMock(Level* level) : Item(level, kTestImage) {}
 };
 
 class ItemMockWithNewImage: public Item
 {
 public:
-    ItemMockWithNewImage(Game* game) : Item(game, TestFootBallImage) {};
+    ItemMockWithNewImage(Level* level) : Item(level, TestFootBallImage) {};
 };
 
 TEST(ItemTest, Construct) {
     Game game;
-    ItemMock item(&game);
+    Level level(&game);
+    ItemMock item(&level);
 }
 
 TEST(ItemTest, GettersSetters) {
     Game game;
-    ItemMock item(&game);
+    Level level(&game);
+    ItemMock item(&level);
 
     // Test initial values
     ASSERT_NEAR(0, item.GetX(), 0.0001);
@@ -54,7 +56,8 @@ TEST(ItemTest, GettersSetters) {
 TEST(ItemTest, HitTest)
 {
     Game game;
-    ItemMockWithNewImage item(&game);
+    Level level(&game);
+    ItemMock item(&level);
     /// dimensions of the football are: 64 x 96 wid = 64 hit = 96,  32 = wid/2, and 48 = hit/2
     item.SetLocation(150,250);
     /// hit the item exactly at its cordinates should return TRUE

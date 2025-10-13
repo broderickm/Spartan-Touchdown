@@ -20,7 +20,7 @@ static const std::wstring TestFootBallImage = L"Images/footballLeft.png";
 /** Mock class for testing */
 class ItemMock : public Item {
 public:
-    ItemMock(Game* game) : Item(game, TestFootBallImage) {}
+    ItemMock(Level* level) : Item(level, TestFootBallImage) {}
 
     void Draw(wxDC *dc) {}
 };
@@ -80,16 +80,15 @@ protected:
 TEST_F(GameTest, Construct)
 {
     Game game;
-    Level level;
+    Level level(&game);
 }
 
 
 TEST_F(GameTest, Clear)
 {
     Game game;
-    Level level;
-
-    ItemMock item(&game);
+    Level level(&game);
+    ItemMock item(&level);
 
     level.Clear();
 

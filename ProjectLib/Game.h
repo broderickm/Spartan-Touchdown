@@ -14,6 +14,10 @@
 #include "Item.h"
 #include "Level.h"
 
+/// forward declerations of classes
+class Level;
+class Football;
+
 /**
  * Class that describes game
  */
@@ -25,9 +29,6 @@ private:
 
     /// Scale from virtual pixels to screen pixels
     double mScale = 0;
-
-    /// All items in the game
-    std::vector<std::shared_ptr<Item>> mItems;
 
     /// The current level
     std::unique_ptr<Level> mLevel;
@@ -55,20 +56,6 @@ public:
      * Initializes the game
      */
     void Initialize();
-
-    /**
-     * Add an item to the game
-     * Called by Level when loading items from XML
-     * @param item Item to add
-     */
-    void Add(std::shared_ptr<Item> item);
-
-    /**
-     * Set the current level
-     * Called by Level after it loads from XML
-     * @param level The loaded level
-     */
-    void SetLevel(std::shared_ptr<Level> level);
 
     /**
      * Get pointer to the football

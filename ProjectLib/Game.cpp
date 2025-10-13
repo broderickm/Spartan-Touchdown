@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "Game.h"
+#include "Level.h"
+#include "Football.h"
 
 #include <wx/graphics.h>
 
@@ -17,18 +19,8 @@ void Game::Initialize()
 {
     // Create and load the first level
     // Level::Load() will handle all the XML parsing and item creation
-    //mLevel = std::make_unique<Level>(this);
-    //mLevel->Load(L"levels/level1.xml");
-}
-
-/**
- * Add an item to the game
- * Called by Level when loading items from XML
- * @param item Item to add
- */
-void Game::Add(std::shared_ptr<Item> item)
-{
-    mItems.push_back(item);
+    mLevel = std::make_unique<Level>(this);
+    mLevel->Load(L"levels/level1.xml");
 }
 
 /**
@@ -47,6 +39,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     mScale = double(height) / double(Height);
     graphics->Scale(mScale, mScale);
+
     auto virtualWidth = (double)width/mScale;
 
     graphics->PushState();
@@ -57,15 +50,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     if (mLevel != nullptr)
     {
-        //mLevel->DrawBackground(graphics.get());
-    }
-
-    //
-    // Draw in virtual pixels on the graphics context
-    //
-    for (auto item : mItems)
-    {
-        item->Draw(graphics.get());
+        mLevel->OnDraw(graphics.get());
     }
 
     graphics->PopState();
@@ -77,9 +62,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
  */
 void Game::Update(double elapsed)
 {
-    for (auto item : mItems)
+    if (mLevel != nullptr)
     {
-        item->Update(elapsed);
+        mLevel->Update(elapsed);
     }
 
     // Update camera to follow football
@@ -91,21 +76,7 @@ void Game::Update(double elapsed)
         mCameraOffsetX = mFootball->GetX() - (virtualWidth / 2.0);
 
         // Clamp camera to level bounds so we don't show empty space
-        if (mLevel != nullptr)
-        {
-            //double maxOffset = mLevel->GetWidth() - virtualWidth;
-            //mCameraOffsetX = std::max(0.0, std::min(mCameraOffsetX, maxOffset));
-        }
+        double maxOffset = mLevel->GetWidth() - virtualWidth;
+        mCameraOffsetX = std::max(0.0, std::min(mCameraOffsetX, maxOffset));
     }
-}
-
-/**
- * Set the current level
- * Called by Level after it loads from XML
- * (might not be necessary but it's here in case it is)
- * @param level The loaded level
- */
-void Game::SetLevel(std::shared_ptr<Level> level)
-{
-    //mLevel = level;
 }

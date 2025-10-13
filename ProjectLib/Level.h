@@ -8,8 +8,11 @@
 #ifndef PROJECT1_LEVEL_H
 #define PROJECT1_LEVEL_H
 #include <map>
+#include <wx/graphics.h>
+
 #include "Item.h"
 
+class Game;
 class Item;
 
 /**
@@ -18,6 +21,9 @@ class Item;
 class Level
 {
 private:
+    /// game that the level belongs to
+    Game* mGame;
+
     /// Background image to use for the level
     std::unique_ptr<wxBitmap> mBackground;
 
@@ -40,15 +46,41 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 public:
-    Level();
-    void OnDraw(wxDC *dc, std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+    Level(Game* game);
 
+    void OnDraw(wxGraphicsContext* graphics);
+
+    void Update(double elapsed);
     void Load(const wxString& filename);
     void XmlDeclarations(wxXmlNode* node);
     void XmlItems(wxXmlNode* node);
     void Clear();
 
     std::shared_ptr<Item> HitTest(int x, int y);
+
+    /**
+     * Get the width of the level
+     * @return Level width in pixels
+     */
+    double GetWidth() const { return mWidth; }
+
+    /**
+     * Get the height of the level
+     * @return Level height in pixels
+     */
+    double GetHeight() const { return mHeight; }
+
+    /**
+     * Get the starting X position
+     * @return Starting X position
+     */
+    double GetInitialX() const { return mInitialX; }
+
+    /**
+     * Get the starting Y position
+     * @return Starting Y position
+     */
+    double GetInitialY() const { return mInitialY; }
 };
 
 
