@@ -115,6 +115,12 @@ public:
      * return time measured in seconds
      */
     double GetTimeElapsedSinceGameStarted() const { return mTimeElapsedSinceGameStarted; }
+
+    /** Test for collision between football and any item
+    * @param item The item (the football)
+    * @return The item it collides with, or nullptr if non
+    */
+    std::shared_ptr<Item> CollisionTest(Item* item);
 };
 
 
