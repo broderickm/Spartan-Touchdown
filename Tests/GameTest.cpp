@@ -11,6 +11,7 @@
 #include <streambuf>
 #include <wx/filename.h>
 #include <Game.h>
+#include <Platform.h>
 
 using namespace std;
 
@@ -107,9 +108,15 @@ TEST_F(GameTest, Load)
     Game game;
     Level level(&game);
 
-    // Test with Easy XML I make
-    //level.Load(path);
+    // Test with Easy Level 0 XML
+    level.Load(L"levels/level0.xml");
 
     // Hit test the items here
+
+    // Background
+    ASSERT_FALSE(level.HitTest(512, 512) == nullptr);
+
+    // Platform
+    ASSERT_FALSE(level.HitTest(464, 464) == nullptr);
 
 }
