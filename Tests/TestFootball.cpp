@@ -33,7 +33,7 @@ class WallMock : public Item
 {
 public:
     WallMock(Level* level, double x, double y, double w, double h)
-        : Item(level, L"Images/wall.png"), mWidth(w), mHeight(h)
+        : Item(level, L"Images/wall1.png"), mWidth(w), mHeight(h)
     {
         SetLocation(x, y); // Set the location of the wall
     }

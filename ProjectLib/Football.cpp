@@ -106,9 +106,8 @@ void Football::Update(double elapsed)
         mIsOnSurface = false;
     }
 
-
     // horizontal hit test
-    SetLocation(newP.X(), p.Y());  // try horizontal movement only
+    SetLocation(newP.X(), newP.Y());  // try horizontal movement only
 
     collided = GetGame()->CollisionTest(this);
     if (collided != nullptr)
@@ -126,6 +125,15 @@ void Football::Update(double elapsed)
 
         // stop horizontal motion
         newV.SetX(0);
+    }
+    if (mIsOnSurface && collided == nullptr)
+    {
+        auto platform = GetGame()->CollisionTest(this);
+        if (platform != nullptr)
+        {
+            newP.SetY(platform->GetY() - platform->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
+            newV.SetY(0);
+        }
     }
 
     // new position
