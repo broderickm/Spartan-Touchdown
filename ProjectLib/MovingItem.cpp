@@ -36,3 +36,15 @@ Game* MovingItem::GetGame() const
     // access the Level pointer from Item, then ask Level for its Game
     return GetLevel()->GetGame();
 }
+
+
+/**
+ * setter for mSpeedX and mSpeedY
+ * @param x
+ * @param y
+ */
+void MovingItem::setSpeed(double x, double y)
+{
+    mSpeedX = x;
+    mSpeedY = y;
+}

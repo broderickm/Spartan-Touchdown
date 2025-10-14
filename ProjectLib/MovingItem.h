@@ -46,6 +46,19 @@ public:
      * @return Pointer to the Game object
      */
     Game* GetGame() const;
+
+
+    /**
+     *Setter for the speeds.
+     */
+    void setSpeed(double x, double y);
+
+
+    /// getter for speed in x direction
+    double getSpeedX(){return mSpeedX;}
+    /// getter for the speed in the y direction
+    double getSpeedY(){return mSpeedY;}
+
 };
 
 
