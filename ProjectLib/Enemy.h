@@ -15,6 +15,10 @@
 class Enemy : public MovingItem
 {
 private:
+    /// baseX is where the enemies first initial position is
+    double mBaseX = 0;
+    /// baseY same but for the Y coordinate
+    double mBaseY = 0;
 
 
 public:
@@ -29,6 +33,16 @@ public:
 
     // note: this might be a protected member, for now I am making it public
     Enemy(Level *level, const std::wstring& filename);
+
+
+    /// sets the base position and the speed.
+    void StartMoving();
+
+    /// bool used to determine if the enemy has started moving.
+    bool hasMoved = false;
+
+    /// overridden update function to facilitate movement.
+    void Update(double elapsed) override;
 };
 
 
