@@ -25,9 +25,7 @@ using namespace std;
  */
 Level::Level(Game* game) : mGame(game)
 {
-    // Default of level 1 loaded
-    mBackground = make_unique<wxBitmap>(
-            L"Images/background2.png", wxBITMAP_TYPE_ANY);
+
 }
 
 /**
