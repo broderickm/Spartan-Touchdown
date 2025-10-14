@@ -68,6 +68,31 @@ bool Item::HitTest(int x, int y)
 
 
 /**
+ * draw function using wxgraphicscontext
+ * @param graphics
+ */
+void Item::Draw(wxGraphicsContext* graphics)
+{
+    /**
+     *venkata here,
+     *i've added this as the default draw function which draws enememies, and others etc.
+     *I am not sure if I did the correct thing, but this seemed the best way to draw enemies, npcs, as i passed
+     *imagename to the base classes until we reach item, where an wxbitmap is produced with the filename passed from
+     *the child classes.
+     */
+    int width = mItemBitmap->GetWidth();
+    int height = mItemBitmap->GetHeight();
+
+    double xPos = GetX() - width/2;
+    double yPos = GetY() - height/2;
+
+    graphics->DrawBitmap(*mItemBitmap, xPos, yPos,width,height);
+
+
+}
+
+
+/**
  * Load the attributes for an item node.
  *
  * This is the  base class version that loads the attributes

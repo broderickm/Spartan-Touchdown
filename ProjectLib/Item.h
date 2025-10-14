@@ -69,6 +69,10 @@ public:
      */
     Level* GetLevel() const { return mLevel; }
 
+    void SetX(double x){mXPos = x;}
+
+    void SetY(double y){mYPos = y;}
+
     /**
      * Initialize the item
      */
@@ -84,7 +88,7 @@ public:
 
     /// added default implementation to draw, can be overriden by future classes if necessary
     /// but honestly everything draws the same so I'm not sure it'll need to be overridden
-    virtual void Draw(wxGraphicsContext* graphics) {}
+    virtual void Draw(wxGraphicsContext* graphics);
 
     /**
      * Update the item
