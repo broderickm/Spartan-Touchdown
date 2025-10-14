@@ -48,8 +48,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     auto virtualWidth = (double)width/mScale;
 
+    // x Offset for scrolling
+    mCameraOffsetX = (double)-mFootball->GetX() + virtualWidth / 2.0f;
+
     graphics->PushState();
-    graphics->Translate(-mCameraOffsetX, 0);
+    graphics->Translate(mCameraOffsetX, 0);
 
     //
     // Draw level background first
