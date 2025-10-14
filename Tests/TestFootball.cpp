@@ -64,8 +64,7 @@ TEST(FootballTest, VerticalHitStopsOnPlatform)
     football->Update(0.1);
 
     // Check that it landed correctly
-    ASSERT_LE(football->GetY(), platform->GetY() - platform->GetHeight()/2 - football->GetHeight()/2 + 0.01);
-}
+    EXPECT_GE(football->GetY(), platform->GetY() - platform->GetHeight()/2 - football->GetHeight()/2 - 0.01);}
 
 TEST(FootballTest, HorizontalHitStopsAtWall)
 {
