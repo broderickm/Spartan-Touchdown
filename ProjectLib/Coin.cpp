@@ -34,6 +34,9 @@ void Coin::Draw(wxGraphicsContext* graphics)
 
     double drawX = GetX() - COIN_SIZE / 2;
     double drawY = GetY() - COIN_SIZE / 2;
+    if (mCoinImage.IsOk())
+    {
+        graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
+    }
 
-    graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
 }
