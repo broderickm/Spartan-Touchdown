@@ -11,8 +11,8 @@
 
 using namespace std;
 
-const double verticalSpeed = -30;
-const double maxVerticalDistance = 40;
+const double verticalSpeed = -80;
+const double maxVerticalDistance = 300;
 
 
 /**
