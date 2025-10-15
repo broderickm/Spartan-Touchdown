@@ -31,7 +31,7 @@ private:
     double mPlatformHeight = 0;
 
     /// Each small tile in the platform is 64 pixels wide
-    static const int TILE_SIZE = 64;
+    double TILE_SIZE = 0;
 
     /**
      * Draws one row of tiles starting from a given X position.
@@ -61,6 +61,14 @@ public:
 
     /// Set how big this platform should be
     void SetPlatformSize(double width, double height);
+
+
+    /// Set the custom height
+    void SetCustomHeight(double hit) override;
+
+
+    /// set the custom width
+    void SetCustomWidth(double wid) override;
 };
 
 

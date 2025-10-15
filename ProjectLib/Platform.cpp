@@ -38,7 +38,7 @@ Platform::Platform(Level *level,
  */
 void Platform::DrawPlatformRow(wxGraphicsContext* graphics, double startX, int middleTiles)
 {
-    double drawY = GetY() - mPlatformHeight / 2;
+    double drawY = GetY() - mPlatformHeight / 2.0f;
 
     // draw left tile
     graphics->DrawBitmap(mLeftImage, startX, drawY, TILE_SIZE, TILE_SIZE);
@@ -66,6 +66,8 @@ void Platform::Draw(wxGraphicsContext* graphics)
         return; // nothing to draw on
     }
 
+
+    TILE_SIZE = static_cast<int>(mLeftImage.GetWidth());
     // give default width and height if not set
     if (mPlatformWidth <= 0) mPlatformWidth = TILE_SIZE * 3;
     if (mPlatformHeight <= 0) mPlatformHeight = TILE_SIZE;
@@ -75,7 +77,7 @@ void Platform::Draw(wxGraphicsContext* graphics)
     if (middleTiles < 0) middleTiles = 0;
 
     // where drawing starts so that platform stays centered
-    double startX = GetX() - (mPlatformWidth / 2);
+    double startX = GetX() - (mPlatformWidth / 2.0f);
 
     // draw full platform row
     DrawPlatformRow(graphics, startX, middleTiles);
@@ -90,4 +92,14 @@ void Platform::SetPlatformSize(double width, double height)
 {
     mPlatformWidth = width;
     mPlatformHeight = height;
+}
+
+void Platform::SetCustomHeight(double hit)
+{
+    mPlatformHeight = hit;
+}
+
+void Platform::SetCustomWidth(double wid)
+{
+    mPlatformWidth = wid;
 }

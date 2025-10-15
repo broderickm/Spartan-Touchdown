@@ -28,7 +28,7 @@ private:
  double mWallHeight = 0;
 
  /// Each tile is 64 px tall/wide
- static const int TILE_SIZE = 64;
+ double TILE_SIZE = 64;
 
  /**
   * Helper that draws the full column of wall tiles.
@@ -58,6 +58,15 @@ public:
   * @param height Total height of the wall
   */
  void SetWallSize(double width, double height);
+
+
+
+ /// Set the custom height
+ void SetCustomHeight(double hit) override;
+
+
+ /// set the custom width
+ void SetCustomWidth(double wid) override;
 
 };
 
