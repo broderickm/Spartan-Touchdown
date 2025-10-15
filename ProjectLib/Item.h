@@ -117,6 +117,12 @@ public:
 
     /// Get height of the item
     virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
+
+    /// set image width  for types with custom width and height ( platform, wall )
+    virtual void SetCustomWidth(double wid){}
+
+    /// set image custom height for types with custom width and height ( platform, wall )
+    virtual void SetCustomHeight(double hit){}
 };
 
 

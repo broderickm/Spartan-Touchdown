@@ -160,9 +160,10 @@ void Level::XmlItems(wxXmlNode *node)
 
         double x = 0;
         double y = 0;
+        double cWidth = 0;
+        double cHeight = 0;
         child->GetAttribute(L"x").ToDouble(&x);
         child->GetAttribute(L"y").ToDouble(&y);
-
         // A pointer for the item we are loading
         shared_ptr<Item> item;
 
@@ -175,6 +176,7 @@ void Level::XmlItems(wxXmlNode *node)
         // Grass Platform
         else if (id == L"i003")
         {
+
             // Get left, right, and middle images
             item = make_shared<Platform>(this, mObjDeclarations[id],
                 L"Images/grassMid.png", L"Images/grassRight.png");
@@ -238,13 +240,20 @@ void Level::XmlItems(wxXmlNode *node)
             item = make_shared<NDEnemy>(this);
         }
 
+        if (id == L"i003" || id == L"i004" || id == L"i005" || id == L"i006" || id == L"i007")
+        {
+            child->GetAttribute(L"width").ToDouble(&cWidth);
+            child->GetAttribute(L"height").ToDouble(&cHeight);
+        }
+
         // Init location and load
         if (item != nullptr)
         {
             // Get location here
             item->SetLocation(x, y);
             item->XmlLoad(child);
-
+            item->SetCustomHeight(cHeight);
+            item->SetCustomWidth(cWidth);
             // Add to
             mItems.push_back(item);
         }
