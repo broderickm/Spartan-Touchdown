@@ -29,6 +29,12 @@ private:
     /// Tells if the football is moving right
     bool mIsGoingLeft = false;
 
+    /// Center image
+    std::unique_ptr<wxImage> mCenterImage;
+
+    /// Center bitmap
+    std::unique_ptr<wxBitmap> mCenterBitmap;
+
     /// Left image
     std::unique_ptr<wxImage> mLeftImage;
 
@@ -45,14 +51,6 @@ private:
     Vector mV = Vector(0, 0);
 
 public:
-    /**
-     *Venkata here, i've added the constructors and disabled the default copy constructor, constructor
-     *and assingment operator, i've done this so i can load the image in for the football.
-     *
-     *Feel free to make any changes.
-     */
-
-
     /// constructor for the football
     Football(Level *level);
 
@@ -92,6 +90,8 @@ public:
      * @param goingRight True if moving right
      */
     void SetGoingRight(bool goingRight) { mIsGoingRight = goingRight; }
+
+    void Draw(wxGraphicsContext* graphics) override;
 };
 
 

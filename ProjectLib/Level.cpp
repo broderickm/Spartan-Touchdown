@@ -35,7 +35,7 @@ Level::Level(Game* game) : mGame(game)
 void Level::OnDraw(wxGraphicsContext* graphics)
 {
     // Draw the background
-    if (mBackground != nullptr && mBackground->IsOk())
+    if (mBackground != nullptr)
     {
         int bgWidth = mBackground->GetWidth();
         int bgHeight = mBackground->GetHeight();
@@ -296,6 +296,13 @@ void Level::Clear()
 
 std::shared_ptr<Item> Level::CollisionTest(Item* item)
 {
+
+    double leftA = item->GetX() - item->GetWidth() / 2;
+    double rightA = item->GetX() + item->GetWidth() / 2;
+    double topA = item->GetY() - item->GetHeight() / 2;
+    double bottomA = item->GetY() + item->GetHeight() / 2;
+
+
     for (auto other : mItems)
         {
         if (other.get() == item)
@@ -306,15 +313,10 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
         // Level checks if football overlaps another item
         // test within bounds of the box:
 
-        double leftA = item->GetX() - item->GetWidth() / 2;
-        double rightA = item->GetX() + item->GetWidth() / 2;
-        double topA = item->GetY() - item->GetHeight() / 2;
-        double bottomA = item->GetY() + item->GetHeight() / 2;
-
-        double leftB = item->GetX() - item->GetWidth() / 2;
-        double rightB = item->GetX() + item->GetWidth() / 2;
-        double topB = item->GetY() - item->GetHeight() / 2;
-        double bottomB = item->GetY() + item->GetHeight() / 2;
+        double leftB = other->GetX() - other->GetWidth() / 2;
+        double rightB = other->GetX() + other->GetWidth() / 2;
+        double topB = other->GetY() - other->GetHeight() / 2;
+        double bottomB = other->GetY() + other->GetHeight() / 2;
 
         bool overlapX = rightA >= leftB && leftA <= rightB;
         bool overlapY = bottomA >= topB && topA <= bottomB;
@@ -324,5 +326,7 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
              return other;
         }
     }
+
+    // No collision happened
     return nullptr;
 }

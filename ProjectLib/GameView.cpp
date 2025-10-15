@@ -87,6 +87,9 @@ void GameView::OnKeyDown(wxKeyEvent& event)
         event.Skip();  // Allow other handlers to process unhandled keys
         break;
     }
+
+    Refresh();
+    Update();
 }
 
 void GameView::OnKeyUp(wxKeyEvent& event)
@@ -114,6 +117,9 @@ void GameView::OnKeyUp(wxKeyEvent& event)
         event.Skip();
         break;
     }
+
+    Refresh();
+    Update();
 }
 
 /**

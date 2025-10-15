@@ -34,11 +34,66 @@ const double Epsilon = 0.01;
 
 /**
  * Constructor
- * @param game the game we are adding this football to
+ * @param level the game level we are adding this football to
  */
 Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 {
+    // Center
+    mCenterImage = std::make_unique<wxImage>(FootballMidImageName, wxBITMAP_TYPE_ANY);
+    mCenterBitmap =  std::make_unique<wxBitmap>(*mCenterImage);
 
+    // Left
+    mLeftImage = std::make_unique<wxImage>(FootballLeftImageName, wxBITMAP_TYPE_ANY);
+    mLeftBitmap = std::make_unique<wxBitmap>(*mLeftImage);
+
+    // Right
+    mRightImage = std::make_unique<wxImage>(FootballRightImageName, wxBITMAP_TYPE_ANY);
+    mRightBitmap = std::make_unique<wxBitmap>(*mRightImage);
+}
+
+
+/**
+ * Draw the football
+ * @param graphics the graphics used to draw
+ */
+void Football::Draw(wxGraphicsContext* graphics)
+{
+
+    double xPos, yPos;
+
+    // Not moving
+    if (!mIsGoingLeft && !mIsGoingRight)
+    {
+        int width = mCenterBitmap->GetWidth();
+        int height = mCenterBitmap->GetHeight();
+
+        xPos = GetX();
+        yPos = GetY();
+
+        graphics->DrawBitmap(*mCenterBitmap, xPos, yPos, width, height);
+    }
+
+    // Going left
+    else if (mIsGoingLeft && !mIsGoingRight)
+    {
+        int width = mLeftBitmap->GetWidth();
+        int height = mLeftBitmap->GetHeight();
+
+        xPos = GetX();
+        yPos = GetY();
+        graphics->DrawBitmap(*mLeftBitmap, xPos, yPos, width, height);
+    }
+
+    // Going right
+    else if (!mIsGoingLeft && mIsGoingRight)
+    {
+        int width = mRightBitmap->GetWidth();
+        int height = mRightBitmap->GetHeight();
+
+        xPos = GetX();
+        yPos = GetY();
+        graphics->DrawBitmap(*mRightBitmap, xPos, yPos, width, height);
+    }
 }
 
 /**

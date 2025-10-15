@@ -49,6 +49,9 @@ public:
   * @param height New height
   */
  void SetGoalpostSize(double width, double height);
+
+ bool CollisionTest(Item* item);
+
 };
 
 

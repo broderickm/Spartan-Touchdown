@@ -8,6 +8,9 @@
 #include "GoalPost.h"
 #include "Game.h"
 
+/// Collision distance for the goalpost in pixels
+const double CollisionDistance = 50;
+
 /**
  * Construct a goalpost using the provided image.
  */
@@ -41,4 +44,19 @@ void GoalPost::SetGoalpostSize(double width, double height)
 {
     mGoalpostWidth = width;
     mGoalpostHeight = height;
+}
+
+
+bool GoalPost::CollisionTest(Item* item)
+{
+    // Collision for the goalpost is different
+    double dx = item->GetX() - GetX();
+    double dy = item->GetY() - GetY();
+    double distance = sqrt(dx * dx + dy * dy);
+    if (distance < CollisionDistance)
+    {
+        return true;
+    }
+
+    return false;
 }

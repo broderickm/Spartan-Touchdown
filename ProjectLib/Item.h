@@ -69,8 +69,22 @@ public:
      */
     Level* GetLevel() const { return mLevel; }
 
+    /**
+     * Getter for the pointer to the bitmap representing this item
+     * @return the pointer to the bitmap
+     */
+    wxBitmap* GetBitmap() const { return mItemBitmap.get(); }
+
+    /**
+     * Setter for the x position
+     * @param x position on the x-axis
+     */
     void SetX(double x){mXPos = x;}
 
+    /**
+     * Setter for the y position
+     * @param y position on the y-axis
+     */
     void SetY(double y){mYPos = y;}
 
     /**

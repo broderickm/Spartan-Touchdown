@@ -17,7 +17,6 @@
  */
 Coin::Coin(Level *level, const std::wstring& image, int value)
         : Item(level, image),
-          mCoinImage(image, wxBITMAP_TYPE_ANY),
           mCoinValue(value)
 {
 }

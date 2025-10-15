@@ -25,8 +25,6 @@ void Game::Initialize()
     mLevel = std::make_unique<Level>(this);
     mLevel->Load(L"levels/level1.xml");
 
-    // Initialize football in someway?
-    //mFootball = std::make_unique<Football>(mLevel.get());
 }
 
 /**
@@ -55,9 +53,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     /// note: this is not properly working, so will probably need to work on this
     /// -Venkata
 
-    // x Offset for scrolling
-    mCameraOffsetX = (double)-mFootball->GetX() + virtualWidth / 2.0f;
-
     graphics->PushState();
 
 
@@ -71,11 +66,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         mLevel->OnDraw(graphics.get());
     }
 
-    // Draw football?
-    if (mFootball != nullptr)
-    {
-        mFootball->Draw(graphics.get());
-    }
 
     graphics->PopState();
 
