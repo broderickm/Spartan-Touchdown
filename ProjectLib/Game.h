@@ -70,7 +70,7 @@ public:
      * Get pointer to the football
      * @return Pointer to football object
      */
-    Football* GetFootball() { return mFootball.get(); }
+    std::shared_ptr<Football> GetFootball() { return mFootball; }
 
     /**
      * Set the football (called by Level when creating it)

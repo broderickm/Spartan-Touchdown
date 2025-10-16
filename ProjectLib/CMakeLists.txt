@@ -39,6 +39,8 @@ set(SOURCE_FILES temp.cpp pch.h
         GoalPost.h
         ids.h
         Vector.h
+        Background.cpp
+        Background.h
 )
 
 set(wxBUILD_PRECOMP OFF)

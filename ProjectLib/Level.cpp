@@ -138,12 +138,22 @@ void Level::Load(const wxString &filename)
     }
 
     // Create the football at the starting position
-    auto football = make_shared<Football>(this);
-    football->SetLocation(mInitialX, mInitialY);
-    mItems.push_back(football);
+    shared_ptr<Football> currFootball = mGame->GetFootball();
+    if(!currFootball)
+    {
+        // Create new football, due to lack of init thus far
+        shared_ptr<Football> football = make_shared<Football>(this);
+        football->SetLocation(mInitialX, mInitialY);
 
-    // Tell the game about the football so it can track it for the camera
-    mGame->SetFootball(football);
+        // Set football in game and pushback into items list
+        mGame->SetFootball(football);
+        mItems.push_back(football);
+    }
+    else
+    {
+        currFootball->SetLocation(mInitialX, mInitialY);
+        mItems.push_back(currFootball);
+    }
 }
 
 /**

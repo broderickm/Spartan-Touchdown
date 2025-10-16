@@ -57,7 +57,7 @@ TEST(ItemTest, HitTest)
 {
     Game game;
     Level level(&game);
-    ItemMock football(&level);
+    ItemMockWithNewImage football(&level);
     
     /// dimensions of the football are: 64 x 96 wid = 64 hit = 96,  32 = wid/2, and 48 = hit/2
     football.SetLocation(150,250);
