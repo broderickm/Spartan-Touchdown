@@ -108,7 +108,7 @@ void Football::Update(double elapsed)
     Vector p(GetX(), GetY());
 
     // compute new velocity with gravity
-    Vector newV(mV.X(), mV.Y()); // + Gravity * elapsed);
+    Vector newV(mV.X(), mV.Y() + Gravity * elapsed);
 
     // apply horizontal movement input
     if (mIsGoingLeft && !mIsGoingRight)
@@ -238,9 +238,9 @@ void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, V
 void Football::Jump()
 {
     // Only allow jumping if the football is on a surface
-    if (mIsOnSurface)
-    {
+    //if (mIsOnSurface)
+    //{
         mV.SetY(BounceSpeed); // Apply upward velocity (-800)
         mIsOnSurface = false; // No longer on surface after jumping
-    }
+    //}
 }
