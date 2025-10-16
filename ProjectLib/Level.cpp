@@ -6,6 +6,8 @@
 #include "pch.h"
 #include <wx/string.h>
 #include "Level.h"
+
+#include "Background.h"
 #include "Game.h"
 #include "GoalPost.h"
 #include "Platform.h"
@@ -180,7 +182,7 @@ void Level::XmlItems(wxXmlNode *node)
         // Backgrounds
         if (id == L"i001" || id == L"i002")
         {
-            item = make_shared<Item>(this, mObjDeclarations[id]);
+            item = make_shared<Background>(this, mObjDeclarations[id]);
         }
 
         // Grass Platform
@@ -323,10 +325,16 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
 
 
     for (auto other : mItems)
-        {
+    {
         if (other.get() == item)
         {
             continue; // no collision with self
+        }
+
+        // Account for background -> Don't count as a collision
+        if (!other->HitTest(item->GetX(),item->GetY()))
+        {
+            continue;
         }
 
         // Level checks if football overlaps another item
@@ -342,7 +350,7 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
 
         if (overlapX && overlapY)
         {
-             return other;
+            return other;
         }
     }
 

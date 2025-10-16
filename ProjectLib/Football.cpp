@@ -108,7 +108,7 @@ void Football::Update(double elapsed)
     Vector p(GetX(), GetY());
 
     // compute new velocity with gravity
-    Vector newV(mV.X(), mV.Y() + Gravity * elapsed);
+    Vector newV(mV.X(), mV.Y()); // + Gravity * elapsed);
 
     // apply horizontal movement input
     if (mIsGoingLeft && !mIsGoingRight)
