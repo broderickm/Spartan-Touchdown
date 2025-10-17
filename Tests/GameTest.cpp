@@ -119,4 +119,15 @@ TEST_F(GameTest, Load)
     // Platform
     ASSERT_FALSE(level.HitTest(464, 720) == nullptr);
 
+    // Assert count is correct number -> 3 items counted including football
+    ASSERT_TRUE(level.ItemCount() == 3);
+
+
+    // Test with Level 1 XML
+    level.Load(L"levels/level1.xml");
+    std::cout << level.ItemCount() << std::endl;
+
+    // 87 items plus the football -> 88 items should be registered if correct
+    ASSERT_TRUE(level.ItemCount() == 88);
+
 }

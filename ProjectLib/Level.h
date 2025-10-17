@@ -101,6 +101,12 @@ public:
      * @return The game pointer.
      */
     Game* GetGame() const { return mGame; }
+
+    /**
+     * Get the number of items this level has
+     * @return The count of mItems list
+     */
+    int ItemCount() const { return mItems.size(); }
 };
 
 
