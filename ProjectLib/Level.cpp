@@ -146,6 +146,7 @@ void Level::Load(const wxString &filename)
         // Create new football, due to lack of init thus far
         shared_ptr<Football> football = make_shared<Football>(this);
         football->SetLocation(mInitialX, mInitialY);
+        football->SetSpawnTime(0);
 
         // Set football in game and pushback into items list
         mGame->SetFootball(football);
@@ -154,6 +155,7 @@ void Level::Load(const wxString &filename)
     else
     {
         currFootball->SetLocation(mInitialX, mInitialY);
+        currFootball->SetSpawnTime(0);
         mItems.push_back(currFootball);
     }
 }

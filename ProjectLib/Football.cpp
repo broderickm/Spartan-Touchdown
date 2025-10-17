@@ -103,13 +103,21 @@ void Football::Draw(wxGraphicsContext* graphics)
  */
 void Football::Update(double elapsed)
 {
-    Item::Update(elapsed);
-
     // current position as a vector
     Vector p(GetX(), GetY());
+    Vector newV;
 
-    // compute new velocity with gravity
-    Vector newV(mV.X(), mV.Y() + Gravity * elapsed);
+    if (mSpawnTime < 0.5)
+    {
+        newV.SetX(0);
+        newV.SetY(0);
+    }
+    else
+    {
+        // compute new velocity with gravity
+        newV.SetX(mV.X());
+        newV.SetY(mV.Y() + Gravity * elapsed);
+    }
 
     // apply horizontal movement input
     if (mIsGoingLeft && !mIsGoingRight)
@@ -195,6 +203,9 @@ void Football::Update(double elapsed)
     // new position
     mV = newV;
     SetLocation(newP.X(), newP.Y());
+
+    // Increment SpawnTime
+    mSpawnTime += elapsed;
 }
 
 /**

@@ -2,7 +2,7 @@
  * @file Vector.h
  * @author Annika Valaboju
  *
- *
+ * Class that describes a vector
  */
 
 #ifndef PROJECT1_VECTOR_H

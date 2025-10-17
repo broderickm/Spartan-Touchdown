@@ -50,6 +50,9 @@ private:
     /// The velocity vector of the football
     Vector mV = Vector(0, 0);
 
+    /// The time since the football has spawned into the level
+    double mSpawnTime = 0;
+
 public:
     /// constructor for the football
     Football(Level *level);
@@ -110,6 +113,12 @@ public:
     void SetGoingRight(bool goingRight) { mIsGoingRight = goingRight; }
 
     void Draw(wxGraphicsContext* graphics) override;
+
+    /**
+     * Set the spawn time
+     * @param time the given time
+     */
+    void SetSpawnTime(double time) { mSpawnTime = time; }
 };
 
 
