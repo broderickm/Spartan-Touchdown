@@ -69,6 +69,14 @@ public:
 
     /// set the custom width
     void SetCustomWidth(double wid) override;
+
+    /// Override to return the actual drawn width
+    double GetWidth() const override { return mPlatformWidth; }
+
+    /// Override to return the actual drawn height
+    double GetHeight() const override { return mPlatformHeight; }
+
+    bool IsSolid() const override { return true; }
 };
 
 

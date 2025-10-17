@@ -42,6 +42,7 @@ void Wall::Draw(wxGraphicsContext* graphics)
  {
   return; // nothing to draw on
  }
+
  TILE_SIZE = static_cast<int>(mWallImage.GetWidth());
 
  // Give default width/height if not set yet

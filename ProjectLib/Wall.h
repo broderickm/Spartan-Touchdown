@@ -68,6 +68,13 @@ public:
  /// set the custom width
  void SetCustomWidth(double wid) override;
 
+ /// Override to return the actual drawn width
+ double GetWidth() const override { return mWallWidth; }
+
+ /// Override to return the actual drawn height
+ double GetHeight() const override { return mWallHeight; }
+
+ bool IsSolid() const override { return true; }
 };
 
 

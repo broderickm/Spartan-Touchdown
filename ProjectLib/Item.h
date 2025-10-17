@@ -123,6 +123,9 @@ public:
 
     /// set image custom height for types with custom width and height ( platform, wall )
     virtual void SetCustomHeight(double hit){}
+
+    /// Whether this item blocks physics (platforms, walls, etc)
+    virtual bool IsSolid() const { return false; }
 };
 
 

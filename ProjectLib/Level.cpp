@@ -331,11 +331,9 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
             continue; // no collision with self
         }
 
-        // Account for background -> Don't count as a collision
-        if (!other->HitTest(item->GetX(),item->GetY()))
-        {
+        // Only collide with solid objects for physics
+        if (!other->IsSolid())
             continue;
-        }
 
         // Level checks if football overlaps another item
         // test within bounds of the box:

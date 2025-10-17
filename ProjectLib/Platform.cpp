@@ -66,8 +66,8 @@ void Platform::Draw(wxGraphicsContext* graphics)
         return; // nothing to draw on
     }
 
-
     TILE_SIZE = static_cast<int>(mLeftImage.GetWidth());
+
     // give default width and height if not set
     if (mPlatformWidth <= 0) mPlatformWidth = TILE_SIZE * 3;
     if (mPlatformHeight <= 0) mPlatformHeight = TILE_SIZE;
