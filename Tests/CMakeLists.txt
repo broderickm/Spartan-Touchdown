@@ -6,6 +6,7 @@ set(TEST_FILES
         TestItem.cpp
         GameTest.cpp
         TestFootball.cpp
+        BackgroundTest.cpp
 )
 
 # Get Google Tests

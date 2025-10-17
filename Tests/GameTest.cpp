@@ -113,10 +113,10 @@ TEST_F(GameTest, Load)
 
     // Hit test the items here
 
-    // Background
-    ASSERT_FALSE(level.HitTest(512, 512) == nullptr);
+    // Background -> Shouldn't trigger hittest but items should
+    ASSERT_TRUE(level.HitTest(512, 512) == nullptr);
 
     // Platform
-    ASSERT_FALSE(level.HitTest(464, 464) == nullptr);
+    ASSERT_FALSE(level.HitTest(464, 720) == nullptr);
 
 }
