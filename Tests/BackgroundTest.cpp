@@ -3,6 +3,7 @@
  * @author Maggie Broderick
  */
 
+#include <pch.h>
 #include <Game.h>
 #include <Background.h>
 #include "gtest/gtest.h"
