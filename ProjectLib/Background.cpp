@@ -13,6 +13,7 @@ using namespace std;
 /**
  * Constructor
  * @param level the level we are adding this enemy to
+ * @param file name the image file to load for the background
  */
 Background::Background(Level *level, const std::wstring& filename): Item(level, filename)
 {

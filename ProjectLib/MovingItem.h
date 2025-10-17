@@ -54,9 +54,16 @@ public:
     void setSpeed(double x, double y);
 
 
-    /// getter for speed in x direction
+    /**
+     * Get the current horizontal speed.
+     * @return The horizontal velocity component in pixels per second
+     */
     double getSpeedX(){return mSpeedX;}
-    /// getter for the speed in the y direction
+
+    /**
+     * Get the current vertical speed.
+     * @return The vertical velocity component in pixels per second
+     */
     double getSpeedY(){return mSpeedY;}
 
 };

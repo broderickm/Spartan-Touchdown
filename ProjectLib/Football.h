@@ -68,10 +68,26 @@ public:
      * @param elapsed Time elapsed since last update
      */
     void Update(double elapsed) override;
+
+    /**
+     * Test for collisions vertically.
+     * @param newPosition The proposed new position vector
+     * @param newVelocity The proposed new velocity vector
+     */
     void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
+
+    /**
+     * Test for collisions horizontally.
+     * @param newPosition The proposed new position vector
+     * @param newVelocity The proposed new velocity vector
+     */
     void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
-    /// setter for test football
+    /**
+     * Set the velocity of the football.
+     * @param vx The horizontal velocity component
+     * @param vy The vertical velocity component
+     */
     void SetVelocity(double x, double y) { mV = Vector(x, y); }
 
     /**

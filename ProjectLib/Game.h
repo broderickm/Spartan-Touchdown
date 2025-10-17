@@ -50,6 +50,8 @@ private:
 
     /// Screen dimensions (for camera calculations)
     int mScreenWidth = 0;
+
+    /// Height of the playable screen in pixels
     int mScreenHeight = 0;
 
 public:
@@ -99,27 +101,28 @@ public:
     double ScreenToWorldY(int screenY) const { return screenY / mScale; }
 
     /**
-     *add to the current player score
-     * returns  no of points to add
+     * Add to the player’s current score.
+     * @param amount The number of points to add
      */
     void AddToPlayerScore(int points);
 
     /**
-     * Get the current player score
-     * return playeers score
+     * Get the current player score.
+     * @return The player’s score
      */
     int GetPlayerScore() { return mPlayerScore; }
 
     /**
-     * get total time since game started
-     * return time measured in seconds
+     * Get the time elapsed since the start of the game.
+     * @return Time elapsed in seconds
      */
     double GetTimeElapsedSinceGameStarted() const { return mTimeElapsedSinceGameStarted; }
 
-    /** Test for collision between football and any item
-    * @param item The item (the football)
-    * @return The item it collides with, or nullptr if non
-    */
+    /**
+     * Check if an item collides with any other items in the game.
+     * @param item The item to test for collisions
+     * @return The item collided with, or nullptr if none
+     */
     std::shared_ptr<Item> CollisionTest(Item* item);
 };
 

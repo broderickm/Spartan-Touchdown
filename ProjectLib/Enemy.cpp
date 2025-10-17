@@ -11,7 +11,10 @@
 
 using namespace std;
 
+/// Vertical Speed Constant
 const double verticalSpeed = -80;
+
+/// Vertical Distance Constant
 const double maxVerticalDistance = 300;
 
 
