@@ -67,8 +67,8 @@ void Football::Draw(wxGraphicsContext* graphics)
         int width = mCenterBitmap->GetWidth();
         int height = mCenterBitmap->GetHeight();
 
-        xPos = GetX();
-        yPos = GetY();
+        xPos = GetX() - width / 2;
+        yPos = GetY() - height / 2;
 
         graphics->DrawBitmap(*mCenterBitmap, xPos, yPos, width, height);
     }
@@ -79,8 +79,8 @@ void Football::Draw(wxGraphicsContext* graphics)
         int width = mLeftBitmap->GetWidth();
         int height = mLeftBitmap->GetHeight();
 
-        xPos = GetX();
-        yPos = GetY();
+        xPos = GetX() - width / 2;
+        yPos = GetY() - height / 2;
         graphics->DrawBitmap(*mLeftBitmap, xPos, yPos, width, height);
     }
 
@@ -90,8 +90,8 @@ void Football::Draw(wxGraphicsContext* graphics)
         int width = mRightBitmap->GetWidth();
         int height = mRightBitmap->GetHeight();
 
-        xPos = GetX();
-        yPos = GetY();
+        xPos = GetX() - width / 2;
+        yPos = GetY() - height / 2;
         graphics->DrawBitmap(*mRightBitmap, xPos, yPos, width, height);
     }
 }
