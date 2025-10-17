@@ -70,24 +70,26 @@ public:
     void Update(double elapsed) override;
 
     /**
-     * Test for collisions vertically.
-     * @param newPosition The proposed new position vector
-     * @param newVelocity The proposed new velocity vector
+     * Handle a vertical collision between the football and another item.
+     * @param collided The item the football collided with.
+     * @param newV The current velocity vector to adjust after collision.
+     * @param newP The current position vector to adjust after collision.
      */
     void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
     /**
-     * Test for collisions horizontally.
-     * @param newPosition The proposed new position vector
-     * @param newVelocity The proposed new velocity vector
+     * Handle a horizontal collision between the football and another item.
+     * @param collided The item the football collided with.
+     * @param newV The current velocity vector to adjust after collision.
+     * @param newP The current position vector to adjust after collision.
      */
     void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
     /**
-     * Set the velocity of the football.
-     * @param vx The horizontal velocity component
-     * @param vy The vertical velocity component
-     */
+      * Set the velocity of the football.
+      * @param x The horizontal velocity component.
+      * @param y The vertical velocity component.
+      */
     void SetVelocity(double x, double y) { mV = Vector(x, y); }
 
     /**

@@ -95,13 +95,9 @@ public:
     virtual bool HitTest(int x, int y);
 
     /**
-     * Draws the item on the screen.
-     * Derived classes (like Platform, Wall, Coin, GoalPost) will override this.
-     * @param graphics The graphics context to draw on
+     * Draw this item on the screen.
+     * @param graphics The wxWidgets graphics context to draw on.
      */
-
-    /// added default implementation to draw, can be overriden by future classes if necessary
-    /// but honestly everything draws the same so I'm not sure it'll need to be overridden
     virtual void Draw(wxGraphicsContext* graphics);
 
     /**
@@ -112,21 +108,33 @@ public:
 
     virtual void XmlLoad(wxXmlNode* node);
 
-    /// Get width of the item
+    /**
+     * Get the width of this item in pixels.
+     * @return The item’s width in pixels.
+     */
     virtual double GetWidth() const { return mItemBitmap->GetWidth(); }
 
-    /// Get height of the item
+    /**
+     * Get the height of this item in pixels.
+     * @return The item’s height in pixels.
+     */
     virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
 
-    /// set image width  for types with custom width and height ( platform, wall )
+    /**
+     * Set a custom width for this item.
+     * @param wid The new width in pixels.
+     */
     virtual void SetCustomWidth(double wid){}
 
-    /// set image custom height for types with custom width and height ( platform, wall )
+    /**
+     * Set a custom height for this item.
+     * @param hit The new height in pixels.
+     */
     virtual void SetCustomHeight(double hit){}
 
     /**
-     * Whether this item blocks physics (platforms, walls, etc)
-     * return bool value
+     * Check if this item is solid (blocks movement).
+     * @return True if solid, false otherwise.
      */
     virtual bool IsSolid() const { return false; }
 };

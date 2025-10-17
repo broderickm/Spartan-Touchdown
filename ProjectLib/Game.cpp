@@ -12,8 +12,6 @@
 
 #include <wx/graphics.h>
 
-
-
 /**
  * Initialize the game
  * Called once when the game starts
@@ -96,8 +94,10 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 }
 
 /**
- * Update the game state
- * @param elapsed Time elapsed since last update in seconds
+ * Update the game state each frame.
+ * Handles level updates, collision detection, camera movement,
+ * and score/time tracking.
+ * @param elapsed Time elapsed since the last update, in seconds.
  */
 void Game::Update(double elapsed)
 {
@@ -174,10 +174,10 @@ void Game::Update(double elapsed)
     }
 }
 
-/**add points to player score
- *when player colets coins called at that time
- *pounts- no of points to add
- *
+/**
+ * Add points to the player’s score.
+ * Called when the player collects coins.
+ * @param points The number of points to add to the player's score.
  */
 void Game::AddToPlayerScore(int points)
 {
@@ -191,9 +191,9 @@ void Game::AddToPlayerScore(int points)
 }
 
 /**
- * Test for collision between the football and any item in the level
- * @param item The item we are testing (usually the football)
- * @return The first item we collided with or nullptr if none
+ * Test for a collision between the given item and other items in the level.
+ * @param item The item to test for collisions (usually the football).
+ * @return The first item that collides with the given one, or nullptr if none.
  */
 std::shared_ptr<Item> Game::CollisionTest(Item* item)
 {

@@ -58,8 +58,10 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     /**
-     * Update the game state
-     * @param elapsed Time elapsed since last update in seconds
+     * Update the game state each frame.
+     * Handles level updates, collision detection, camera movement,
+     * and score/time tracking.
+     * @param elapsed Time elapsed since the last update, in seconds.
      */
     void Update(double elapsed);
 
@@ -101,8 +103,9 @@ public:
     double ScreenToWorldY(int screenY) const { return screenY / mScale; }
 
     /**
-     * Add to the player’s current score.
-     * @param amount The number of points to add
+     * Add points to the player’s score.
+     * Called when the player collects coins.
+     * @param points The number of points to add to the player's score.
      */
     void AddToPlayerScore(int points);
 
@@ -113,15 +116,15 @@ public:
     int GetPlayerScore() { return mPlayerScore; }
 
     /**
-     * Get the time elapsed since the start of the game.
-     * @return Time elapsed in seconds
+     * Get the time elapsed since the game started.
+     * @return Elapsed time in seconds.
      */
     double GetTimeElapsedSinceGameStarted() const { return mTimeElapsedSinceGameStarted; }
 
     /**
-     * Check if an item collides with any other items in the game.
-     * @param item The item to test for collisions
-     * @return The item collided with, or nullptr if none
+     * Test for a collision between the given item and other items in the level.
+     * @param item The item to test for collisions (usually the football).
+     * @return The first item that collides with the given one, or nullptr if none.
      */
     std::shared_ptr<Item> CollisionTest(Item* item);
 };

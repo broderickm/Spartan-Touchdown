@@ -77,11 +77,19 @@ void Wall::SetWallSize(double width, double height)
  mWallHeight = height;
 }
 
+/**
+ * Set a custom wall height.
+ * @param hit The new height in pixels
+ */
 void Wall::SetCustomHeight(double hit)
 {
   mWallHeight = hit;
 }
 
+/**
+* Set a custom wall width.
+* @param wid The new width in pixels
+*/
 void Wall::SetCustomWidth(double wid)
 {
   mWallWidth = wid;

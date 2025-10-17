@@ -17,9 +17,13 @@
 class MainFrame : public wxFrame
 {
 private:
+    /// The main game view panel
     GameView* mGameView = nullptr;
 
 public:
+    /**
+     * Initialize the Mainframe
+     */
     void Initialize();
     void OnExit(wxCommandEvent& event);
 

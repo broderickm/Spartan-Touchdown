@@ -27,8 +27,16 @@ private:
     void OnTimer(wxTimerEvent& event);
     void OnFileOpen(wxCommandEvent& event);
 
-    /// Key press event handlers
+    /**
+     * Handle key down events for player control.
+     * @param event The wxWidgets key event.
+     */
     void OnKeyDown(wxKeyEvent& event);
+
+    /**
+     * Handle key release events.
+     * @param event The wxWidgets key event.
+     */
     void OnKeyUp(wxKeyEvent& event);
 
     /// object for the game/frame itself
@@ -54,8 +62,22 @@ public:
      */
     void Stop() {mTimer.Stop();}
 
+    /**
+     * Load and display level 0.
+     * @param event The menu command event.
+     */
     void OnLevelZero(wxCommandEvent& event);
+
+    /**
+     * Load and display level 1.
+     * @param event The menu command event.
+     */
     void OnLevelOne(wxCommandEvent& event);
+
+    /**
+     * Load and display level 2.
+     * @param event The menu command event.
+     */
     void OnLevelTwo(wxCommandEvent& event);
 };
 

@@ -50,6 +50,11 @@ public:
   */
  void SetGoalpostSize(double width, double height);
 
+ /**
+ * Test for collisions between the goalpost and another item.
+ * @param item The other item to test
+ * @return True if the goalpost collides with the given item, false otherwise
+ */
  bool CollisionTest(Item* item);
 
 };

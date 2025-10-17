@@ -34,6 +34,7 @@ const double Epsilon = 0.01;
 
 /**
  * Constructor
+ * construct a football object
  * @param level the game level we are adding this football to
  */
 Football::Football(Level *level): MovingItem(level, FootballMidImageName)
@@ -197,7 +198,10 @@ void Football::Update(double elapsed)
 }
 
 /**
- * Vertical collision test
+ * Handle a vertical collision between the football and another item.
+ * @param collided The item the football collided with.
+ * @param newV The current velocity vector to adjust after collision.
+ * @param newP The current position vector to adjust after collision.
  */
 void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -217,7 +221,10 @@ void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vec
 }
 
 /**
- * Horizontal collision test
+ * Handle a horizontal collision between the football and another item.
+ * @param collided The item the football collided with.
+ * @param newV The current velocity vector to adjust after collision.
+ * @param newP The current position vector to adjust after collision.
  */
 void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -235,6 +242,9 @@ void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, V
     newV.SetX(0); // stop horizontal motion after collision
 }
 
+/**
+ * Make the football jump if it is currently resting on a surface.
+ */
 void Football::Jump()
 {
     // Only allow jumping if the football is on a surface

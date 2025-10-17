@@ -24,6 +24,10 @@ public:
     /// Disable default constructor
     GoldCoin() = delete;
 
+    /**
+     * Construct a gold coin.
+     * @param level The level that contains this coin
+     */
     GoldCoin(Level* level);
 
 

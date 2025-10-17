@@ -55,8 +55,8 @@ void GameView::Initialize(wxFrame* parent)
 }
 
 /**
- * Handle key down events for player control
- * @param event The key event
+ * Handle key down events for player control.
+ * @param event The wxWidgets key event.
  */
 void GameView::OnKeyDown(wxKeyEvent& event)
 {
@@ -92,6 +92,10 @@ void GameView::OnKeyDown(wxKeyEvent& event)
     Update();
 }
 
+/**
+ * Handle key release events.
+ * @param event The wxWidgets key event.
+ */
 void GameView::OnKeyUp(wxKeyEvent& event)
 {
     auto keyCode = event.GetKeyCode();
@@ -123,8 +127,8 @@ void GameView::OnKeyUp(wxKeyEvent& event)
 }
 
 /**
- * Paint event, draws the window.
- * @param event Paint event object
+ * Paint event, draws the window contents.
+ * @param event The wxWidgets paint event.
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
@@ -152,8 +156,9 @@ void GameView::OnPaint(wxPaintEvent& event)
     mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight());
 }
 
-/** timer event function (basically just updates the frame every tick)
- * @param event is just the timer event (ticking)
+/**
+ * Handle timer ticks that trigger periodic updates.
+ * @param event The wxWidgets timer event.
  */
 void GameView::OnTimer(wxTimerEvent &event)
 {
@@ -161,8 +166,8 @@ void GameView::OnTimer(wxTimerEvent &event)
 }
 
 /**
- * File>Open menu handler
- * @param event Menu event
+ * Handle "File > Open" menu command.
+ * @param event The menu command event.
  */
 void GameView::OnFileOpen(wxCommandEvent& event)
 {
@@ -179,7 +184,10 @@ void GameView::OnFileOpen(wxCommandEvent& event)
     Refresh();
 }
 
-
+/**
+ * Load and display level 0.
+ * @param event The menu command event.
+ */
 void GameView::OnLevelZero(wxCommandEvent& event)
 {
     Level* level = this->GetGame()->GetLevel();
@@ -189,6 +197,10 @@ void GameView::OnLevelZero(wxCommandEvent& event)
     Update();
 }
 
+/**
+ * Load and display level 1.
+ * @param event The menu command event.
+ */
 void GameView::OnLevelOne(wxCommandEvent& event)
 {
     Level* level = this->GetGame()->GetLevel();
@@ -198,6 +210,10 @@ void GameView::OnLevelOne(wxCommandEvent& event)
     Update();
 }
 
+/**
+ * Load and display level 2.
+ * @param event The menu command event.
+ */
 void GameView::OnLevelTwo(wxCommandEvent& event)
 {
     Level* level = this->GetGame()->GetLevel();

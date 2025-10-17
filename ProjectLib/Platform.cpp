@@ -11,13 +11,11 @@
 
 
 /**
- * Make a new platform using three images:
- * left edge, middle part, and right edge.
- *
- * @param level the level this platform is in
- * @param leftFile the left platform image file
- * @param middleFile the middle platform image file
- * @param rightFile the right platform image file
+ * Construct a platform object.
+ * @param level The level this platform belongs to.
+ * @param leftFile Image file for the left edge.
+ * @param middleFile Image file for the middle section.
+ * @param rightFile Image file for the right edge.
  */
 Platform::Platform(Level *level,
                    const std::wstring& leftFile,
@@ -31,10 +29,10 @@ Platform::Platform(Level *level,
 }
 
 /**
- * Helper function that draws one full row of platform tiles
- * @param graphics the virtual pixel graphics used
- * @param startX the starting x position
- * @param middleTiles the number of middle tiles in the platform
+ * Draw one full row of platform tiles.
+ * @param graphics The wxWidgets graphics context to draw with.
+ * @param startX The starting X coordinate for the row.
+ * @param middleTiles The number of middle tiles to draw.
  */
 void Platform::DrawPlatformRow(wxGraphicsContext* graphics, double startX, int middleTiles)
 {

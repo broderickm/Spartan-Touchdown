@@ -5,9 +5,7 @@
 
 #include "pch.h"
 #include "Enemy.h"
-
 #include <set>
-
 
 using namespace std;
 
@@ -17,22 +15,19 @@ const double verticalSpeed = -80;
 /// Vertical Distance Constant
 const double maxVerticalDistance = 300;
 
-
 /**
  * Constructor
+ * Construct an enemy object
  * @param level the level we are adding this enemy to
  * @param filename Filename for the image we use
  */
 Enemy::Enemy(Level *level, const std::wstring& filename): MovingItem(level,filename)
 {
-
 }
 
-
-
 /**
- * sets the base position
- * sets the speed
+ * Initialize enemy movement by setting its
+ * base position and vertical speed.
  */
 void Enemy::StartMoving()
 {
@@ -45,12 +40,12 @@ void Enemy::StartMoving()
 
 
 /**
- * change item position based upon velocity*elapsedtime
- * if the item hasmoved = false set it to true and then proceed
- * function is responsible for the movement of the enemy ( up and down movement )
- * we can change the rate by increasing vertspeed, and the we can change the distance by increase maxdistance
- * @param elapsed
- * @returns none
+ * Update the enemy’s position each frame based on its velocity and elapsed time.
+ *
+ * Handles vertical oscillation motion. The enemy moves up and down between
+ * its base position and a maximum distance defined by maxVerticalDistance.
+ *
+ * @param elapsed The time elapsed since the last update (in seconds).
  */
 void Enemy::Update(double elapsed)
 {
@@ -73,9 +68,4 @@ void Enemy::Update(double elapsed)
     {
         setSpeed(0,verticalSpeed);
     }
-
-
-
-
-
 }

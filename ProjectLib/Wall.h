@@ -60,20 +60,35 @@ public:
  void SetWallSize(double width, double height);
 
 
-
- /// Set the custom height
+ /**
+ * Set a custom wall height.
+ * @param hit The new height in pixels
+ */
  void SetCustomHeight(double hit) override;
 
 
- /// set the custom width
+ /**
+  * Set a custom wall width.
+  * @param wid The new width in pixels
+  */
  void SetCustomWidth(double wid) override;
 
- /// Override to return the actual drawn width
+ /**
+ * Get the width of the wall.
+ * @return Wall width in pixels
+ */
  double GetWidth() const override { return mWallWidth; }
 
- /// Override to return the actual drawn height
+ /**
+  * Get the height of the wall.
+  * @return Wall height in pixels
+  */
  double GetHeight() const override { return mWallHeight; }
 
+ /**
+ * Determine whether the wall is solid.
+ * @return True if solid, false otherwise
+ */
  bool IsSolid() const override { return true; }
 };
 

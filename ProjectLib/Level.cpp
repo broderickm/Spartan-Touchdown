@@ -314,7 +314,6 @@ void Level::Clear()
  * @param item The item we are testing (usually the football)
  * @return The item it collides with, or nullptr if none
  */
-
 std::shared_ptr<Item> Level::CollisionTest(Item* item)
 {
 
