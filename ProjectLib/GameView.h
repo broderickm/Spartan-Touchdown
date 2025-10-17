@@ -79,6 +79,12 @@ public:
      * @param event The menu command event.
      */
     void OnLevelTwo(wxCommandEvent& event);
+
+    /**
+     * Load and display level 3.
+     * @param event The menu command event.
+     */
+    void OnLevelThree(wxCommandEvent& event);
 };
 
 

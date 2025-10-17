@@ -11,13 +11,6 @@
 #include <wx/dcbuffer.h>
 #include <wx/filedlg.h>
 
-/**
- * Shlok here,
- * there are going to be a lot of headers here, I'll need to import all the objects that show up
- * on screen, so I will add them as needed for the functions to create and then all together
- * at the end
- */
-
 #include <wx/graphics.h>
 
 #include "ids.h"
@@ -40,7 +33,7 @@ void GameView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelZero, this, IDM_LEVELZERO);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELONE);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelTwo, this, IDM_LEVELTWO);
-    //parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLeveThree, this, IDM_LEVELTHREE);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelThree, this, IDM_LEVELTHREE);
 
     Bind(wxEVT_KEY_DOWN, &GameView::OnKeyDown, this);
     Bind(wxEVT_KEY_UP, &GameView::OnKeyUp, this);
@@ -218,6 +211,19 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 {
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level2.xml");
+
+    Refresh();
+    Update();
+}
+
+/**
+ * Load and display level 3.
+ * @param event The menu command event.
+ */
+void GameView::OnLevelThree(wxCommandEvent& event)
+{
+    Level* level = this->GetGame()->GetLevel();
+    level->Load(L"levels/level3.xml");
 
     Refresh();
     Update();
