@@ -17,6 +17,8 @@
 class Football : public MovingItem
 {
 private:
+
+
     /// Tells if the football is still alive
     bool mIsDead = false;
 
@@ -54,6 +56,18 @@ private:
     double mSpawnTime = 0;
 
 public:
+    ///set dead function
+    void SetDead(bool dead)
+    {
+        mIsDead = dead;
+    }
+
+    ///is dead function declaration
+    bool IsDead() const
+    {
+        return mIsDead;
+    }
+
     /// constructor for the football
     Football(Level *level);
 

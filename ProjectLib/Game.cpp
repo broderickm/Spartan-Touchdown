@@ -9,7 +9,9 @@
 #include "Game.h"
 #include "Level.h"
 #include "Football.h"
-
+#include "Enemy.h"
+#include "UMichEnemy.h"
+#include "NDEnemy.h"
 #include <wx/graphics.h>
 
 /**
@@ -169,9 +171,46 @@ void Game::Update(double elapsed)
 
         ///reset the timer
         mTimerDecrease=0.0;
-
-
     }
+    if (mFootball != nullptr && mLevel != nullptr)
+    {
+        ///football dies if it goes beyong the screen height like falls from a platform
+        if (mFootball->GetY() > mLevel->GetHeight())
+        {
+            mFootball->SetDead(true);
+        }
+
+        ///football dies if it touches an enemy(u mich or notre dame)
+        const auto& items = mLevel->GetItems();
+        for (auto& item : items)
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(item.get());
+            NDEnemy* ndEnemy = dynamic_cast<NDEnemy*>(item.get());
+            UMichEnemy* umichEnemy = dynamic_cast<UMichEnemy*>(item.get());
+
+            Item* detectedEnemy = nullptr;
+            if (enemy) detectedEnemy = enemy;
+            else if (ndEnemy) detectedEnemy = ndEnemy;
+            else if (umichEnemy) detectedEnemy = umichEnemy;
+
+
+            if (detectedEnemy && mFootball->HitTest((int)detectedEnemy->GetX(), (int)detectedEnemy->GetY()))
+            {
+                mFootball->SetDead(true);
+                wxLogMessage("You Lose! (hit by enemy)");
+                break;
+            }
+        }
+
+        ///handle death (for now not restarting level)
+        ///show message you lose when football dies
+        if (mFootball->IsDead() && !mDeathMessageShown)
+        {
+            wxLogMessage("You Lose! (football died)");
+            mDeathMessageShown = true;
+        }
+    }
+
 }
 
 /**

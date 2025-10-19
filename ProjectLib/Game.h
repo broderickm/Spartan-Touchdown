@@ -23,6 +23,9 @@ class Football;
 class Game
 {
 private:
+    ///flag to show if message already shown
+    bool mDeathMessageShown = false;
+
     ///Elapsed time since the level started
     double mTimeElapsedSinceGameStarted=0.0;
 
