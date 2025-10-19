@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<level width="1024" height="1024" start-y="572" start-x="468">
+<level width="1200" height="857" start-y="572" start-x="468">
     <declarations>
-        <background id="i001" image="background0.png"/>
+        <background id="i001" image="background2.png"/>
         <platform id="i005" left-image="metalLeft.png" mid-image="metalMid.png" right-image="metalRight.png"/>
+        <wall id="i006" image="wall1.png"/>
+        <wall id="i007" image="wall2.png"/>
+        <coin id="i008" image="coin10.png" value="10"/>
+        <coin id="i009" image="coin100.png" value="100"/>
+        <power-up id="i010" image="sparty.png"/>
+        <goalpost id="i011" image="goalpost.png"/>
+        <enemy id="i012" image="U-M.png"/>
+        <enemy id="i013" image="ND.png"/>
     </declarations>
     <items>
         <background id="i001" x="512" y="512"/>
         <platform id="i005" x="464" y="720" width="160" height="32"/>
+        <enemy id="i013" x="600" y="465"/>
     </items>
 </level>
