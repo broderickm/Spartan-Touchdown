@@ -1,6 +1,6 @@
-<level width="1200" height="857" start-y="572" start-x="468">
+<level width="8192" height="1024" start-y="572" start-x="468">
     <declarations>
-        <background id="i001" image="background2.png"/>
+        <background id="i001" image="background3.png"/>
         <platform id="i005" left-image="metalLeft.png" mid-image="metalMid.png" right-image="metalRight.png"/>
         <wall id="i006" image="wall1.png"/>
         <wall id="i007" image="wall2.png"/>
@@ -12,8 +12,21 @@
         <enemy id="i013" image="ND.png"/>
     </declarations>
     <items>
-        <background id="i001" x="512" y="512"/>
-        <platform id="i005" x="464" y="720" width="160" height="32"/>
-        <enemy id="i013" x="600" y="465"/>
+        <background id="i001" x="944" y="512"/>
+        <background id="i001" x="2832" y="512"/>
+        <background id="i001" x="4720" y="512"/>
+        <background id="i001" x="6608" y="512"/>
+        <background id="i001" x="8496" y="512"/>
+        <background id="i001" x="10384" y="512"/>
+        <platform id="i005" x="464" y="720" width="200" height="32"/>
+        <platform id="i005" x="650" y="450" width="300" height="32"/>
+        <platform id="i005" x="1500" y="450" width="250" height="32"/>
+        <platform id="i005" x="950" y="650" width="100" height="32"/>
+        <wall id="i006" x="1625" y="386" width="32" height="128"/>
+        <wall id="i007" x="850" y="450" width="32" height="400"/>
+        <enemy id="i013" x="600" y="600"/>
+        <enemy id="i013" x="380" y="600"/>
+        <coin id="i009" x="850" y="240"/>
+        <coin id="i008" x="1000" y="400"/>
     </items>
 </level>
