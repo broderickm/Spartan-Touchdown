@@ -212,6 +212,9 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level2.xml");
 
+    // Set wind for level 2 only
+    level->SetWindVelocity(-25);  // Negative = left drift
+
     Refresh();
     Update();
 }

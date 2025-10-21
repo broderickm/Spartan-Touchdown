@@ -71,3 +71,25 @@ void Coin::OnCollide(Football* football)
 
     }
 }
+
+/**
+ * Update the coin each frame.
+ * Applies wind force if the level has wind.
+ * @param elapsed Time elapsed since last update in seconds
+ */
+void Coin::Update(double elapsed)
+{
+    // Don't move collected coins
+    if (mCoinCollected)
+    {
+        return;
+    }
+
+    // Apply wind force from the level
+    double windVelocity = GetLevel()->GetWindVelocity();
+    if (windVelocity != 0.0)
+    {
+        // Move coin based on wind
+        SetLocation(GetX() + windVelocity * elapsed, GetY());
+    }
+}

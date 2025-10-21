@@ -43,6 +43,9 @@ private:
     /// Starting Y position
     double mInitialY = 0;
 
+    /// Wind velocity (negative = left, positive = right)
+    double mWindVelocity = 0.0;
+
     /// Map holding ids and image filenames
     std::map<wxString, std::wstring> mObjDeclarations;
 
@@ -91,6 +94,18 @@ public:
      * @return Starting Y position
      */
     double GetInitialY() const { return mInitialY; }
+
+    /**
+     * Get the wind velocity for this level
+     * @return Wind velocity in pixels per second
+     */
+    double GetWindVelocity() const { return mWindVelocity; }
+
+    /**
+     * Set the wind velocity for this level
+     * @param velocity Wind velocity in pixels per second
+     */
+    void SetWindVelocity(double velocity) { mWindVelocity = velocity; }
 
     /**
      * Get all items in the level
