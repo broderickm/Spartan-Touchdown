@@ -148,25 +148,34 @@ void Football::Update(double elapsed)
     }
 
     // vertical hit test
-    SetLocation(p.X(), newP.Y());  // try vertical movement only
+    SetLocation(p.X(), newP.Y());  // vertical movement only
 
     auto collided = GetGame()->CollisionTest(this);
     if (collided != nullptr)
     {
-        if (newV.Y() > 0)
+        // if we collided wi coin or powerup, collect immediately
+        if (dynamic_cast<Coin*>(collided.get()) != nullptr ||
+            dynamic_cast<PowerUp*>(collided.get()) != nullptr)
         {
-            // falling down; land on platform
-            newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
-            mIsOnSurface = true;
+            // do nothing here — handled later
         }
-        else if (newV.Y() < 0)
+        else
         {
-            // going up; hit ceiling
-            newP.SetY(collided->GetY() + collided->GetHeight() / 2 + GetHeight() / 2 + Epsilon);
-        }
+            if (newV.Y() > 0)
+            {
+                // falling down - land on platform
+                newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
+                mIsOnSurface = true;
+            }
+            else if (newV.Y() < 0)
+            {
+                // going up
+                newP.SetY(collided->GetY() + collided->GetHeight() / 2 + GetHeight() / 2 + Epsilon);
+            }
 
-        // stop vertical motion
-        newV.SetY(0);
+            // stop vertical motion
+            newV.SetY(0);
+        }
     }
     else
     {
