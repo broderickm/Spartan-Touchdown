@@ -63,6 +63,7 @@ public:
     void XmlDeclarations(wxXmlNode* node);
     void XmlItems(wxXmlNode* node);
     void Clear();
+    void RemoveItem(std::shared_ptr<Item> item);
 
     std::shared_ptr<Item> HitTest(int x, int y);
     std::shared_ptr<Item> CollisionTest(Item* item);

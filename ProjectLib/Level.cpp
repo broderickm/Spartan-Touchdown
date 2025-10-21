@@ -317,6 +317,15 @@ void Level::Clear()
     mItems.clear();
 }
 
+void Level::RemoveItem(std::shared_ptr<Item> item)
+{
+    auto it = std::find(mItems.begin(), mItems.end(), item);
+    if (it != mItems.end())
+    {
+        mItems.erase(it);
+    }
+}
+
 /**
  * Test for collision between one item and others in this level
  * @param item The item we are testing (usually the football)

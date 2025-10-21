@@ -6,7 +6,10 @@
 #include "pch.h"
 #include <string>
 #include "Football.h"
+
+#include "Coin.h"
 #include "Game.h"
+#include "PowerUp.h"
 
 using namespace std;
 
@@ -197,6 +200,27 @@ void Football::Update(double elapsed)
         {
             newP.SetY(platform->GetY() - platform->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
             newV.SetY(0);
+        }
+    }
+
+    auto level = GetGame()->GetLevel();
+    auto collidedItem = level->CollisionTest(this);
+
+    if (collidedItem != nullptr)
+    {
+        // check if its a powerup
+        if (auto power = std::dynamic_pointer_cast<PowerUp>(collidedItem))
+        {
+            // double coin multiplier
+            GetGame()->SetCoinMultiplier(2.0);
+            // remove power up from level
+            level->RemoveItem(power);
+        }
+        else if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
+        {
+            int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
+            AddToScore(value); // update football score
+            level->RemoveItem(coin); // remove coin when colided
         }
     }
 

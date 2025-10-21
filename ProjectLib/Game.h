@@ -59,6 +59,9 @@ private:
     /// Height of the playable screen in pixels
     int mScreenHeight = 0;
 
+    /// Coin multiplier applied to coins
+    double mCoinMultiplier = 1.0;
+
 public:
     void LoadNextLevel(const std::wstring& nextLevelPath);
 
@@ -145,6 +148,10 @@ public:
      * @return The first item that collides with the given one, or nullptr if none.
      */
     std::shared_ptr<Item> CollisionTest(Item* item);
+
+    // for coin multiplier when using power up
+    double GetCoinMultiplier() const { return mCoinMultiplier; }
+    void SetCoinMultiplier(double mult) { mCoinMultiplier = mult; }
 };
 
 
