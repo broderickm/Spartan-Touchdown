@@ -10,6 +10,7 @@
         <goalpost id="i011" image="goalpost.png"/>
         <enemy id="i012" image="U-M.png"/>
         <enemy id="i013" image="ND.png"/>
+        <power-up id="i014"/>
     </declarations>
     <items>
         <background id="i001" x="944" y="512"/>
@@ -22,11 +23,87 @@
         <platform id="i005" x="650" y="450" width="300" height="32"/>
         <platform id="i005" x="1500" y="450" width="250" height="32"/>
         <platform id="i005" x="950" y="650" width="100" height="32"/>
+        <platform id="i005" x="1050" y="750" width="100" height="32"/>
         <wall id="i006" x="1625" y="386" width="32" height="128"/>
         <wall id="i007" x="850" y="450" width="32" height="400"/>
         <enemy id="i013" x="600" y="600"/>
         <enemy id="i013" x="380" y="600"/>
         <coin id="i009" x="850" y="240"/>
-        <coin id="i008" x="1000" y="400"/>
+        <coin id="i008" x="1075" y="500"/>
+        <coin id="i008" x="1200" y="300"/>
+        <coin id="i008" x="1300" y="200"/>
+        <coin id="i009" x="1150" y="400"/>
+        <coin id="i008" x="1150" y="700"/>
+        <enemy id="i012" x="1500" y="600"/>
+        <platform id="i005" x="2050" y="600" width="320" height="32"/>
+        <wall id="i007" x="1906" y="940" width="32" height="700"/>
+        <wall id="i007" x="2194" y="940" width="32" height="700"/>
+        <platform id="i005" x="2700" y="400" width="352" height="32"/>
+        <coin id="i009" x="2050" y="200"/>
+        <coin id="i008" x="1950" y="200"/>
+        <coin id="i008" x="2150" y="200"/>
+        <coin id="i009" x="2350" y="400"/>
+        <enemy id="i012" x="3000" y="600"/>
+        <coin id="i008" x="3000" y="325"/>
+        <platform id="i005" x="3300" y="500" width="320" height="32"/>
+        <platform id="i005" x="3300" y="800" width="500" height="32"/>
+        <coin id="i009" x="3300" y="650"/>
+        <coin id="i008" x="3200" y="750"/>
+        <coin id="i008" x="3400" y="750"/>
+        <platform id="i005" x="3800" y="200" width="200" height="32"/>
+        <platform id="i005" x="4000" y="225" width="200" height="32"/>
+        <coin id="i008" x="4000" y="175"/>
+        <coin id="i008" x="4190" y="200"/>
+        <platform id="i005" x="4190" y="250" width="200" height="32"/>
+        <coin id="i009" x="3650" y="250"/>
+        <coin id="i009" x="3550" y="500"/>
+        <coin id="i008" x="3650" y="400"/>
+        <coin id="i008" x="3550" y="350"/>
+        <platform id="i005" x="4900" y="650" width="500" height="32"/>
+        <wall id="i006" x="4634" y="450" width="32" height="400"/>
+        <platform id="i005" x="4500" y="875" width="100" height="32"/>
+        <coin id="i008" x="4500" y="825"/>
+        <platform id="i005" x="4800" y="900" width="200" height="32"/>
+        <coin id="i009" x="4800" y="825"/>
+        <platform id="i005" x="5200" y="800" width="150" height="32"/>
+        <coin id="i008" x="5200" y="750"/>
+        <coin id="i008" x="5300" y="680"/>
+        <coin id="i008" x="5200" y="660"/>
+        <enemy id="i013" x="4500" y="350"/>
+        <coin id="i008" x="4700" y="600"/>
+        <coin id="i008" x="4700" y="500"/>
+        <platform id="i005" x="5550" y="200" width="100" height="32"/>
+        <platform id="i005" x="5550" y="500" width="400" height="32"/>
+        <wall id="i007" x="5550" y="840" width="32" height="700"/>
+        <power-up id="i010" x="5550" y="100"/>
+        <wall id="i006" x="5476" y="137" width="32" height="150"/>
+        <coin id="i008" x="5430" y="450"/>
+        <coin id="i008" x="5670" y="450"/>
+        <platform id="i005" x="6000" y="850" width="300" height="32"/>
+        <coin id="i008" x="6075" y="800"/>
+        <coin id="i008" x="6125" y="700"/>
+        <coin id="i008" x="5850" y="700"/>
+        <coin id="i008" x="5900" y="800"/>
+        <coin id="i009" x="6000" y="500"/>
+        <platform id="i005" x="6300" y="300" width="400" height="32"/>
+        <enemy id="i012" x="6000" y="350"/>
+        <platform id="i005" x="6600" y="550" width="200" height="32"/>
+        <coin id="i009" x="6300" y="150"/>
+        <enemy id="i013" x="6400" y="650"/>
+        <wall id="i007" x="6516" y="884" width="32" height="700"/>
+        <wall id="i007" x="6674" y="884" width="32" height="700"/>
+        <coin id="i008" x="6600" y="500"/>
+        <coin id="i008" x="6600" y="400"/>
+        <coin id="i008" x="6600" y="300"/>
+        <wall id="i006" x="7450" y="850" width="32" height="750"/>
+        <platform id="i005" x="7370" y="750" width="100" height="32"/>
+        <coin id="i009" x="7450" y="450"/>
+        <enemy id="i012" x="7700" y="550"/>
+        <platform id="i005" x="7250" y="200" width="100" height="32"/>
+        <coin id="i008" x="7250" y="150"/>
+        <platform id="i005" x="7900" y="125" width="200" height="32"/>
+        <coin id="i009" x="7900" y="75"/>
+        <platform id="i005" x="8000" y="625" width="200" height="32"/>
+        <goalpost id="i011" x="8000" y="530"/>
     </items>
 </level>
