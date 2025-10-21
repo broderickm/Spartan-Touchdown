@@ -219,7 +219,7 @@ void Football::Update(double elapsed)
         else if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
         {
             int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
-            AddToScore(value); // update football score
+            game->AddToPlayerScore(value); // update football score
             level->RemoveItem(coin); // remove coin when colided
         }
     }

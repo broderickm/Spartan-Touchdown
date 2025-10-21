@@ -27,6 +27,8 @@ public:
 
     PowerUp(Level* level);
 
+    bool IsSolid() const override { return false; }
+
 };
 
 

@@ -347,9 +347,17 @@ std::shared_ptr<Item> Level::CollisionTest(Item* item)
             continue; // no collision with self
         }
 
-        // Only collide with solid objects for physics
+        // Skip non-solid items only for physics checks,
+        // but still detect coins and powerups for collection.
         if (!other->IsSolid())
-            continue;
+        {
+            // Allow collision detection for collectible types
+            if (dynamic_cast<Coin*>(other.get()) == nullptr &&
+                dynamic_cast<PowerUp*>(other.get()) == nullptr)
+            {
+                continue;
+            }
+        }
 
         // Level checks if football overlaps another item
         // test within bounds of the box:

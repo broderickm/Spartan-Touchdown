@@ -58,7 +58,7 @@ public:
      */
     void SetIsCollected(bool collected) { mCoinCollected = collected; }
 
-
+    bool IsSolid() const override { return false; }
 
 };
 
