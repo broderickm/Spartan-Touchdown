@@ -41,6 +41,8 @@ set(SOURCE_FILES temp.cpp pch.h
         Vector.h
         Background.cpp
         Background.h
+        TeamPowerUp.cpp
+        TeamPowerUp.h
 )
 
 set(wxBUILD_PRECOMP OFF)
