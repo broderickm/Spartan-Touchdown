@@ -162,7 +162,7 @@ void Level::Load(const wxString &filename)
         currFootball->SetSpawnTime(0);
         mItems.push_back(currFootball);
     }
-    wxLogMessage("Level loaded: %ls", mCurrentLevelFile.c_str());
+    ///wxLogMessage("Level loaded: %ls", mCurrentLevelFile.c_str());
 
 }
 

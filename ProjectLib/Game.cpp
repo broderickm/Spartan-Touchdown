@@ -120,7 +120,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
 std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
 {
-    wxLogMessage("DEBUG: Parsing level path in GetNextLevelPath(): %ls", currentLevelPath.c_str());
+    ///wxLogMessage("DEBUG: Parsing level path in GetNextLevelPath(): %ls", currentLevelPath.c_str());
 
     int currentLevel = -1;
 
@@ -155,7 +155,7 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
     }
 
     int nextLevel = currentLevel + 1;
-    wxLogMessage("DEBUG: Detected current level = %d, next = %d", currentLevel, nextLevel);
+    ///wxLogMessage("DEBUG: Detected current level = %d, next = %d", currentLevel, nextLevel);
 
 
     if (nextLevel>3)
@@ -165,7 +165,7 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
     }
 
     std::wstring nextLevelPath = L"levels/level" + std::to_wstring(nextLevel) + L".xml";
-    wxLogMessage("DEBUG: Next level path resolved = %ls", nextLevelPath.c_str());
+    ///wxLogMessage("DEBUG: Next level path resolved = %ls", nextLevelPath.c_str());
     return nextLevelPath;
 }
 
@@ -250,7 +250,7 @@ void Game::Update(double elapsed)
 
         mLevel->Load(mNextLevelPath);
 
-        wxLogMessage("DEBUG: mNextLevelPath actually loaded: %ls", mNextLevelPath.c_str());
+        ///wxLogMessage("DEBUG: mNextLevelPath actually loaded: %ls", mNextLevelPath.c_str());
 
         mFootball->SetDead(false);
         mFootball->SetLocation(mLevel->GetInitialX(), mLevel->GetInitialY());

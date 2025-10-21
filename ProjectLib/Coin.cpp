@@ -64,6 +64,10 @@ void Coin::OnCollide(Football* football)
     if (distance < 50)
     {
         mCoinCollected = true;
-        football->AddToScore(mCoinValue);
+        if (auto game = GetLevel()->GetGame())
+        {
+            game->AddToPlayerScore(mCoinValue);
+        }
+
     }
 }
