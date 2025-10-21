@@ -21,6 +21,10 @@ class Item;
 class Level
 {
 private:
+
+    /// remember the current file
+    std::wstring mCurrentLevelFile;
+
     /// game that the level belongs to
     Game* mGame;
 
@@ -46,6 +50,10 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 public:
+
+    std::wstring GetCurrentLevelFile() const { return mCurrentLevelFile; }
+
+
     Level(Game* game);
 
     void OnDraw(wxGraphicsContext* graphics);

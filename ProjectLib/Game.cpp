@@ -12,7 +12,9 @@
 #include "Enemy.h"
 #include "UMichEnemy.h"
 #include "NDEnemy.h"
+#include "GoalPost.h"
 #include <wx/graphics.h>
+
 
 /**
  * Initialize the game
@@ -93,6 +95,61 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     graphics->DrawText(scoreText,mScreenWidth/mScale- textWidth-40,20);
 
 
+}
+
+/**
+ *Helper function to get the next level like if on 1 , go to 2, if on 2 go to 3 etc
+ */
+
+std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
+{
+    wxLogMessage("DEBUG: Parsing level path in GetNextLevelPath(): %ls", currentLevelPath.c_str());
+
+    int currentLevel = -1;
+
+    size_t pos = currentLevelPath.rfind(L"level");
+    if (pos != std::wstring::npos)
+    {
+        size_t start = pos +5;
+        size_t end = start;
+        while (end < currentLevelPath.size() && iswdigit(currentLevelPath[end]))
+        {
+            end++;
+        }
+
+        if (end > start)
+        {
+            std::wstring numberPart = currentLevelPath.substr(start, end - start);
+            try
+            {
+                currentLevel = std::stoi(numberPart);
+            }
+            catch (...)
+            {
+                currentLevel = -1;
+            }
+        }
+
+    }
+    if (currentLevel == -1)
+    {
+        wxLogMessage("Could not determine current level from path: %ls", currentLevelPath.c_str());
+        return L"";
+    }
+
+    int nextLevel = currentLevel + 1;
+    wxLogMessage("DEBUG: Detected current level = %d, next = %d", currentLevel, nextLevel);
+
+
+    if (nextLevel>3)
+    {
+        wxLogMessage("All levels completed");
+        return L"";
+    }
+
+    std::wstring nextLevelPath = L"levels/level" + std::to_wstring(nextLevel) + L".xml";
+    wxLogMessage("DEBUG: Next level path resolved = %ls", nextLevelPath.c_str());
+    return nextLevelPath;
 }
 
 /**
@@ -209,6 +266,60 @@ void Game::Update(double elapsed)
             wxLogMessage("You Lose! (football died)");
             mDeathMessageShown = true;
         }
+    }
+
+    ///check if football reaches goalpost(level)
+    if (mFootball != nullptr && mLevel != nullptr)
+    {
+        const auto& items = mLevel->GetItems();
+
+        for (auto& item : items)
+        {
+            auto goalPost = dynamic_cast<GoalPost*>(item.get());
+            if (goalPost && goalPost->CollisionTest(mFootball.get()))
+            {
+                wxLogMessage("Goal Reached! (hit by goal post,loading next level)");
+
+                std::wstring currentLevelFile = mLevel->GetCurrentLevelFile();
+                std::wstring nextLevelFile = GetNextLevelPath(currentLevelFile);
+
+                wxLogMessage("DEBUG: Current level file = %ls", currentLevelFile.c_str());
+                wxLogMessage("DEBUG: Next level path returned = %ls", nextLevelFile.c_str());
+
+
+                if (!nextLevelFile.empty())
+                {
+                    ///wxLogMessage("Goal Reached! Loading next level");
+
+                    mNextLevelPending = true;
+                    mNextLevelPath = nextLevelFile;
+                }
+                else
+                {
+                    wxLogMessage("All levels completed");
+
+                }
+                break;
+            }
+        }
+    }
+
+    if (mNextLevelPending)
+    {
+        wxLogMessage("Loading next level!");
+
+        mLevel->Load(mNextLevelPath);
+
+        wxLogMessage("DEBUG: mNextLevelPath actually loaded: %ls", mNextLevelPath.c_str());
+
+        mFootball->SetDead(false);
+        mFootball->SetLocation(mLevel->GetInitialX(), mLevel->GetInitialY());
+        mCameraOffsetX = 0;
+        mDeathMessageShown = false;
+
+        wxLogMessage("Next level loaded successfully!");
+        mNextLevelPending = false;
+
     }
 
 }

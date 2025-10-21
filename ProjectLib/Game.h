@@ -23,6 +23,8 @@ class Football;
 class Game
 {
 private:
+    bool mNextLevelPending = false;
+    std::wstring mNextLevelPath;
     ///flag to show if message already shown
     bool mDeathMessageShown = false;
 
@@ -58,6 +60,15 @@ private:
     int mScreenHeight = 0;
 
 public:
+    /**
+     * Get the next level file path
+     * @param currentLevelPath Current level file path
+     * @return Next level file path if available, else empty string
+     */
+    std::wstring GetNextLevelPath(const std::wstring& currentLevelPath);
+
+
+
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     /**

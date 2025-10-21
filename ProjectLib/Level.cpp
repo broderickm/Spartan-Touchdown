@@ -101,12 +101,16 @@ std::shared_ptr<Item> Level::HitTest(int x, int y)
  */
 void Level::Load(const wxString &filename)
 {
+    mCurrentLevelFile = std::wstring(filename.wc_str());
+
     wxXmlDocument xmlDoc;
     if(!xmlDoc.Load(filename))
     {
         wxMessageBox(L"Unable to load level file");
         return;
     }
+
+    //mCurrentLevelFile = filename.ToStdWstring();
 
     Clear();
 
@@ -158,6 +162,8 @@ void Level::Load(const wxString &filename)
         currFootball->SetSpawnTime(0);
         mItems.push_back(currFootball);
     }
+    wxLogMessage("Level loaded: %ls", mCurrentLevelFile.c_str());
+
 }
 
 /**

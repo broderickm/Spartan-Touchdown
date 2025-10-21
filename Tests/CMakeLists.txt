@@ -9,6 +9,9 @@ set(TEST_FILES
         BackgroundTest.cpp
 )
 
+include_directories(
+        ../ProjectLib
+)
 # Get Google Tests
 include(FetchContent)
 FetchContent_Declare(
