@@ -94,8 +94,25 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     graphics->DrawText(scoreText,mScreenWidth/mScale- textWidth-40,20);
 
+    if (mFootball != nullptr && mFootball->IsDead())
+    {
+        wxFont font(wxSize(0, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, wxColour(255, 0, 0)); // red color use
+
+        wxString deathText = L"YOU LOSE!";
+        wxDouble textWidth, textHeight;
+        graphics->GetTextExtent(deathText, &textWidth, &textHeight);
+
+        // center horizontally and vertically
+        double x = (mScreenWidth / mScale - textWidth) / 2;
+        double y = (mScreenHeight / mScale - textHeight) / 2;
+
+        graphics->DrawText(deathText, x, y);
+    }
+
 
 }
+
 
 /**
  *Helper function to get the next level like if on 1 , go to 2, if on 2 go to 3 etc
@@ -170,30 +187,24 @@ void Game::Update(double elapsed)
     {
         const auto& items = mLevel->GetItems();
 
-        for (auto& item : items) {
-            Coin* coin = dynamic_cast<Coin*>(item.get());
-
-            if (coin != nullptr && !coin ->CoinIsCollected())
+        for (auto& item : items)
             {
-
-                /// calculate the distance between football and coin
-                double dx = mFootball->GetX() - coin->GetX();
-                double dy = mFootball->GetY() - coin->GetY();
-                double distance = sqrt(dx * dx + dy * dy);
-
-                /// if the football is close enough, it collected the coin
-                if (distance < 50)  // 50 = approximate hit radius
-                {
-                    /// mark the coin as collected
-                    coin->SetIsCollected(true);
-
-                    /// add the coin’s value to the player score
-                    AddToPlayerScore(coin->GetTheValue());
-                }
+                item->OnCollide(mFootball.get());
             }
-        }
     }
 
+    if (mFootball != nullptr && mLevel != nullptr)
+    {
+        if (mFootball->GetY() > mLevel->GetHeight())
+        {
+            mFootball->SetDead(true);
+        }
+
+        if (mFootball->IsDead() && !mDeathMessageShown)
+        {
+            mDeathMessageShown = true;
+        }
+    }
 
     // Update camera to follow football
     if (mFootball != nullptr && mScreenWidth > 0)
@@ -229,80 +240,9 @@ void Game::Update(double elapsed)
         ///reset the timer
         mTimerDecrease=0.0;
     }
-    if (mFootball != nullptr && mLevel != nullptr)
-    {
-        ///football dies if it goes beyong the screen height like falls from a platform
-        if (mFootball->GetY() > mLevel->GetHeight())
-        {
-            mFootball->SetDead(true);
-        }
-
-        ///football dies if it touches an enemy(u mich or notre dame)
-        const auto& items = mLevel->GetItems();
-        for (auto& item : items)
-        {
-            Enemy* enemy = dynamic_cast<Enemy*>(item.get());
-            NDEnemy* ndEnemy = dynamic_cast<NDEnemy*>(item.get());
-            UMichEnemy* umichEnemy = dynamic_cast<UMichEnemy*>(item.get());
-
-            Item* detectedEnemy = nullptr;
-            if (enemy) detectedEnemy = enemy;
-            else if (ndEnemy) detectedEnemy = ndEnemy;
-            else if (umichEnemy) detectedEnemy = umichEnemy;
 
 
-            if (detectedEnemy && mFootball->HitTest((int)detectedEnemy->GetX(), (int)detectedEnemy->GetY()))
-            {
-                mFootball->SetDead(true);
-                wxLogMessage("You Lose! (hit by enemy)");
-                break;
-            }
-        }
 
-        ///handle death (for now not restarting level)
-        ///show message you lose when football dies
-        if (mFootball->IsDead() && !mDeathMessageShown)
-        {
-            wxLogMessage("You Lose! (football died)");
-            mDeathMessageShown = true;
-        }
-    }
-
-    ///check if football reaches goalpost(level)
-    if (mFootball != nullptr && mLevel != nullptr)
-    {
-        const auto& items = mLevel->GetItems();
-
-        for (auto& item : items)
-        {
-            auto goalPost = dynamic_cast<GoalPost*>(item.get());
-            if (goalPost && goalPost->CollisionTest(mFootball.get()))
-            {
-                wxLogMessage("Goal Reached! (hit by goal post,loading next level)");
-
-                std::wstring currentLevelFile = mLevel->GetCurrentLevelFile();
-                std::wstring nextLevelFile = GetNextLevelPath(currentLevelFile);
-
-                wxLogMessage("DEBUG: Current level file = %ls", currentLevelFile.c_str());
-                wxLogMessage("DEBUG: Next level path returned = %ls", nextLevelFile.c_str());
-
-
-                if (!nextLevelFile.empty())
-                {
-                    ///wxLogMessage("Goal Reached! Loading next level");
-
-                    mNextLevelPending = true;
-                    mNextLevelPath = nextLevelFile;
-                }
-                else
-                {
-                    wxLogMessage("All levels completed");
-
-                }
-                break;
-            }
-        }
-    }
 
     if (mNextLevelPending)
     {
@@ -354,4 +294,16 @@ std::shared_ptr<Item> Game::CollisionTest(Item* item)
 
     // Ask the level to perform the collision test
     return mLevel->CollisionTest(item);
+}
+
+
+void Game::ShowDeathMessage()
+{
+    mDeathMessageShown = true;
+}
+
+void Game::LoadNextLevel(const std::wstring& nextLevelPath)
+{
+    mNextLevelPath = nextLevelPath;
+    mNextLevelPending = true;
 }

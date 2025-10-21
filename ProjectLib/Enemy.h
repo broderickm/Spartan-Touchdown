@@ -22,6 +22,9 @@ private:
 
 
 public:
+
+    void OnCollide(Football* football) override;
+
     // Default constructor disabled
     Enemy() = delete;
 

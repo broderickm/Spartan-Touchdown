@@ -17,6 +17,7 @@
 class Football : public MovingItem
 {
 private:
+    int mScore = 0;
 
 
     /// Tells if the football is still alive
@@ -56,6 +57,9 @@ private:
     double mSpawnTime = 0;
 
 public:
+    void AddToScore(int value);
+
+
     ///set dead function
     void SetDead(bool dead)
     {

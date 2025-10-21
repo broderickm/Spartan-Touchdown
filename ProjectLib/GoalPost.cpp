@@ -7,6 +7,9 @@
 #include"pch.h"
 #include "GoalPost.h"
 #include "Game.h"
+#include "Football.h"
+#include "MovingItem.h"
+#include "Item.h"
 
 /// Collision distance for the goalpost in pixels
 const double CollisionDistance = 50;
@@ -59,4 +62,27 @@ bool GoalPost::CollisionTest(Item* item)
     }
 
     return false;
+}
+
+void GoalPost::OnCollide(Football* football)
+{
+    if (football == nullptr)
+        return;
+
+    Game* game = GetLevel()->GetGame();
+
+    if (CollisionTest(dynamic_cast<Item*>(football)))
+    {
+        std::wstring current = GetLevel()->GetCurrentLevelFile();
+        std::wstring next = game->GetNextLevelPath(current);
+
+        if (!next.empty())
+        {
+            game->LoadNextLevel(next);
+        }
+        else
+        {
+            wxLogMessage("All levels completed!");
+        }
+    }
 }

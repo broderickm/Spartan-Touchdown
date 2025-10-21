@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "Coin.h"
 #include "Game.h"
+#include "Item.h"
 
 /**
  * Create a coin with an image and a point value.
@@ -40,4 +41,29 @@ void Coin::Draw(wxGraphicsContext* graphics)
         graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
     }
 
+}
+
+
+/**
+ * Handle collision between this coin and the football.
+ * @param football The football that collided with this coin.
+ */
+void Coin::OnCollide(Football* football)
+{
+    if (mCoinCollected || football == nullptr)
+    {
+        return;
+    }
+
+    // Compute the distance between football and coin center
+    double dx = football->GetX() - GetX();
+    double dy = football->GetY() - GetY();
+    double distance = std::sqrt(dx * dx + dy * dy);
+
+    // If within hit radius, collect
+    if (distance < 50)
+    {
+        mCoinCollected = true;
+        football->AddToScore(mCoinValue);
+    }
 }

@@ -60,6 +60,10 @@ private:
     int mScreenHeight = 0;
 
 public:
+    void LoadNextLevel(const std::wstring& nextLevelPath);
+
+    void ShowDeathMessage();
+
     /**
      * Get the next level file path
      * @param currentLevelPath Current level file path

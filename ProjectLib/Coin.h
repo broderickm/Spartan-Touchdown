@@ -31,6 +31,8 @@ private:
 
 
 public:
+    void OnCollide(Football* football) override;
+
     /**
      * Constructor for a coin
     */

@@ -7,6 +7,9 @@
 #include "Enemy.h"
 #include <set>
 
+#include "Game.h"
+#include "Level.h"
+
 using namespace std;
 
 /// Vertical Speed Constant
@@ -67,5 +70,17 @@ void Enemy::Update(double elapsed)
     }else if (vertDistance <= 0)
     {
         setSpeed(0,verticalSpeed);
+    }
+}
+
+void Enemy::OnCollide(Football* football)
+{
+    if (football == nullptr)
+        return;
+
+    if (football->HitTest((int)GetX(), (int)GetY()))
+    {
+        football->SetDead(true);
+        GetLevel()->GetGame()->ShowDeathMessage();
     }
 }

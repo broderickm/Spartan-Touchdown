@@ -265,3 +265,9 @@ void Football::Jump()
         mIsOnSurface = false; // No longer on surface after jumping
     }
 }
+
+
+void Football::AddToScore(int value)
+{
+    mScore += value;
+}

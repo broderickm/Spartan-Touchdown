@@ -30,6 +30,9 @@ private:
  double mGoalpostHeight = 160;
 
 public:
+
+
+ void OnCollide(Football* football) override;
  /**
      * Constructor.
      * @param level  The level this goalpost belongs to

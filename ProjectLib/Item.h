@@ -11,6 +11,7 @@
 #include <memory>
 #include <wx/xml/xml.h>
 
+class Football;
 // Forward reference allowing Game to draw this
 class Level;
 
@@ -36,13 +37,15 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
 public:
+    virtual void OnCollide(Football* football){}
+    virtual bool IsGoal() const {return false;}
     /// Disable default constructor
     Item() = delete;
 
     Item(Level* level, const std::wstring& filename);
 
     // Destructor.
-    virtual ~Item();
+    virtual ~Item()= default;
 
     /**
      * Set the item location.
