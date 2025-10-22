@@ -64,11 +64,13 @@ void GameView::OnKeyDown(wxKeyEvent& event)
     case WXK_LEFT:
         // Move football left
         football->SetGoingLeft(true);
+        football->Step();
         break;
 
     case WXK_RIGHT:
         // Move football right
         football->SetGoingRight(true);
+        football->Step();
         break;
 
     case WXK_SPACE:

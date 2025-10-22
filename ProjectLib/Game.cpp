@@ -94,15 +94,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     graphics->DrawText(scoreText,mScreenWidth/mScale- textWidth-40,20);
 
-    if (mFootball != nullptr && mFootball->IsDead())
-    {
-        mDeathMessageShown = true;
-
-        mFootball->SetLocation(mLevel->GetInitialX(), mLevel->GetInitialY());
-        mFootball->SetDead(false);
-        mFootball->SetSpawnTime(0);
-    }
-
     if (mDeathMessageShown)
     {
         wxFont font(wxSize(0, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
@@ -256,10 +247,15 @@ void Game::Update(double elapsed)
     {
         mdeathTimer += elapsed;
     }
+    /// after death Timer has exceded 6 seconds, reset the whole level so
+    /// all the coins, and items used spawn back in
     if (mdeathTimer >= 0.6)
     {
         mdeathTimer = 0.0;
         mDeathMessageShown = false;
+        mLevel->Load(mLevel->GetCurrentLevelFile());
+        mFootball->SetDead(false);
+
     }
 
 
