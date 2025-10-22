@@ -32,6 +32,9 @@ private:
     /// Tells if the football is moving right
     bool mIsGoingLeft = false;
 
+    /// Tells if the football is currently stepping.
+    bool mIsStepping = false;
+
     /// Center image
     std::unique_ptr<wxImage> mCenterImage;
 
@@ -117,6 +120,7 @@ public:
      * Make the football jump (only if on a surface)
      */
     void Jump();
+    void Step();
 
     /**
      * Set whether the football is moving left

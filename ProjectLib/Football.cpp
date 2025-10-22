@@ -31,6 +31,9 @@ const double HorizontalSpeed = 500.0;
 /// Upwards vertical speed for bouncing
 const double BounceSpeed = -800;
 
+/// upwards step speed for bouncing ( tweak if necessary )
+const double StepSpeed = -250;
+
 /// Small value to prevent getting stuck in collision
 const double Epsilon = 0.01;
 
@@ -166,6 +169,8 @@ void Football::Update(double elapsed)
                 // falling down - land on platform
                 newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
                 mIsOnSurface = true;
+                // stop stepping incase of collision
+                mIsStepping = false;
             }
             else if (newV.Y() < 0)
             {
@@ -232,6 +237,13 @@ void Football::Update(double elapsed)
             level->RemoveItem(coin); // remove coin when colided
         }
     }
+    /// stop the stepping if we performed a full step
+    /// this is needed so incase we step off a ledge and free fall for some time we cant keep spamming jump
+    /// while free falling
+    if (mIsStepping && mV.Y() >= -StepSpeed)
+    {
+        mIsStepping = false;
+    }
 
     // new position
     mV = newV;
@@ -254,6 +266,7 @@ void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vec
         // stop on top of collided item (platform)
         newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
         mIsOnSurface = true; // Mark as on surface
+        mIsStepping = false;
     }
     else if (newV.Y() < 0) // Moving upward
     {
@@ -292,10 +305,32 @@ void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, V
 void Football::Jump()
 {
     // Only allow jumping if the football is on a surface
-    if (mIsOnSurface)
+    // allow jumping if in the middle of stepping
+    if (mIsOnSurface || (!mIsOnSurface && mIsStepping))
     {
         mV.SetY(BounceSpeed); // Apply upward velocity (-800)
         mIsOnSurface = false; // No longer on surface after jumping
+        mIsStepping = false; // no longer stepping if we jumped
+    }
+}
+
+/**
+ *@params none
+ *@returns void
+ *  function performs a step when moving right or left
+ *  simply adds vertical velocity to simulate a very slight upwards movement
+ *  make sure we dont step if we are in the middle of stepping
+ *
+ */
+void Football::Step()
+{
+    if (mIsOnSurface)
+    {
+        if (!mIsStepping)
+        {
+            mV.SetY(StepSpeed);
+            mIsStepping = true;
+        }
     }
 }
 
