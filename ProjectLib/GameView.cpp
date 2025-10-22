@@ -188,6 +188,7 @@ void GameView::OnLevelZero(wxCommandEvent& event)
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level0.xml");
 
+    level->SetWindVelocity(0);
     Refresh();
     Update();
 }
@@ -201,6 +202,7 @@ void GameView::OnLevelOne(wxCommandEvent& event)
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level1.xml");
 
+    level->SetWindVelocity(0);
     Refresh();
     Update();
 }
@@ -230,6 +232,7 @@ void GameView::OnLevelThree(wxCommandEvent& event)
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level3.xml");
 
+    level->SetWindVelocity(0);
     Refresh();
     Update();
 }
