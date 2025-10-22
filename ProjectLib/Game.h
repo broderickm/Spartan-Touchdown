@@ -62,6 +62,9 @@ private:
     /// Coin multiplier applied to coins
     double mCoinMultiplier = 1.0;
 
+    double mdeathTimer =  0.0;
+
+
 public:
     void LoadNextLevel(const std::wstring& nextLevelPath);
 

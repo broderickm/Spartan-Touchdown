@@ -96,6 +96,15 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     if (mFootball != nullptr && mFootball->IsDead())
     {
+        mDeathMessageShown = true;
+
+        mFootball->SetLocation(mLevel->GetInitialX(), mLevel->GetInitialY());
+        mFootball->SetDead(false);
+        mFootball->SetSpawnTime(0);
+    }
+
+    if (mDeathMessageShown)
+    {
         wxFont font(wxSize(0, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
         graphics->SetFont(font, wxColour(255, 0, 0)); // red color use
 
@@ -225,6 +234,8 @@ void Game::Update(double elapsed)
     ///add elapsed time to score secresing timer
     mTimerDecrease += elapsed;
 
+
+
     ///with every second decrease player score by 1
     ///also making sure never goes below 0
     if (mTimerDecrease >= 1.0)
@@ -239,6 +250,16 @@ void Game::Update(double elapsed)
 
         ///reset the timer
         mTimerDecrease=0.0;
+    }
+
+    if (mDeathMessageShown)
+    {
+        mdeathTimer += elapsed;
+    }
+    if (mdeathTimer >= 0.6)
+    {
+        mdeathTimer = 0.0;
+        mDeathMessageShown = false;
     }
 
 
