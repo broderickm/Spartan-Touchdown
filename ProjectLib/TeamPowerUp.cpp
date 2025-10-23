@@ -12,7 +12,7 @@
 using namespace std;
 
 /// Image for the moving team power-up
-const wstring TeamPowerUpImageName = L"Images/teampowerup.png";
+const wstring TeamPowerUpImageName = L"Images/lightning_powerup.png";
 
 /// Horizontal movement bounds and speed
 const double BounceSpeed = 150.0;

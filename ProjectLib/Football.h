@@ -17,8 +17,8 @@
 class Football : public MovingItem
 {
 private:
+    /// Football holding the score
     int mScore = 0;
-
 
     /// Tells if the football is still alive
     bool mIsDead = false;
