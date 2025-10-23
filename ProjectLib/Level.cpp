@@ -160,9 +160,14 @@ void Level::Load(const wxString &filename)
     {
         currFootball->SetLocation(mInitialX, mInitialY);
         currFootball->SetSpawnTime(0);
+
+        // Make sure football isn't moving left or right when re-spawning
+        currFootball->SetVelocity(0,0);
+        currFootball->SetGoingLeft(false);
+        currFootball->SetGoingRight(false);
+
         mItems.push_back(currFootball);
     }
-    ///wxLogMessage("Level loaded: %ls", mCurrentLevelFile.c_str());
 
 }
 

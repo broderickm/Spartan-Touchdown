@@ -113,7 +113,7 @@ void Football::Update(double elapsed)
     Vector p(GetX(), GetY());
     Vector newV;
 
-    if (mSpawnTime < 0.5)
+    if (mSpawnTime < 1)
     {
         newV.SetX(0);
         newV.SetY(0);
@@ -123,20 +123,20 @@ void Football::Update(double elapsed)
         // compute new velocity with gravity
         newV.SetX(mV.X());
         newV.SetY(mV.Y() + Gravity * elapsed);
-    }
 
-    // apply horizontal movement input
-    if (mIsGoingLeft && !mIsGoingRight)
-    {
-        newV.SetX(-HorizontalSpeed);
-    }
-    else if (mIsGoingRight && !mIsGoingLeft)
-    {
-        newV.SetX(HorizontalSpeed);
-    }
-    else
-    {
-        newV.SetX(0);
+        // apply horizontal movement input
+        if (mIsGoingLeft && !mIsGoingRight)
+        {
+            newV.SetX(-HorizontalSpeed);
+        }
+        else if (mIsGoingRight && !mIsGoingLeft)
+        {
+            newV.SetX(HorizontalSpeed);
+        }
+        else
+        {
+            newV.SetX(0);
+        }
     }
 
     // compute new position using velocity
