@@ -71,10 +71,12 @@ void GoalPost::OnCollide(Football* football)
 
     Game* game = GetLevel()->GetGame();
 
-    if (CollisionTest(dynamic_cast<Item*>(football)))
+    if (CollisionTest(football))
     {
         std::wstring current = GetLevel()->GetCurrentLevelFile();
         std::wstring next = game->GetNextLevelPath(current);
+
+        game->SetLevelComplete(true);
 
         if (!next.empty())
         {
@@ -82,7 +84,7 @@ void GoalPost::OnCollide(Football* football)
         }
         else
         {
-            wxLogMessage("All levels completed!");
+            game->LoadNextLevel(current);
         }
     }
 }

@@ -25,6 +25,7 @@ class Game
 private:
     bool mNextLevelPending = false;
     std::wstring mNextLevelPath;
+
     ///flag to show if message already shown
     bool mDeathMessageShown = false;
 
@@ -62,7 +63,17 @@ private:
     /// Coin multiplier applied to coins
     double mCoinMultiplier = 1.0;
 
-    double mdeathTimer =  0.0;
+    /// Timer to track time since death
+    double mDeathTimer =  0.0;
+
+    /// Flag to keep track of if a level has been completed message is shown
+    bool mLevelCompleteMessage = false;
+
+    /// Keeps track if level is complete
+    bool mLevelComplete = false;
+
+    /// Timer to track time since completion
+    double mCompleteTimer =  0.0;
 
 
 public:
@@ -155,6 +166,15 @@ public:
     // for coin multiplier when using power up
     double GetCoinMultiplier() const { return mCoinMultiplier; }
     void SetCoinMultiplier(double mult) { mCoinMultiplier = mult; }
+
+    /**
+     * Setter for the level complete
+     * @param cond says if level is complete
+     * @return indicator if level is complete
+     */
+    void SetLevelComplete(bool cond) {mLevelComplete = cond; }
+
+
 };
 
 

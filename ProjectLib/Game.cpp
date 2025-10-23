@@ -110,6 +110,21 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         graphics->DrawText(deathText, x, y);
     }
 
+    if (mLevelComplete)
+    {
+        wxFont font(wxSize(0, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, wxColour(*wxWHITE)); // red color use
+
+        wxString completionText = L"Level Complete!";
+        graphics->GetTextExtent(completionText, &textWidth, &textHeight);
+
+        // center horizontally and vertically
+        double x = (mScreenWidth / mScale - textWidth) / 2;
+        double y = (mScreenHeight / mScale - textHeight) / 2;
+
+        graphics->DrawText(completionText, x, y);
+    }
+
 
 }
 
@@ -204,6 +219,13 @@ void Game::Update(double elapsed)
         {
             mDeathMessageShown = true;
         }
+
+        // Will set mLevelComplete to true
+        // mLevelComplete set to true in Goalpost
+        if (!mLevelCompleteMessage && mLevelComplete)
+        {
+            mLevelCompleteMessage = true;
+        }
     }
 
     // Update camera to follow football
@@ -245,17 +267,29 @@ void Game::Update(double elapsed)
 
     if (mDeathMessageShown)
     {
-        mdeathTimer += elapsed;
+        mDeathTimer += elapsed;
     }
-    /// after death Timer has exceded 6 seconds, reset the whole level so
+    /// after death Timer has exceded 2 seconds, reset the whole level so
     /// all the coins, and items used spawn back in
-    if (mdeathTimer >= 0.6)
+    if (mDeathTimer >= 2)
     {
-        mdeathTimer = 0.0;
+        mDeathTimer = 0.0;
         mDeathMessageShown = false;
         mLevel->Load(mLevel->GetCurrentLevelFile());
         mFootball->SetDead(false);
 
+    }
+
+    if (mLevelCompleteMessage)
+    {
+        mCompleteTimer += elapsed;
+    }
+
+    if (mCompleteTimer >= 2)
+    {
+        mCompleteTimer = 0.0;
+        mLevelComplete = false;
+        mLevelCompleteMessage = false;
     }
 
 
@@ -263,18 +297,13 @@ void Game::Update(double elapsed)
 
     if (mNextLevelPending)
     {
-        wxLogMessage("Loading next level!");
 
         mLevel->Load(mNextLevelPath);
 
-        ///wxLogMessage("DEBUG: mNextLevelPath actually loaded: %ls", mNextLevelPath.c_str());
-
         mFootball->SetDead(false);
-        mFootball->SetLocation(mLevel->GetInitialX(), mLevel->GetInitialY());
         mCameraOffsetX = 0;
         mDeathMessageShown = false;
 
-        wxLogMessage("Next level loaded successfully!");
         mNextLevelPending = false;
 
     }
