@@ -167,6 +167,9 @@ void Level::Load(const wxString &filename)
         currFootball->SetGoingRight(false);
 
         mItems.push_back(currFootball);
+
+        mGame->SetPlayerScore(0);
+
     }
 
 }

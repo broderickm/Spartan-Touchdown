@@ -26,16 +26,16 @@ private:
     bool mNextLevelPending = false;
     std::wstring mNextLevelPath;
 
-    ///flag to show if message already shown
+    /// Flag to show if message already shown
     bool mDeathMessageShown = false;
 
-    ///Elapsed time since the level started
+    /// Elapsed time since the level started
     double mTimeElapsedSinceGameStarted=0.0;
 
-    ///score aquired by yhte player
+    /// Score acquired by the player
     int mPlayerScore = 0;
 
-    ///timer element that tracks decreasing of the score
+    /// Timer element that tracks decreasing of the score
     double mTimerDecrease = 0.0;
 
 
@@ -174,6 +174,11 @@ public:
      */
     void SetLevelComplete(bool cond) {mLevelComplete = cond; }
 
+    /**
+     * Setter for score when level is complete
+     * @param score to set to
+     */
+    void SetPlayerScore(int score) {mPlayerScore = score; }
 
 };
 

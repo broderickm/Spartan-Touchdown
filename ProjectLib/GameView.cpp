@@ -204,6 +204,8 @@ void GameView::OnLevelOne(wxCommandEvent& event)
 
     // Confirm initial conditions
     level->SetWindVelocity(0);
+    mGame.SetPlayerScore(0);
+
     Refresh();
     Update();
 }
@@ -219,6 +221,7 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 
     // Set wind for level 2 only
     level->SetWindVelocity(-25);  // Negative = left drift
+    mGame.SetPlayerScore(0);
 
     Refresh();
     Update();
@@ -234,6 +237,7 @@ void GameView::OnLevelThree(wxCommandEvent& event)
     level->Load(L"levels/level3.xml");
 
     level->SetWindVelocity(-10);
+    mGame.SetPlayerScore(0);
 
     Refresh();
     Update();

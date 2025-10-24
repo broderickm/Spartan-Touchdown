@@ -41,10 +41,13 @@ private:
 
     /// object for the game/frame itself
     Game mGame;
+
     /// The timer that allows for animation
     wxTimer mTimer;
+
     /// Stopwatch used to measure elapsed time
     wxStopWatch mStopWatch;
+
     /// The last stopwatch time
     long mTime = 0;
 
