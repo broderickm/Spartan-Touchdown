@@ -170,17 +170,13 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
     }
 
     int nextLevel = currentLevel + 1;
-    ///wxLogMessage("DEBUG: Detected current level = %d, next = %d", currentLevel, nextLevel);
-
 
     if (nextLevel>3)
     {
-        wxLogMessage("All levels completed");
         return L"";
     }
 
     std::wstring nextLevelPath = L"levels/level" + std::to_wstring(nextLevel) + L".xml";
-    ///wxLogMessage("DEBUG: Next level path resolved = %ls", nextLevelPath.c_str());
     return nextLevelPath;
 }
 
