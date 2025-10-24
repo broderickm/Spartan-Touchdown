@@ -59,6 +59,8 @@ private:
     /// The time since the football has spawned into the level
     double mSpawnTime = 0;
 
+    bool mIsInvulnerable = false;
+    double mInvulnerabilityTimeRemaining = 0.0;
 public:
     void AddToScore(int value);
 
@@ -141,6 +143,9 @@ public:
      * @param time the given time
      */
     void SetSpawnTime(double time) { mSpawnTime = time; }
+
+    void ActivateInvulnerability(double duration);
+    bool IsInvulnerable() const { return mIsInvulnerable; }
 };
 
 

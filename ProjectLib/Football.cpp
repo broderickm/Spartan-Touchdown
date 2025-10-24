@@ -9,7 +9,9 @@
 
 #include "Coin.h"
 #include "Game.h"
+#include "InvulnerabilityPowerup.h"
 #include "PowerUp.h"
+#include "SpartyPowerup.h"
 
 using namespace std;
 
@@ -222,19 +224,24 @@ void Football::Update(double elapsed)
 
     if (collidedItem != nullptr)
     {
-        // check if its a powerup
-        if (auto power = std::dynamic_pointer_cast<PowerUp>(collidedItem))
-        {
-            // double coin multiplier
-            GetGame()->SetCoinMultiplier(2.0);
-            // remove power up from level
-            level->RemoveItem(power);
-        }
-        else if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
+        if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
         {
             int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
             game->AddToPlayerScore(value); // update football score
             level->RemoveItem(coin); // remove coin when colided
+        }
+        else if (auto invulnPowerup = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
+        {
+            // Apply invulnerability effect
+            ActivateInvulnerability(20.0);  // 20 seconds of invulnerability
+
+            // Remove powerup from level
+            level->RemoveItem(invulnPowerup);
+        }
+        else if (auto Sparty = std::dynamic_pointer_cast<SpartyPowerup>(collidedItem))
+        {
+            game->AddToPlayerScore(game->GetPlayerScore()); // update football score
+            level->RemoveItem(Sparty); // remove powerup when colided
         }
     }
     /// stop the stepping if we performed a full step
@@ -251,6 +258,22 @@ void Football::Update(double elapsed)
 
     // Increment SpawnTime
     mSpawnTime += elapsed;
+
+    if (mIsInvulnerable)
+    {
+        mInvulnerabilityTimeRemaining -= elapsed;
+        if (mInvulnerabilityTimeRemaining <= 0.0)
+        {
+            mIsInvulnerable = false;
+            mInvulnerabilityTimeRemaining = 0.0;
+        }
+    }
+}
+
+void Football::ActivateInvulnerability(double duration)
+{
+    mIsInvulnerable = true;
+    mInvulnerabilityTimeRemaining = duration;
 }
 
 /**
@@ -333,7 +356,6 @@ void Football::Step()
         }
     }
 }
-
 
 void Football::AddToScore(int value)
 {

@@ -18,6 +18,7 @@
 #include "NDEnemy.h"
 #include "UMichEnemy.h"
 #include "Football.h"
+#include "SpartyPowerup.h"
 
 using namespace std;
 
@@ -244,7 +245,7 @@ void Level::XmlItems(wxXmlNode *node)
         // Power-Up
         else if (id == L"i010")
         {
-            item = make_shared<PowerUp>(this);
+            item = make_shared<SpartyPowerup>(this);
         }
 
         // GoalPost

@@ -43,6 +43,10 @@ set(SOURCE_FILES temp.cpp pch.h
         Background.h
         TeamPowerUp.cpp
         TeamPowerUp.h
+        SpartyPowerup.cpp
+        SpartyPowerup.h
+        InvulnerabilityPowerup.cpp
+        InvulnerabilityPowerup.h
 )
 
 set(wxBUILD_PRECOMP OFF)
