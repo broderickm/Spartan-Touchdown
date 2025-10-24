@@ -15,6 +15,8 @@
 
 /// forward declerations of classes
 class Level;
+
+///forward declaration for class football
 class Football;
 
 /**
@@ -77,8 +79,16 @@ private:
 
 
 public:
+
+    /**
+     * @brief Loads the next level.
+     * @param nextLevelPath File path of the next level to load.
+     */
     void LoadNextLevel(const std::wstring& nextLevelPath);
 
+    /**
+     * @brief Displays the death message when the player dies.
+     */
     void ShowDeathMessage();
 
     /**
@@ -90,6 +100,12 @@ public:
 
 
 
+    /**
+     * @brief Draws the game elements to the screen.
+     * @param graphics The wxGraphicsContext used for rendering.
+     * @param width The current screen width.
+     * @param height The current screen height.
+     */
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     /**
@@ -163,14 +179,18 @@ public:
      */
     std::shared_ptr<Item> CollisionTest(Item* item);
 
-    // for coin multiplier when using power up
+    /**for coin multiplier when using power up
+     */
     double GetCoinMultiplier() const { return mCoinMultiplier; }
+
+    /**Sets the coin multiplier (used when applying power-ups).
+`   */
     void SetCoinMultiplier(double mult) { mCoinMultiplier = mult; }
 
     /**
      * Setter for the level complete
-     * @param cond says if level is complete
-     * @return indicator if level is complete
+     * aram cond says if level is complete
+     * return indicator if level is complete
      */
     void SetLevelComplete(bool cond) {mLevelComplete = cond; }
 

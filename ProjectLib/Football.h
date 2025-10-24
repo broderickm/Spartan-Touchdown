@@ -62,22 +62,35 @@ private:
     bool mIsInvulnerable = false;
     double mInvulnerabilityTimeRemaining = 0.0;
 public:
+    /**
+     * @brief Adds a value to the football's score.
+     * @param value The number of points to add.
+     */
     void AddToScore(int value);
 
 
-    ///set dead function
+    /**
+     * @brief Sets the football's death state.
+     * @param dead True if the football is dead, false otherwise.
+     */
     void SetDead(bool dead)
     {
         mIsDead = dead;
     }
 
-    ///is dead function declaration
+    /**
+     * @brief Checks if the football is dead.
+     * @return True if dead, false otherwise.
+     */
     bool IsDead() const
     {
         return mIsDead;
     }
 
-    /// constructor for the football
+    /**
+     * @brief Constructor.
+     * @param level The level this football belongs to.
+     */
     Football(Level *level);
 
     /// disable default constructor
@@ -122,6 +135,9 @@ public:
      * Make the football jump (only if on a surface)
      */
     void Jump();
+    /**
+     * @brief Advances the football’s animation step.
+     */
     void Step();
 
     /**
@@ -136,6 +152,10 @@ public:
      */
     void SetGoingRight(bool goingRight) { mIsGoingRight = goingRight; }
 
+    /**
+     * @brief Draws the football on the graphics context.
+     * @param graphics The wxWidgets graphics context to draw with.
+     */
     void Draw(wxGraphicsContext* graphics) override;
 
     /**

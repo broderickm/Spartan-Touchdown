@@ -43,7 +43,7 @@ const double Epsilon = 0.01;
 /**
  * Constructor
  * construct a football object
- * @param level the game level we are adding this football to
+ * the game level we are adding this football to
  */
 Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 {
@@ -63,7 +63,7 @@ Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 
 /**
  * Draw the football
- * @param graphics the graphics used to draw
+ *  the graphics used to draw
  */
 void Football::Draw(wxGraphicsContext* graphics)
 {
@@ -107,7 +107,7 @@ void Football::Draw(wxGraphicsContext* graphics)
 
 /**
  * Update the football each frame
- * @param elapsed Time elapsed since last update
+ * param elapsed Time elapsed since last update
  */
 void Football::Update(double elapsed)
 {
@@ -278,9 +278,9 @@ void Football::ActivateInvulnerability(double duration)
 
 /**
  * Handle a vertical collision between the football and another item.
- * @param collided The item the football collided with.
- * @param newV The current velocity vector to adjust after collision.
- * @param newP The current position vector to adjust after collision.
+ * aram collided The item the football collided with.
+ * param newV The current velocity vector to adjust after collision.
+ * param newP The current position vector to adjust after collision.
  */
 void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -302,9 +302,9 @@ void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vec
 
 /**
  * Handle a horizontal collision between the football and another item.
- * @param collided The item the football collided with.
- * @param newV The current velocity vector to adjust after collision.
- * @param newP The current position vector to adjust after collision.
+ * param collided The item the football collided with.
+ * param newV The current velocity vector to adjust after collision.
+ * param newP The current position vector to adjust after collision.
  */
 void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -338,8 +338,8 @@ void Football::Jump()
 }
 
 /**
- *@params none
- *@returns void
+ *params none
+ *returns void
  *  function performs a step when moving right or left
  *  simply adds vertical velocity to simulate a very slight upwards movement
  *  make sure we dont step if we are in the middle of stepping
@@ -357,6 +357,11 @@ void Football::Step()
     }
 }
 
+
+/**
+ * @brief Adds to the football’s internal score counter.
+ * param value The amount to increase the score by.
+ */
 void Football::AddToScore(int value)
 {
     mScore += value;

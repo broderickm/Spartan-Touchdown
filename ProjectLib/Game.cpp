@@ -31,9 +31,9 @@ void Game::Initialize()
 
 /**
  * Draw the game area
- * @param graphics The wxWidgets graphics context on which to draw
- * @param width Width of the client window
- * @param height Height of the client window
+ * param graphics The wxWidgets graphics context on which to draw
+ * param width Width of the client window
+ * param height Height of the client window
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -184,7 +184,7 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
  * Update the game state each frame.
  * Handles level updates, collision detection, camera movement,
  * and score/time tracking.
- * @param elapsed Time elapsed since the last update, in seconds.
+ * param elapsed Time elapsed since the last update, in seconds.
  */
 void Game::Update(double elapsed)
 {
@@ -338,12 +338,21 @@ std::shared_ptr<Item> Game::CollisionTest(Item* item)
     return mLevel->CollisionTest(item);
 }
 
-
+/**
+ * @brief Displays the death message after the football dies.
+ */
 void Game::ShowDeathMessage()
 {
     mDeathMessageShown = true;
 }
 
+/**
+ * brief Schedules the next level to be loaded.
+ * param nextLevelPath File path to the next level to load.
+ *
+ * This function flags the game to load the next level
+ * during the next update cycle.
+ */
 void Game::LoadNextLevel(const std::wstring& nextLevelPath)
 {
     mNextLevelPath = nextLevelPath;
