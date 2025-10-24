@@ -205,6 +205,7 @@ void GameView::OnLevelOne(wxCommandEvent& event)
     // Confirm initial conditions
     level->SetWindVelocity(0);
     mGame.SetPlayerScore(0);
+    mGame.GetFootball()->SetSpecialGravity(1000);
 
     Refresh();
     Update();
@@ -221,6 +222,7 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 
     // Set wind for level 2 only
     level->SetWindVelocity(-25);  // Negative = left drift
+    mGame.GetFootball()->SetSpecialGravity(1000);
     mGame.SetPlayerScore(0);
 
     Refresh();
@@ -238,6 +240,7 @@ void GameView::OnLevelThree(wxCommandEvent& event)
 
     level->SetWindVelocity(-10);
     mGame.SetPlayerScore(0);
+    mGame.GetFootball()->SetSpecialGravity(850);
 
     Refresh();
     Update();

@@ -179,12 +179,12 @@ void Level::Load(const wxString &filename)
         else if (current == L"levels/level3.xml")
         {
             this->SetWindVelocity(-10);
+            currFootball->SetSpecialGravity(850);
         }
 
         mItems.push_back(currFootball);
 
         mGame->SetPlayerScore(0);
-        mGame->SetLevelComplete(false);
 
     }
 

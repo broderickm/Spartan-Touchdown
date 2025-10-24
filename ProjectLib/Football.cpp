@@ -58,6 +58,9 @@ Football::Football(Level *level): MovingItem(level, FootballMidImageName)
     // Right
     mRightImage = std::make_unique<wxImage>(FootballRightImageName, wxBITMAP_TYPE_ANY);
     mRightBitmap = std::make_unique<wxBitmap>(*mRightImage);
+
+    // Set normal gravity
+    mGravity = Gravity;
 }
 
 
@@ -124,7 +127,7 @@ void Football::Update(double elapsed)
     {
         // compute new velocity with gravity
         newV.SetX(mV.X());
-        newV.SetY(mV.Y() + Gravity * elapsed);
+        newV.SetY(mV.Y() + mGravity * elapsed);
 
         // apply horizontal movement input
         if (mIsGoingLeft && !mIsGoingRight)
