@@ -243,9 +243,15 @@ void Football::Update(double elapsed)
         }
         else if (auto Sparty = std::dynamic_pointer_cast<SpartyPowerup>(collidedItem))
         {
-            game->AddToPlayerScore(game->GetPlayerScore()); // update football score
+            game->SetCoinMultiplier(2.0); // update football score
             level->RemoveItem(Sparty); // remove powerup when colided
         }
+        else if (auto lightning = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
+        {
+            game->GetFootball()->ActivateInvulnerability(20.0); // update football score
+            level->RemoveItem(Sparty); // remove powerup when colided
+        }
+
     }
     /// stop the stepping if we performed a full step
     /// this is needed so incase we step off a ledge and free fall for some time we cant keep spamming jump

@@ -25,7 +25,7 @@ void SpartyPowerup::ApplyEffect(Football* football)
 {
     if (auto game = GetLevel()->GetGame())
     {
-        game->AddToPlayerScore(game->GetPlayerScore());
+        game->SetCoinMultiplier(2.0);
     }
 }
 
