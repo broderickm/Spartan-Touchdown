@@ -19,6 +19,8 @@ class TeamPowerUp : public MovingItem
 private:
     /// speed in X and Y (inherited from MovingItem)
     double mSpeedX = 0;
+
+    /// Vertical movement speed of the team power-up
     double mSpeedY = 0;
 
     /// flag to track if it’s active (not yet collected)

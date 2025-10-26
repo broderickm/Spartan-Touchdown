@@ -37,8 +37,18 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
 public:
+    /**
+     * Handle collision with the football.
+     * @param football Pointer to the football object that collided with this item.
+     */
     virtual void OnCollide(Football* football){}
+
+    /**
+     * Check if this item represents a goal post.
+     * @return True if this item is a goal post, otherwise false.
+     */
     virtual bool IsGoal() const {return false;}
+
     /// Disable default constructor
     Item() = delete;
 

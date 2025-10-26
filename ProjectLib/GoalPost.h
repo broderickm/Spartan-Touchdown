@@ -31,13 +31,17 @@ private:
 
 public:
 
-
- void OnCollide(Football* football) override;
  /**
-     * Constructor.
-     * @param level  The level this goalpost belongs to
-     * @param image The filename of the goalpost image
-     */
+  * Handle collision between the football and the goal post.
+  * @param football Pointer to the football object that collided with this goal post.
+  */
+ void OnCollide(Football* football) override;
+
+ /**
+  * Constructor.
+  * @param level  The level this goalpost belongs to
+  * @param image The filename of the goalpost image
+  */
  GoalPost(Level *level, const std::wstring& image);
 
  /**

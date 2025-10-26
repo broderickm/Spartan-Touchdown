@@ -16,6 +16,8 @@ const wstring TeamPowerUpImageName = L"Images/lightning_powerup.png";
 
 /// Horizontal movement bounds and speed
 const double BounceSpeed = 150.0;
+
+/// Maximum vertical range for oscillating movement
 const double VerticalRange = 100.0;
 
 /**

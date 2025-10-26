@@ -22,7 +22,10 @@ private:
 
 
 public:
-
+    /**
+     * Handle collision with the football.
+     * @param football Pointer to the football that collided with this enemy.
+     */
     void OnCollide(Football* football) override;
 
     // Default constructor disabled

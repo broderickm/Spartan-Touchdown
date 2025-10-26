@@ -46,6 +46,8 @@ private:
 
     /// Position where coin was collected (for text display)
     double mCollectionX = 0.0;
+
+    /// The Y position where the coin was collected
     double mCollectionY = 0.0;
 
     /// The actual value added to score (after multiplier applied)
@@ -81,6 +83,10 @@ public:
      */
     void SetIsCollected(bool collected) { mCoinCollected = collected; }
 
+    /**
+     * Determine if the coin is a solid object that blocks movement.
+     * @return False since coins are collectible and not solid.
+     */
     bool IsSolid() const override { return false; }
 
 };

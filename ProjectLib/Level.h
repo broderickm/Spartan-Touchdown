@@ -53,7 +53,10 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 public:
-
+    /**
+     * Get the filename of the current level XML file.
+     * @return The current level's filename as a wide string.
+     */
     std::wstring GetCurrentLevelFile() const { return mCurrentLevelFile; }
 
 
@@ -66,6 +69,11 @@ public:
     void XmlDeclarations(wxXmlNode* node);
     void XmlItems(wxXmlNode* node);
     void Clear();
+
+    /**
+     * Remove an item from the level.
+     * @param item The item to remove from the level.
+     */
     void RemoveItem(std::shared_ptr<Item> item);
 
     std::shared_ptr<Item> HitTest(int x, int y);

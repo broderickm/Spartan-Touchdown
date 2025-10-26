@@ -41,12 +41,36 @@ public:
     PowerUp(PowerUp const & powerup) = delete;
     void operator=(PowerUp const & powerup) = delete;
 
+    /**
+     * Constructor for the PowerUp.
+     * @param level The level this power-up belongs to.
+     * @param image The image file used to represent this power-up.
+     */
     PowerUp(Level* level, const std::wstring& image);
 
+    /**
+     * Handle collision between the football and the goal post.
+     * @param football Pointer to the football object that collided with this goal post.
+     */
     void OnCollide(Football* football) override;
+
+    /**
+     * Update the powerup each frame.
+     * Applies wind force if the level has wind.
+     * @param elapsed Time elapsed since last update in seconds
+     */
     void Update(double elapsed) override;
+
+    /**
+     * Draw the power-up at its current position on the screen.
+     * @param graphics The graphics context used to draw
+     */
     void Draw(wxGraphicsContext* graphics) override;
 
+    /**
+     * Determine if the power-up is a solid object.
+     * @return False since power-ups can be collected and do not block movement.
+     */
     bool IsSolid() const override { return false; }
 
     /**
