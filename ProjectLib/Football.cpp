@@ -58,6 +58,9 @@ Football::Football(Level *level): MovingItem(level, FootballMidImageName)
     // Right
     mRightImage = std::make_unique<wxImage>(FootballRightImageName, wxBITMAP_TYPE_ANY);
     mRightBitmap = std::make_unique<wxBitmap>(*mRightImage);
+
+    // Set normal gravity
+    mGravity = Gravity;
 }
 
 
@@ -124,7 +127,7 @@ void Football::Update(double elapsed)
     {
         // compute new velocity with gravity
         newV.SetX(mV.X());
-        newV.SetY(mV.Y() + Gravity * elapsed);
+        newV.SetY(mV.Y() + mGravity * elapsed);
 
         // apply horizontal movement input
         if (mIsGoingLeft && !mIsGoingRight)
@@ -240,9 +243,15 @@ void Football::Update(double elapsed)
         }
         else if (auto Sparty = std::dynamic_pointer_cast<SpartyPowerup>(collidedItem))
         {
-            game->AddToPlayerScore(game->GetPlayerScore()); // update football score
+            game->SetCoinMultiplier(2.0); // update football score
             level->RemoveItem(Sparty); // remove powerup when colided
         }
+        else if (auto lightning = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
+        {
+            game->GetFootball()->ActivateInvulnerability(20.0); // update football score
+            level->RemoveItem(Sparty); // remove powerup when colided
+        }
+
     }
     /// stop the stepping if we performed a full step
     /// this is needed so incase we step off a ledge and free fall for some time we cant keep spamming jump

@@ -10,6 +10,7 @@ using namespace std;
 
 #include "pch.h"
 #include "PowerUp.h"
+#include "Level.h"
 
 /// File image for the powerup
 const wstring PowerUpImageName = L"Images/sparty.png";
@@ -65,5 +66,22 @@ void PowerUp::OnCollide(Football* football)
     {
         mPowerUpCollected = true;
         ApplyEffect(football);
+    }
+}
+
+/**
+ * Update the powerup each frame.
+ * Applies wind force if the level has wind.
+ * @param elapsed Time elapsed since last update in seconds
+ */
+void PowerUp::Update(double elapsed)
+{
+
+    // Apply wind force from the level
+    double windVelocity = GetLevel()->GetWindVelocity();
+    if (windVelocity != 0.0)
+    {
+        // Move coin based on wind
+        SetLocation(GetX() + windVelocity * elapsed, GetY());
     }
 }

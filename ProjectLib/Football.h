@@ -59,6 +59,9 @@ private:
     /// The time since the football has spawned into the level
     double mSpawnTime = 0;
 
+    /// Gravity member variable
+    double mGravity = 0;
+
     bool mIsInvulnerable = false;
     double mInvulnerabilityTimeRemaining = 0.0;
 public:
@@ -163,6 +166,12 @@ public:
      * @param time the given time
      */
     void SetSpawnTime(double time) { mSpawnTime = time; }
+
+    /**
+     * Set the gravitational acceleration
+     * @param gravity the given gravity
+     */
+    void SetSpecialGravity(double gravity) { mGravity = gravity; }
 
     void ActivateInvulnerability(double duration);
     bool IsInvulnerable() const { return mIsInvulnerable; }

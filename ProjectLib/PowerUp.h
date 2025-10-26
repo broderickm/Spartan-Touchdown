@@ -44,6 +44,7 @@ public:
     PowerUp(Level* level, const std::wstring& image);
 
     void OnCollide(Football* football) override;
+    void Update(double elapsed) override;
     void Draw(wxGraphicsContext* graphics) override;
 
     bool IsSolid() const override { return false; }

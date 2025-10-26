@@ -167,6 +167,21 @@ void Level::Load(const wxString &filename)
         currFootball->SetGoingLeft(false);
         currFootball->SetGoingRight(false);
 
+
+        std::wstring current = this->GetCurrentLevelFile();
+        std::wstring next = mGame->GetNextLevelPath(current);
+
+        // Wind Velocity
+        if (current == L"levels/level2.xml")
+        {
+            this->SetWindVelocity(-25);
+        }
+        else if (current == L"levels/level3.xml")
+        {
+            this->SetWindVelocity(-10);
+            currFootball->SetSpecialGravity(850);
+        }
+
         mItems.push_back(currFootball);
 
         mGame->SetPlayerScore(0);
