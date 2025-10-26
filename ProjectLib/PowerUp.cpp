@@ -77,17 +77,12 @@ void PowerUp::OnCollide(Football* football)
 void PowerUp::Update(double elapsed)
 {
     // stop updating once collected
-    // prevent powerup from falling off screen
     if (mPowerUpCollected)
     {
-        return;
+        // Move off of screen if hit here
     }
-
-    // Apply wind force from the level
-    double windVelocity = GetLevel()->GetWindVelocity();
-    if (windVelocity != 0.0)
+    else
     {
-        // Move coin based on wind
-        SetLocation(GetX() + windVelocity * elapsed, GetY());
+        return;
     }
 }

@@ -18,6 +18,7 @@
 #include "NDEnemy.h"
 #include "UMichEnemy.h"
 #include "Football.h"
+#include "InvulnerabilityPowerup.h"
 #include "SpartyPowerup.h"
 
 using namespace std;
@@ -160,27 +161,6 @@ void Level::Load(const wxString &filename)
         }
     }
 
-    // Determine which level we're loading and set appropriate message
-    std::wstring levelMessage = L"";
-    if (filename == L"levels/level0.xml")
-    {
-        levelMessage = L"Level 0 Start!";
-    }
-    else if (filename == L"levels/level1.xml")
-    {
-        levelMessage = L"Level 1 Start!";
-    }
-    else if (filename == L"levels/level2.xml")
-    {
-        levelMessage = L"Level 2 Start!";
-    }
-    else if (filename == L"levels/level3.xml")
-    {
-        levelMessage = L"Level 3 Start!";
-    }
-
-    // Set the level start message in the game
-    mGame->SetLevelStartMessage(levelMessage);
 
     // Create the football at the starting  position
     shared_ptr<Football> currFootball = mGame->GetFootball();
@@ -209,16 +189,28 @@ void Level::Load(const wxString &filename)
         std::wstring current = this->GetCurrentLevelFile();
         std::wstring next = mGame->GetNextLevelPath(current);
 
-        // Wind Velocity
-        if (current == L"levels/level2.xml")
+        // Set special level
+        std::wstring levelMessage = L"";
+
+        if (filename == L"levels/level1.xml")
         {
+            levelMessage = L"Level 1 Start!";
+        }
+        else if (current == L"levels/level2.xml")
+        {
+            // Wind Velocity
             this->SetWindVelocity(-25);
         }
         else if (current == L"levels/level3.xml")
         {
+            // Wind Velocity
             this->SetWindVelocity(-10);
+
+            // Special Gravitational Acceleration
             currFootball->SetSpecialGravity(850);
         }
+
+        mGame->SetLevelStartMessage(levelMessage);
 
         mItems.push_back(currFootball);
 
@@ -320,6 +312,11 @@ void Level::XmlItems(wxXmlNode *node)
         else if (id == L"i013")
         {
             item = make_shared<NDEnemy>(this);
+        }
+
+        else if (id == L"i014")
+        {
+            item = make_shared<InvulnerabilityPowerup>(this);
         }
 
         if (id == L"i003" || id == L"i004" || id == L"i005" || id == L"i006" || id == L"i007")

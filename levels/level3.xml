@@ -10,7 +10,7 @@
         <goalpost id="i011" image="goalpost.png"/>
         <enemy id="i012" image="U-M.png"/>
         <enemy id="i013" image="ND.png"/>
-        <power-up id="i014"/>
+        <power-up id="i014" image="lightning_powerup.png"/>
     </declarations>
     <items>
         <background id="i001" x="944" y="512"/>
@@ -47,7 +47,7 @@
         <coin id="i008" x="3000" y="325"/>
         <platform id="i005" x="3300" y="500" width="320" height="32"/>
         <platform id="i005" x="3300" y="800" width="500" height="32"/>
-        <coin id="i009" x="3300" y="650"/>
+        <power-up id="i014" x="3300" y="650"/>
         <coin id="i008" x="3200" y="750"/>
         <coin id="i008" x="3400" y="750"/>
         <platform id="i005" x="3800" y="200" width="200" height="32"/>
