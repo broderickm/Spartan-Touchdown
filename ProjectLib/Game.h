@@ -77,7 +77,11 @@ private:
     /// Timer to track time since completion
     double mCompleteTimer =  0.0;
 
+    /// Flag to show level start message
+    bool mShowLevelStartMessage = false;
 
+    /// The current level start message text
+    std::wstring mLevelStartMessage = L"";
 public:
 
     /**
@@ -199,6 +203,12 @@ public:
      * @param score to set to
      */
     void SetPlayerScore(int score) {mPlayerScore = score; }
+
+    /**
+     * Set the level start message text
+     * @param message The message to display
+     */
+    void SetLevelStartMessage(const std::wstring& message) { mLevelStartMessage = message; }
 
 };
 

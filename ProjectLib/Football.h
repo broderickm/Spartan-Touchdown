@@ -175,6 +175,12 @@ public:
 
     void ActivateInvulnerability(double duration);
     bool IsInvulnerable() const { return mIsInvulnerable; }
+
+    /**
+    * Get the spawn time
+     * @return the spawn time
+     */
+    double GetSpawnTime() const { return mSpawnTime; }
 };
 
 

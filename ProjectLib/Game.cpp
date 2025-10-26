@@ -48,8 +48,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     auto virtualWidth = (double)width/mScale;
 
-
-
     /// shifts pixels by an certain offset amount
     /// somewhat works, but maybe there is problem somewhere.
     /// note: this is not properly working, so will probably need to work on this
@@ -93,6 +91,22 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     graphics->GetTextExtent(scoreText, &textWidth, &textHeight);
 
     graphics->DrawText(scoreText,mScreenWidth/mScale- textWidth-40,20);
+
+    // Draw level start message if active
+    if (mShowLevelStartMessage)
+    {
+        wxFont font(wxSize(0, 70), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, wxColour(215, 255, 110)); // Gold color
+
+        wxDouble textWidth, textHeight;
+        graphics->GetTextExtent(mLevelStartMessage, &textWidth, &textHeight);
+
+        // Center horizontally and vertically
+        double x = (mScreenWidth / mScale - textWidth) / 2;
+        double y = (mScreenHeight / mScale - textHeight) / 2;
+
+        graphics->DrawText(mLevelStartMessage, x, y);
+    }
 
     if (mDeathMessageShown)
     {
@@ -191,6 +205,19 @@ void Game::Update(double elapsed)
     if (mLevel != nullptr)
     {
         mLevel->Update(elapsed);
+    }
+
+    // Check if we should show/hide level start message based on football spawn time
+    if (mFootball != nullptr)
+    {
+        if (mFootball->GetSpawnTime() < 1.0)
+        {
+            mShowLevelStartMessage = true;
+        }
+        else
+        {
+            mShowLevelStartMessage = false;
+        }
     }
 
     ///check for collisions between coin and football
