@@ -198,15 +198,22 @@ void Football::Update(double elapsed)
     collided = GetGame()->CollisionTest(this);
     if (collided != nullptr)
     {
-        if (newV.X() > 0)
+        // Skip physics for coins and powerups entirely - they should never block movement
+        bool isCollectible = (dynamic_cast<Coin*>(collided.get()) != nullptr ||
+                              dynamic_cast<PowerUp*>(collided.get()) != nullptr);
+
+        if (!isCollectible)
         {
-            // moving right; stop at wall
-            newP.SetX(collided->GetX() - collided->GetWidth() / 2 - GetWidth() / 2 - Epsilon);
-        }
-        else if (newV.X() < 0)
-        {
-            // moving left; stop at wall
-            newP.SetX(collided->GetX() + collided->GetWidth() / 2 + GetWidth() / 2 + Epsilon);
+            if (newV.X() > 0)
+            {
+                // moving right; stop at wall
+                newP.SetX(collided->GetX() - collided->GetWidth() / 2 - GetWidth() / 2 - Epsilon);
+            }
+            else if (newV.X() < 0)
+            {
+                // moving left; stop at wall
+                newP.SetX(collided->GetX() + collided->GetWidth() / 2 + GetWidth() / 2 + Epsilon);
+            }
         }
 
         // stop horizontal motion
@@ -229,9 +236,10 @@ void Football::Update(double elapsed)
     {
         if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
         {
-            int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
+            /**int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
             game->AddToPlayerScore(value); // update football score
             level->RemoveItem(coin); // remove coin when colided
+            */
         }
         else if (auto invulnPowerup = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
         {

@@ -70,6 +70,22 @@ void Level::Update(double elapsed)
     {
         item->Update(elapsed);
     }
+
+    // Remove coins that have finished flying away
+    auto it = mItems.begin();
+    while (it != mItems.end())
+    {
+        if (auto coin = std::dynamic_pointer_cast<Coin>(*it))
+        {
+            // Remove coin if collected and done flying
+            if (coin->CoinIsCollected() && coin->GetY() < -100)
+            {
+                it = mItems.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
 }
 
 /**

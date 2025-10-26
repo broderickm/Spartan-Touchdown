@@ -29,16 +29,43 @@ Coin::Coin(Level *level, const std::wstring& image, int value)
  */
 void Coin::Draw(wxGraphicsContext* graphics)
 {
-    if (!graphics || mCoinCollected)
+    if (!graphics)
     {
         return; // Nothing to draw on
     }
 
     double drawX = GetX() - COIN_SIZE / 2;
     double drawY = GetY() - COIN_SIZE / 2;
-    if (mCoinImage.IsOk())
+
+    // Draw the coin if it's flying (not yet fully deleted)
+    if (mIsFlying && mCoinImage.IsOk())
     {
         graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
+    }
+    else if (!mCoinCollected && mCoinImage.IsOk())
+    {
+        graphics->DrawBitmap(mCoinImage, drawX, drawY, COIN_SIZE, COIN_SIZE);
+    }
+
+    // Draw the point value text for 1 second after collection
+    if (mCoinCollected && mTextDisplayTimer < TEXT_DISPLAY_DURATION)
+    {
+        // Create font for the value text
+        wxFont font(wxSize(0, 40), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, wxColour(255, 215, 0)); // Gold color
+
+        // Format the text
+        wxString valueText = wxString::Format("+%d", mDisplayValue);
+
+        // Get text dimensions for centering
+        wxDouble textWidth, textHeight;
+        graphics->GetTextExtent(valueText, &textWidth, &textHeight);
+
+        // Draw text at collection position, centered
+        double textX = mCollectionX - textWidth / 2;
+        double textY = mCollectionY - textHeight / 2;
+
+        graphics->DrawText(valueText, textX, textY);
     }
 
 }
@@ -64,9 +91,17 @@ void Coin::OnCollide(Football* football)
     if (distance < 50)
     {
         mCoinCollected = true;
+        mIsFlying = true;
+
+        // Store collection position for text display
+        mCollectionX = GetX();
+        mCollectionY = GetY();
+
         if (auto game = GetLevel()->GetGame())
         {
-            game->AddToPlayerScore(mCoinValue);
+            int value = static_cast<int>(mCoinValue * game->GetCoinMultiplier());
+            mDisplayValue = value;
+            game->AddToPlayerScore(value);
         }
 
     }
@@ -79,6 +114,26 @@ void Coin::OnCollide(Football* football)
  */
 void Coin::Update(double elapsed)
 {
+    // If coin is collected and flying
+    if (mCoinCollected && mIsFlying)
+    {
+        // Update timers
+        mTextDisplayTimer += elapsed;
+        mFlyingTimer += elapsed;
+
+        // Move coin upward
+        SetLocation(GetX(), GetY() + FLYING_SPEED * elapsed);
+
+        // After flying off screen (2 seconds), mark for deletion
+        if (mFlyingTimer >= 2.0)
+        {
+            mIsFlying = false;
+            // The coin will be removed by the level when it detects mCoinCollected
+        }
+
+        return;
+    }
+
     // Don't move collected coins
     if (mCoinCollected)
     {
