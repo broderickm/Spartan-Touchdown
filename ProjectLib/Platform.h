@@ -37,7 +37,7 @@ private:
     double mPlatformHeight = 0;
 
     /// Each small tile in the platform is 64 pixels wide
-    double TILE_SIZE = 0;
+    int mTileSize = 0;
 
     /**
      * Draw one full row of platform tiles.

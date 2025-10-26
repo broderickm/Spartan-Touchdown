@@ -42,7 +42,7 @@ public:
 
 
     /// sets the base position and the speed.
-    void StartMoving();
+    virtual void StartMoving();
 
     /// bool used to determine if the enemy has started moving.
     bool hasMoved = false;

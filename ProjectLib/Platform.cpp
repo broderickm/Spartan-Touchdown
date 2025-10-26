@@ -39,18 +39,18 @@ void Platform::DrawPlatformRow(wxGraphicsContext* graphics, double startX, int m
     double drawY = GetY() - mPlatformHeight / 2.0f;
 
     // draw left tile
-    graphics->DrawBitmap(mLeftImage, startX, drawY, TILE_SIZE, TILE_SIZE);
-    startX += TILE_SIZE;
+    graphics->DrawBitmap(mLeftImage, startX, drawY, mTileSize, mTileSize);
+    startX += mTileSize;
 
     // draw middle tiles
     for (int i = 0; i < middleTiles; i++)
     {
-        graphics->DrawBitmap(mMiddleImage, startX, drawY, TILE_SIZE, TILE_SIZE);
-        startX += TILE_SIZE;
+        graphics->DrawBitmap(mMiddleImage, startX, drawY, mTileSize, mTileSize);
+        startX += mTileSize;
     }
 
     // draw right tile
-    graphics->DrawBitmap(mRightImage, startX, drawY, TILE_SIZE, TILE_SIZE);
+    graphics->DrawBitmap(mRightImage, startX, drawY, mTileSize, mTileSize);
 }
 
 /**
@@ -64,14 +64,14 @@ void Platform::Draw(wxGraphicsContext* graphics)
         return; // nothing to draw on
     }
 
-    TILE_SIZE = static_cast<int>(mLeftImage.GetWidth());
+    mTileSize = mLeftImage.GetWidth();
 
     // give default width and height if not set
-    if (mPlatformWidth <= 0) mPlatformWidth = TILE_SIZE * 3;
-    if (mPlatformHeight <= 0) mPlatformHeight = TILE_SIZE;
+    if (mPlatformWidth <= 0) mPlatformWidth = mTileSize * 3;
+    if (mPlatformHeight <= 0) mPlatformHeight = mTileSize;
 
     // number of middle tiles between left and right ends
-    int middleTiles = static_cast<int>(mPlatformWidth / TILE_SIZE) - 2;
+    int middleTiles = mPlatformWidth / mTileSize - 2;
     if (middleTiles < 0) middleTiles = 0;
 
     // where drawing starts so that platform stays centered

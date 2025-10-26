@@ -29,6 +29,7 @@ public:
     void operator=(NDEnemy const & ndEnemy) = delete;
 
     NDEnemy(Level* level);
+    void StartMoving() override;
 };
 
 

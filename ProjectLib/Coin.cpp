@@ -10,6 +10,16 @@
 #include "Game.h"
 #include "Item.h"
 
+/// The display size of the coin in virtual pixels
+static const int COIN_SIZE = 48;
+
+/// Upward velocity for flying animation (pixels per second)
+static constexpr double FLYING_SPEED = -300.0;
+
+/// How long to display the text (seconds)
+static constexpr double TEXT_DISPLAY_DURATION = 1.0;
+
+
 /**
  * Create a coin with an image and a point value.
  * @param level  The level this coin belongs to

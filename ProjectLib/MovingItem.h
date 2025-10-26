@@ -7,7 +7,9 @@
 
 #ifndef PROJECT1_MOVINGITEM_H
 #define PROJECT1_MOVINGITEM_H
+
 #include "Item.h"
+
 class Game;
 /**
  * Class that describes a moving item

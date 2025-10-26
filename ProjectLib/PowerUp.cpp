@@ -5,12 +5,12 @@
  * Class that describes power up
  */
 
-#include "Football.h"
-using namespace std;
-
 #include "pch.h"
+#include "Football.h"
 #include "PowerUp.h"
 #include "Level.h"
+
+using namespace std;
 
 /// File image for the powerup
 const wstring PowerUpImageName = L"Images/sparty.png";

@@ -36,7 +36,6 @@ void Enemy::StartMoving()
 {
     mBaseX = GetX();
     mBaseY = GetY();
-    // set the speed in the final derivative class, if we want each enemy to have different speeds.
 
     setSpeed(0,verticalSpeed);
 }

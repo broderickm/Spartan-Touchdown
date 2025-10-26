@@ -19,6 +19,9 @@ class Level;
 ///forward declaration for class football
 class Football;
 
+/// Game area height in virtual pixels
+const static int Height = 1024;
+
 /**
  * Class that describes game
  */
@@ -39,10 +42,6 @@ private:
 
     /// Timer element that tracks decreasing of the score
     double mTimerDecrease = 0.0;
-
-
-    /// Game area height in virtual pixels
-    const static int Height = 1024;
 
     /// Scale from virtual pixels to screen pixels
     double mScale = 0;
@@ -82,6 +81,7 @@ private:
 
     /// The current level start message text
     std::wstring mLevelStartMessage = L"";
+
 public:
 
     /**

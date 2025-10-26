@@ -26,9 +26,6 @@ private:
     /// The value of this coin in points
     int mCoinValue = 0;
 
-    /// The display size of the coin in virtual pixels
-    static const int COIN_SIZE = 48;
-
     /// Timer for how long the coin value text has been displayed
     double mTextDisplayTimer = 0.0;
 
@@ -37,12 +34,6 @@ private:
 
     /// Flag to track if coin is currently flying away
     bool mIsFlying = false;
-
-    /// Upward velocity for flying animation (pixels per second)
-    static constexpr double FLYING_SPEED = -300.0;
-
-    /// How long to display the text (seconds)
-    static constexpr double TEXT_DISPLAY_DURATION = 1.0;
 
     /// Position where coin was collected (for text display)
     double mCollectionX = 0.0;
