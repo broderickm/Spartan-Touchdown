@@ -15,6 +15,8 @@
 #include "GoalPost.h"
 #include <wx/graphics.h>
 
+/// Maximum amount of time to allow for elapsed (prevents tunneling)
+const double MaxElapsed = 0.05;
 
 /**
  * Initialize the game
@@ -196,11 +198,30 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
 
 /**
  * Update the game state each frame.
- * Handles level updates, collision detection, camera movement,
- * and score/time tracking.
+ * Prevents tunneling by breaking large elapsed times into smaller steps.
  * param elapsed Time elapsed since the last update, in seconds.
  */
 void Game::Update(double elapsed)
+{
+    while (elapsed > MaxElapsed)
+    {
+        UpdateSingleStep(MaxElapsed);
+        elapsed -= MaxElapsed;
+    }
+
+    if (elapsed > 0)
+    {
+        UpdateSingleStep(elapsed);
+    }
+
+}
+
+/**
+ * Performs a single step of the game update.
+ * @param elapsed Time step to process.
+ * Helper function to prevent tunneling
+ */
+void Game::UpdateSingleStep(double elapsed)
 {
     if (mLevel != nullptr)
     {

@@ -119,6 +119,7 @@ public:
      * @param elapsed Time elapsed since the last update, in seconds.
      */
     void Update(double elapsed);
+    void UpdateSingleStep(double elapsed);
 
     /**
      * Initializes the game
