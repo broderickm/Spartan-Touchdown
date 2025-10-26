@@ -76,6 +76,12 @@ void PowerUp::OnCollide(Football* football)
  */
 void PowerUp::Update(double elapsed)
 {
+    // stop updating once collected
+    // prevent powerup from falling off screen
+    if (mPowerUpCollected)
+    {
+        return;
+    }
 
     // Apply wind force from the level
     double windVelocity = GetLevel()->GetWindVelocity();
