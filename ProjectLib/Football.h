@@ -181,9 +181,19 @@ public:
      */
     void SetSpecialGravity(double gravity) { mGravity = gravity; }
 
+    /**
+   * activate vulnerability
+    */
     void ActivateInvulnerability(double duration);
+    /**
+       * check ifis vulnerable
+        */
+
     bool IsInvulnerable() const { return mIsInvulnerable; }
 
+    /**
+   * activate double jump
+    */
     void ActivateDoubleJump(bool value){mDoubleJump = value;}
 
     /**
