@@ -238,7 +238,7 @@ void GameView::OnLevelThree(wxCommandEvent& event)
     Level* level = this->GetGame()->GetLevel();
     level->Load(L"levels/level3.xml");
 
-    level->SetWindVelocity(-10);
+    level->SetWindVelocity(-5);
     mGame.SetPlayerScore(0);
     mGame.GetFootball()->SetSpecialGravity(850);
 

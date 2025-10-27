@@ -204,7 +204,7 @@ void Level::Load(const wxString &filename)
         else if (current == L"levels/level3.xml")
         {
             // Wind Velocity
-            this->SetWindVelocity(-10);
+            this->SetWindVelocity(-5);
 
             // Special Gravitational Acceleration
             currFootball->SetSpecialGravity(850);
