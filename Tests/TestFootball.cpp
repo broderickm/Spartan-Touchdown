@@ -46,6 +46,7 @@ private:
     double mHeight;
 };
 
+// Issue with seg fault happening here
 TEST(FootballTest, VerticalHitStopsOnPlatform)
 {
     Game game;
