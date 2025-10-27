@@ -47,6 +47,8 @@ set(SOURCE_FILES temp.cpp pch.h
         SpartyPowerup.h
         InvulnerabilityPowerup.cpp
         InvulnerabilityPowerup.h
+        DoubleJumpPowerup.cpp
+        DoubleJumpPowerup.h
 )
 
 set(wxBUILD_PRECOMP OFF)

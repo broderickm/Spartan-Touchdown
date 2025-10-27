@@ -8,6 +8,7 @@
 #include "Level.h"
 
 #include "Background.h"
+#include "DoubleJumpPowerup.h"
 #include "Game.h"
 #include "GoalPost.h"
 #include "Platform.h"
@@ -242,7 +243,9 @@ void Level::XmlItems(wxXmlNode *node)
 
         double x = 0;
         double y = 0;
+        // custom width for platform and walls
         double cWidth = 0;
+        // custom height for platform and walls
         double cHeight = 0;
         child->GetAttribute(L"x").ToDouble(&x);
         child->GetAttribute(L"y").ToDouble(&y);
@@ -322,8 +325,14 @@ void Level::XmlItems(wxXmlNode *node)
             item = make_shared<NDEnemy>(this);
         }
 
+        else if (id == L"i015")
+        {
+            item = make_shared<DoubleJumpPowerup>(this);
+        }
+
         if (id == L"i003" || id == L"i004" || id == L"i005" || id == L"i006" || id == L"i007")
         {
+            // set width and height for platforms and walls
             child->GetAttribute(L"width").ToDouble(&cWidth);
             child->GetAttribute(L"height").ToDouble(&cHeight);
         }

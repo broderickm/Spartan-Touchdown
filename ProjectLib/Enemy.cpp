@@ -61,16 +61,22 @@ void Enemy::Update(double elapsed)
    double newY = GetY() + getSpeedY()*elapsed;
    double vertDistance = mBaseY - newY;
 
+   if (isFrozen)
+   {
+       setSpeed(0,0);
+   }else
+   {
+       if (vertDistance > maxVerticalDistance)
+       {
+           setSpeed(0,-verticalSpeed);
+       }else if (vertDistance <= 0)
+       {
+           setSpeed(0,verticalSpeed);
+       }
+   }
+
     SetX(newX);
     SetY(newY);
-
-    if (vertDistance > maxVerticalDistance)
-    {
-        setSpeed(0,-verticalSpeed);
-    }else if (vertDistance <= 0)
-    {
-        setSpeed(0,verticalSpeed);
-    }
 }
 
 void Enemy::OnCollide(Football* football)
@@ -147,6 +153,7 @@ void Enemy::OnCollide(Football* football)
                 if (enemyVisible && ballVisible)
                 {
                     football->SetDead(true);
+                    isFrozen = true;
                     GetLevel()->GetGame()->ShowDeathMessage();
                     return;
                 }

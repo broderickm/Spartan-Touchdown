@@ -20,6 +20,12 @@ private:
     /// baseY same but for the Y coordinate
     double mBaseY = 0;
 
+    /// bool used to determine if the enemy has started moving.
+    bool hasMoved = false;
+
+    /// freeze the enemy
+    bool isFrozen = false;
+
 
 public:
     /**
@@ -44,8 +50,7 @@ public:
     /// sets the base position and the speed.
     void StartMoving();
 
-    /// bool used to determine if the enemy has started moving.
-    bool hasMoved = false;
+
 
     /// overridden update function to facilitate movement.
     void Update(double elapsed) override;
