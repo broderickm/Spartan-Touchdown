@@ -262,6 +262,7 @@ void Game::UpdateSingleStep(double elapsed)
         if (mFootball->IsDead() && !mDeathMessageShown)
         {
             mDeathMessageShown = true;
+            mFootball->ActivateDoubleJump(false);
         }
 
         // Will set mLevelComplete to true
