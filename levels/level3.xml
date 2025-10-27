@@ -11,6 +11,7 @@
         <enemy id="i012" image="U-M.png"/>
         <enemy id="i013" image="ND.png"/>
         <power-up id="i014"/>
+        <dbjump id="i015"/>
     </declarations>
     <items>
         <background id="i001" x="944" y="512"/>
@@ -28,6 +29,7 @@
         <wall id="i007" x="850" y="450" width="32" height="400"/>
         <enemy id="i013" x="600" y="450"/>
         <enemy id="i013" x="380" y="450"/>
+        <dbjump id="i015" x="390" y="450"/>
         <coin id="i009" x="850" y="240"/>
         <coin id="i008" x="1075" y="500"/>
         <coin id="i008" x="1200" y="300"/>
