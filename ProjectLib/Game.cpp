@@ -344,6 +344,8 @@ void Game::UpdateSingleStep(double elapsed)
     {
 
         mLevel->Load(mNextLevelPath);
+        mTimeElapsedSinceGameStarted = 0.0;
+
 
         mFootball->SetDead(false);
         mCameraOffsetX = 0;
