@@ -162,28 +162,6 @@ void Level::Load(const wxString &filename)
         }
     }
 
-    // Determine which level we're loading and set appropriate message
-    std::wstring levelMessage = L"";
-    if (filename == L"levels/level0.xml")
-    {
-        levelMessage = L"Level 0 Start!";
-    }
-    else if (filename == L"levels/level1.xml")
-    {
-        levelMessage = L"Level 1 Start!";
-    }
-    else if (filename == L"levels/level2.xml")
-    {
-        levelMessage = L"Level 2 Start!";
-    }
-    else if (filename == L"levels/level3.xml")
-    {
-        levelMessage = L"Level 3 Start!";
-    }
-
-    // Set the level start message in the game
-    mGame->SetLevelStartMessage(levelMessage);
-
     // Create the football at the starting  position
     shared_ptr<Football> currFootball = mGame->GetFootball();
     if(!currFootball)
