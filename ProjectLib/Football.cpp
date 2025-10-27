@@ -39,6 +39,9 @@ const double StepSpeed = -250;
 /// Small value to prevent getting stuck in collision
 const double Epsilon = 0.01;
 
+/// value for maximum time in between our jumps ( when double jump is active ).
+const double maxTimeInBetweenJumps = 1.5;
+
 
 /**
  * Constructor
@@ -74,7 +77,7 @@ void Football::Draw(wxGraphicsContext* graphics)
     double xPos, yPos;
 
     // Not moving
-    if (!mIsGoingLeft && !mIsGoingRight)
+    if ((!mIsGoingLeft && !mIsGoingRight) || mIsDead)
     {
         int width = mCenterBitmap->GetWidth();
         int height = mCenterBitmap->GetHeight();
@@ -118,7 +121,7 @@ void Football::Update(double elapsed)
     Vector p(GetX(), GetY());
     Vector newV;
 
-    if (mSpawnTime < 1)
+    if (mSpawnTime < 1 || mIsDead)
     {
         newV.SetX(0);
         newV.SetY(0);
@@ -285,6 +288,30 @@ void Football::Update(double elapsed)
             mInvulnerabilityTimeRemaining = 0.0;
         }
     }
+
+    if (mDoubleJumpTimeElapsed >= 50)
+    {
+        mDoubleJump = false;
+        mDoubleJumpTimeElapsed = 0.0;
+    }
+
+    if (mSpaceKeyElasped >= maxTimeInBetweenJumps)
+    {
+        mInitJump = false;
+        mSpaceKeyElasped = 0.0;
+    }
+
+    if (mDoubleJump)
+    {
+     mDoubleJumpTimeElapsed += elapsed;
+    }
+
+    if (mInitJump)
+    {
+        mSpaceKeyElasped += elapsed;
+    }
+
+
 }
 
 void Football::ActivateInvulnerability(double duration)
@@ -346,11 +373,18 @@ void Football::Jump()
 {
     // Only allow jumping if the football is on a surface
     // allow jumping if in the middle of stepping
-    if (mIsOnSurface || (!mIsOnSurface && mIsStepping))
+    if (( mIsOnSurface || (!mIsOnSurface && mIsStepping) ) && !mInitJump)
     {
         mV.SetY(BounceSpeed); // Apply upward velocity (-800)
         mIsOnSurface = false; // No longer on surface after jumping
         mIsStepping = false; // no longer stepping if we jumped
+        mInitJump = true; // indicating the first jump, has been performed.
+    }else if (!mIsOnSurface && mDoubleJump && mInitJump)
+    {
+        mV.SetY(BounceSpeed); // Apply upward velocity (-800)
+        mIsOnSurface = false;
+        mIsStepping = false;
+        mInitJump = false;
     }
 }
 

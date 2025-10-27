@@ -64,6 +64,14 @@ private:
 
     bool mIsInvulnerable = false;
     double mInvulnerabilityTimeRemaining = 0.0;
+
+
+    double mDoubleJumpTimeElapsed = 0.0;
+    double mSpaceKeyElasped = 0.0;
+
+    bool mInitJump = false;
+    bool mDoubleJump = false;
+
 public:
     /**
      * @brief Adds a value to the football's score.
@@ -175,6 +183,8 @@ public:
 
     void ActivateInvulnerability(double duration);
     bool IsInvulnerable() const { return mIsInvulnerable; }
+
+    void ActivateDoubleJump(bool value){mDoubleJump = value;}
 
     /**
     * Get the spawn time
