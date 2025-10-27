@@ -16,8 +16,6 @@
 class SilverCoin: public Coin
 {
 private:
-    /// Value from a silver coin
-    ///int mValue = 10;
 
 public:
     /// Default constructor disabled

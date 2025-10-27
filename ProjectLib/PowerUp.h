@@ -10,6 +10,9 @@
 #include "Item.h"
 #include <wx/graphics.h>
 
+/// The display size of the powerup in virtual pixels
+static const int POWERUP_SIZE = 48;
+
 /**
  * Class that describes the power ups
  */
@@ -21,9 +24,6 @@ private:
 
     /// The image used for this powerup
     wxBitmap mPowerUpImage;
-
-    /// The display size of the powerup in virtual pixels
-    static const int POWERUP_SIZE = 48;
 
 protected:
     /**

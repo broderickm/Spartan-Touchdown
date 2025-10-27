@@ -17,8 +17,6 @@ class GoldCoin: public Coin
 {
 
 private:
-    /// Value from a gold coin
-   /// int mValue = 100;
 
 public:
     /// Disable default constructor

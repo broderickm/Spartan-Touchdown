@@ -48,7 +48,7 @@ public:
 
 
     /// sets the base position and the speed.
-    void StartMoving();
+    virtual void StartMoving();
 
 
 

@@ -28,8 +28,8 @@ void Wall::DrawWallColumn(wxGraphicsContext* graphics, double startY, int numTil
  // Draw tiles upward from the bottom
  for (int i = 0; i < numTiles; i++)
  {
-      double currentY = startY - (i * TILE_SIZE);
-      graphics->DrawBitmap(mWallImage, drawX, currentY - TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      double currentY = startY - (i * mTileSize);
+      graphics->DrawBitmap(mWallImage, drawX, currentY - mTileSize, mTileSize, mTileSize);
  }
 }
 
@@ -43,21 +43,21 @@ void Wall::Draw(wxGraphicsContext* graphics)
   return; // nothing to draw on
  }
 
- TILE_SIZE = static_cast<int>(mWallImage.GetWidth());
+ mTileSize = mWallImage.GetWidth();
 
  // Give default width/height if not set yet
  if (mWallWidth <= 0)
  {
-      mWallWidth = TILE_SIZE;
+      mWallWidth = mTileSize;
  }
 
  if (mWallHeight <= 0)
  {
-      mWallHeight = TILE_SIZE * 4;
+      mWallHeight = mTileSize * 4;
  }
 
  // Number of vertical tiles to fill the height
- int numTiles = static_cast<int>(mWallHeight / TILE_SIZE);
+ int numTiles = static_cast<int>(mWallHeight / mTileSize);
  if (numTiles < 1) numTiles = 1;
 
  // Start from the bottom so it stays centered on GetY()

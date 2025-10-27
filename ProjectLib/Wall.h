@@ -28,7 +28,7 @@ private:
  double mWallHeight = 0;
 
  /// Each tile is 64 px tall/wide
- double TILE_SIZE = 64;
+ int mTileSize = 64;
 
  /**
   * Helper that draws the full column of wall tiles.

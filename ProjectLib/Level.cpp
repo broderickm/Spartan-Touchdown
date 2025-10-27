@@ -19,6 +19,7 @@
 #include "NDEnemy.h"
 #include "UMichEnemy.h"
 #include "Football.h"
+#include "InvulnerabilityPowerup.h"
 #include "SpartyPowerup.h"
 
 using namespace std;
@@ -210,16 +211,28 @@ void Level::Load(const wxString &filename)
         std::wstring current = this->GetCurrentLevelFile();
         std::wstring next = mGame->GetNextLevelPath(current);
 
-        // Wind Velocity
-        if (current == L"levels/level2.xml")
+        // Set special level
+        std::wstring levelMessage = L"";
+
+        if (filename == L"levels/level1.xml")
         {
+            levelMessage = L"Level 1 Start!";
+        }
+        else if (current == L"levels/level2.xml")
+        {
+            // Wind Velocity
             this->SetWindVelocity(-25);
         }
         else if (current == L"levels/level3.xml")
         {
+            // Wind Velocity
             this->SetWindVelocity(-10);
+
+            // Special Gravitational Acceleration
             currFootball->SetSpecialGravity(850);
         }
+
+        mGame->SetLevelStartMessage(levelMessage);
 
         mItems.push_back(currFootball);
 
@@ -324,6 +337,14 @@ void Level::XmlItems(wxXmlNode *node)
         {
             item = make_shared<NDEnemy>(this);
         }
+        // power - up
+        else if (id == L"i014")
+        {
+            item = make_shared<InvulnerabilityPowerup>(this);
+        }
+
+        // double jump power - up
+
 
         else if (id == L"i015")
         {
