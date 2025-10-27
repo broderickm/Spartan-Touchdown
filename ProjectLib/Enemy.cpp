@@ -83,6 +83,11 @@ void Enemy::OnCollide(Football* football)
     if (football == nullptr)
         return;
 
+    if (football->IsInvulnerable())
+    {
+        return;
+    }
+
     ///previous logic only worked when venters collined
     ///editied now even if brushes edges triggers you lose
 
