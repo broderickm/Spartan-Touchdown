@@ -77,7 +77,7 @@ void Football::Draw(wxGraphicsContext* graphics)
     double xPos, yPos;
 
     // Not moving
-    if ((!mIsGoingLeft && !mIsGoingRight) || mIsDead)
+    if ((!mIsGoingLeft && !mIsGoingRight) || (mIsGoingLeft && mIsGoingRight))
     {
         int width = mCenterBitmap->GetWidth();
         int height = mCenterBitmap->GetHeight();
