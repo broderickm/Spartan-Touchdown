@@ -68,7 +68,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     wxFont bigFont (wxSize(0,48), wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD);
 
     ///font and color setting it up
-    graphics->SetFont(bigFont, wxColour(40,80,200));
+    graphics->SetFont(bigFont, wxColour(200,50,100));
 
     ///calculate total seconds and minutes
     int totalSeconds = static_cast<int>(mTimeElapsedSinceGameStarted);
@@ -91,7 +91,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     if (mShowLevelStartMessage)
     {
         wxFont font(wxSize(0, 70), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-        graphics->SetFont(font, wxColour(215, 255, 110)); // Gold color
+        graphics->SetFont(font, wxColour(235, 190, 105)); // Gold color
 
         wxDouble textWidth, textHeight;
         graphics->GetTextExtent(mLevelStartMessage, &textWidth, &textHeight);
