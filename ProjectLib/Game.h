@@ -119,6 +119,12 @@ public:
      * @param elapsed Time elapsed since the last update, in seconds.
      */
     void Update(double elapsed);
+
+    /**
+     * Performs a single step of the game update.
+     * @param elapsed Time step to process.
+     * Helper function to prevent tunneling
+     */
     void UpdateSingleStep(double elapsed);
 
     /**

@@ -125,7 +125,6 @@ TEST_F(GameTest, Load)
 
     // Test with Level 1 XML
     level.Load(L"levels/level1.xml");
-    std::cout << level.ItemCount() << std::endl;
 
     // 87 items plus the football -> 88 items should be registered if correct
     ASSERT_TRUE(level.ItemCount() == 88);

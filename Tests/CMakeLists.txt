@@ -6,6 +6,7 @@ set(TEST_FILES
         GameTest.cpp
         TestFootball.cpp
         BackgroundTest.cpp
+        TeamFeatureTest.cpp
 )
 
 include_directories(
