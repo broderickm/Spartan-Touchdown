@@ -73,13 +73,6 @@ bool Item::HitTest(int x, int y)
  */
 void Item::Draw(wxGraphicsContext* graphics)
 {
-    // /**
-    //  *venkata here,
-    //  *i've added this as the default draw function which draws enememies, and others etc.
-    //  *I am not sure if I did the correct thing, but this seemed the best way to draw enemies, npcs, as i passed
-    //  *imagename to the base classes until we reach item, where an wxbitmap is produced with the filename passed from
-    //  *the child classes.
-    //  */
     int width = mItemBitmap->GetWidth();
     int height = mItemBitmap->GetHeight();
 

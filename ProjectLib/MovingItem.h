@@ -25,12 +25,6 @@ private:
 
 public:
 
-    /**
-     *venkata here,
-     *I've added the constructors for this class, so we can load in images
-     *if there are changes to be made dont hesistate to change the functions
-     */
-
     // Disable default constructor
     MovingItem() = delete;
 

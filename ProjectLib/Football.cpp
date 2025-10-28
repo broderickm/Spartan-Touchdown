@@ -40,7 +40,7 @@ const double StepSpeed = -250;
 const double Epsilon = 0.01;
 
 /// value for maximum time in between our jumps ( when double jump is active ).
-const double maxTimeInBetweenJumps = 1.5;
+const double maxTimeInBetweenJumps = 1.7;
 
 
 /**
