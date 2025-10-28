@@ -21,6 +21,26 @@ private:
     GameView* mGameView = nullptr;
 
 public:
+
+    /**
+     * Handler for selecting Level Zero from the menu
+     */
+    void OnLevelZero(wxCommandEvent& event);
+
+    /**
+     * Handler for selecting Level One from the menu
+     */
+    void OnLevelOne(wxCommandEvent& event);
+
+    /**
+     * Handler for selecting Level Two from the menu
+     */
+    void OnLevelTwo(wxCommandEvent& event);
+
+    /**
+     * Handler for selecting Level Three from the menu
+     */
+    void OnLevelThree(wxCommandEvent& event);
     /**
      * Initialize the Mainframe
      */
