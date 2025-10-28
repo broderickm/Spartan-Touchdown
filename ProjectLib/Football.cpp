@@ -289,6 +289,18 @@ void Football::Update(double elapsed)
         }
     }
 
+    // Handle timed double jump deactivation
+    if (mDoubleJumpTimer > 0)
+    {
+        mDoubleJumpTimer -= elapsed;
+        if (mDoubleJumpTimer <= 0)
+        {
+            mDoubleJump = false;
+            mDoubleJumpTimer = 0.0;
+        }
+    }
+
+
     if (mDoubleJumpTimeElapsed >= 50)
     {
         mDoubleJump = false;
@@ -416,4 +428,14 @@ void Football::Step()
 void Football::AddToScore(int value)
 {
     mScore += value;
+}
+
+
+void Football::ActivateDoubleJump(bool enable, double duration)
+{
+    mDoubleJump = enable;
+    if (enable)
+    {
+        mDoubleJumpTimer = duration;
+    }
 }

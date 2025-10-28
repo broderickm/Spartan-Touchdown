@@ -17,6 +17,11 @@
 class Football : public MovingItem
 {
 private:
+
+    double mDoubleJumpTimer = 0.0;
+
+
+
     /// Football holding the score
     int mScore = 0;
 
@@ -73,6 +78,9 @@ private:
     bool mDoubleJump = false;
 
 public:
+
+    void ActivateDoubleJump(bool enable, double duration);
+
     /**
      * @brief Adds a value to the football's score.
      * @param value The number of points to add.

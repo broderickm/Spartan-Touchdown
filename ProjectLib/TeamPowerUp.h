@@ -28,11 +28,26 @@ private:
     /// flag to track if it’s active (not yet collected)
     bool mActive = true;
 
+    /// Duration (in seconds) of the power-up’s effect
+    double mDuration = 20.0;
+
+    /// Internal timer tracking how long since collected
+    double mTimer = 0.0;
+
+protected:
+    void ApplyEffect(Football* football) ;
+
 public:
+
     // Disable default constructor
     TeamPowerUp() = delete;
     TeamPowerUp(const TeamPowerUp&) = delete;
     void operator=(const TeamPowerUp&) = delete;
+
+    void Update(double elapsed) override;
+    void OnCollide(Football* football) override;
+
+    bool IsSolid() const override { return false; }
 
     /// Constructor
     TeamPowerUp(Level* level);

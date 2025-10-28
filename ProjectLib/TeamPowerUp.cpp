@@ -31,4 +31,18 @@ TeamPowerUp::TeamPowerUp(Level* level)
     setSpeed(BounceSpeed, 0);
 }
 
+/**
+ * Apply both invulnerability and double jump for a fixed duration.
+ * @param football The football that collected this power-up.
+ */
+void TeamPowerUp::ApplyEffect(Football* football)
+{
+    if (football != nullptr)
+    {
+        // Activate invincibility for 20 seconds
+        football->ActivateInvulnerability(mDuration);
 
+        // Activate double jump for 20 seconds
+        football->ActivateDoubleJump(true, mDuration);
+    }
+}
