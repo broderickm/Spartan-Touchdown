@@ -55,7 +55,7 @@ void PowerUp::Draw(wxGraphicsContext* graphics)
     {
         if (mPowerUpCollected)
         {
-            graphics->DrawBitmap(mPowerUpImage, drawX, drawY, mNewImagewWidth, mNewImageHeight);
+            graphics->DrawBitmap(mPowerUpImage, drawX, drawY, mNewImageWidth, mNewImageHeight);
         }else
         {
             graphics->DrawBitmap(mPowerUpImage, drawX, drawY, GetWidth(), GetHeight());
@@ -109,7 +109,7 @@ void PowerUp::OnCollide(Football* football)
             mPowerDisplayY = GetY(); // set the message y cordinate
             mPowerDisplayDist = GetY();
             mNewImageHeight = GetHeight(); // set the images inital height
-            mNewImagewWidth = GetWidth(); // set the images inital width
+            mNewImageWidth = GetWidth(); // set the images inital width
             mPowerUpCollected = true;
             ApplyEffect(football);
         }
@@ -129,13 +129,13 @@ void PowerUp::Update(double elapsed)
         double newY = GetY() + imageupspeed * elapsed;
         SetY(newY);
 
-        if (mNewImagewWidth-8 > 1) // prevent image width from going into negatives;
+        if (mNewImageWidth-8 > 1) // prevent image width from going into negatives;
         {
             mNewImageHeight-=8;
         }
         if (mNewImageHeight-8 > 1) // prevent image height from going into negative;
         {
-            mNewImagewWidth-=8;
+            mNewImageWidth-=8;
         }
 
         if (mPowerDisplayY >= 0) // if our message is below the top of the screen

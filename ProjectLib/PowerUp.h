@@ -38,7 +38,7 @@ private:
     double mPowerDisplaySize = 1.0;
 
     /// The current width of the shrinking image
-    double mNewImagewWidth = 0.0;
+    double mNewImageWidth = 0.0;
 
     /// The current height of the shrinking image
     double mNewImageHeight = 0.0;
