@@ -8,13 +8,17 @@
 #include "pch.h"
 #include "Football.h"
 #include "PowerUp.h"
+
+#include "Game.h"
 #include "Level.h"
 
 using namespace std;
 
 /// File image for the powerup
 const wstring PowerUpImageName = L"Images/sparty.png";
-
+const double downspeed = 400;
+const double maxsizeofmessage = 70;
+const double imageupspeed = 700;
 /**
  * Constructor of the PowerUp
  * @param level the level the powerup is in
@@ -30,7 +34,7 @@ PowerUp::PowerUp(Level* level, const std::wstring& image)
  */
 void PowerUp::Draw(wxGraphicsContext* graphics)
 {
-    if (!graphics || mPowerUpCollected)
+    if (!graphics || mFinishSequence)
     {
         return;
     }
@@ -41,7 +45,34 @@ void PowerUp::Draw(wxGraphicsContext* graphics)
 
     if (mPowerUpImage.IsOk())
     {
-        graphics->DrawBitmap(mPowerUpImage, drawX, drawY, GetWidth(), GetHeight());
+        if (mPowerUpCollected)
+        {
+            graphics->DrawBitmap(mPowerUpImage, drawX, drawY, mNewImagewWidth, mNewImageHeight);
+        }else
+        {
+            graphics->DrawBitmap(mPowerUpImage, drawX, drawY, GetWidth(), GetHeight());
+        }
+
+    }
+
+    if (mPowerUpCollected && mPowerDisplayY >= 0)
+    {
+
+        wxFont font(wxSize(0, mPowerDisplaySize), wxFONTFAMILY_SWISS, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, wxColour(128, 0, 128));
+
+        // Format the text
+        wxString textValue = L"Power Up!";
+
+        // Get text dimensions for centering
+        wxDouble textWidth, textHeight;
+        graphics->GetTextExtent(textValue, &textWidth, &textHeight);
+
+        // draw the text centered
+        double xVal = mPowerDisplayX - textWidth / 2;
+        double yVal = mPowerDisplayY - textHeight / 2;
+
+        graphics->DrawText(textValue, xVal, yVal);
     }
 }
 
@@ -64,8 +95,16 @@ void PowerUp::OnCollide(Football* football)
     // If within hit radius, collect
     if (distance < 50)
     {
-        mPowerUpCollected = true;
-        ApplyEffect(football);
+        if (!mPowerUpCollected) /// make sure we dont collect the power up after collecting it
+        {
+            mPowerDisplayX = GetX(); // set the message x cordinate
+            mPowerDisplayY = GetY(); // set the message y cordinate
+            mPowerDisplayDist = GetY();
+            mNewImageHeight = GetHeight(); // set the images inital height
+            mNewImagewWidth = GetWidth(); // set the images inital width
+            mPowerUpCollected = true;
+            ApplyEffect(football);
+        }
     }
 }
 
@@ -76,10 +115,34 @@ void PowerUp::OnCollide(Football* football)
  */
 void PowerUp::Update(double elapsed)
 {
-    // stop updating once collected
-    if (mPowerUpCollected)
+    // start updating once collected
+    if (mPowerUpCollected && !mFinishSequence) // start making the powerup go down and shrink and show message
     {
-        // Move off of screen if hit here
+        double newY = GetY() + imageupspeed * elapsed;
+        SetY(newY);
+
+        if (mNewImagewWidth > 0) // prevent image width from going into negatives;
+        {
+            mNewImageHeight-=5;
+        }
+        if (mNewImageHeight > 0) // prevent image height from going into negative;
+        {
+            mNewImagewWidth-=5;
+        }
+
+        if (mPowerDisplayY >= 0) // if our message is below the top of the screen
+        {
+            mPowerDisplayY = mPowerDisplayY - 500 * elapsed; // make the message travel upwards
+            if (mPowerDisplaySize < maxsizeofmessage)
+            {
+                mPowerDisplaySize += 2.5; // increase the text size
+            }
+        }
+        // if the text has gone past the top of the screen and image stop drawing the images.
+        if (mPowerDisplayY <= 0 && GetY() >= GetLevel()->GetHeight())
+        {
+            mFinishSequence = true;
+        }
     }
     else
     {

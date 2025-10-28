@@ -21,9 +21,19 @@ class PowerUp : public Item
 private:
     /// Keeps track if the powerup has already been collected
     bool mPowerUpCollected = false;
-
     /// The image used for this powerup
     wxBitmap mPowerUpImage;
+
+
+    ///
+    double mPowerDisplayX = 0.0;
+    double mPowerDisplayY = 0.0;
+    double mPowerDisplayDist = 0.0;
+    double mPowerDisplaySize = 0;
+    double mNewImagewWidth = 0.0;
+    double mNewImageHeight = 0.0;
+
+    bool mFinishSequence = false;
 
 protected:
     /**
