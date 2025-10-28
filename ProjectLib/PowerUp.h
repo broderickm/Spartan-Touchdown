@@ -35,7 +35,7 @@ private:
     double mPowerDisplayDist = 0.0;
 
     /// The current display font size of the "Power Up!" message
-    double mPowerDisplaySize = 0;
+    double mPowerDisplaySize = 1.0;
 
     /// The current width of the shrinking image
     double mNewImagewWidth = 0.0;
