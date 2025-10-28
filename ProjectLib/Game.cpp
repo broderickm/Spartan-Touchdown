@@ -33,9 +33,9 @@ void Game::Initialize()
 
 /**
  * Draw the game area
- * param graphics The wxWidgets graphics context on which to draw
- * param width Width of the client window
- * param height Height of the client window
+ * @param graphics The wxWidgets graphics context on which to draw
+ * @param width Width of the client window
+ * @param height Height of the client window
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -140,7 +140,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
 
 /**
- *Helper function to get the next level like if on 1 , go to 2, if on 2 go to 3 etc
+ * Helper function to get the next level like if on 1 , go to 2, if on 2 go to 3 etc
+ * @param currentLevelPath the path of the level currently on
+ * @return the wstring path
  */
 
 std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
@@ -193,7 +195,7 @@ std::wstring Game::GetNextLevelPath(const std:: wstring& currentLevelPath)
 /**
  * Update the game state each frame.
  * Prevents tunneling by breaking large elapsed times into smaller steps.
- * param elapsed Time elapsed since the last update, in seconds.
+ * @param elapsed Time elapsed since the last update, in seconds.
  */
 void Game::Update(double elapsed)
 {
@@ -390,7 +392,7 @@ std::shared_ptr<Item> Game::CollisionTest(Item* item)
 }
 
 /**
- * @brief Displays the death message after the football dies.
+ * Displays the death message after the football dies.
  */
 void Game::ShowDeathMessage()
 {
@@ -398,8 +400,8 @@ void Game::ShowDeathMessage()
 }
 
 /**
- * brief Schedules the next level to be loaded.
- * param nextLevelPath File path to the next level to load.
+ * Schedules the next level to be loaded.
+ * @param nextLevelPath File path to the next level to load.
  *
  * This function flags the game to load the next level
  * during the next update cycle.

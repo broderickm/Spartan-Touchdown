@@ -2,13 +2,16 @@
  * @file SpartyPowerup.h
  * @author Shlok
  *
- * powerup that doubles score
+ * Class for a powerup that doubles coin value
  */
 
 #ifndef PROJECT1_SPARTYPOWERUP_H
 #define PROJECT1_SPARTYPOWERUP_H
 #include "PowerUp.h"
 
+/**
+ * Class that describes the sparty coin doubler power-up
+ */
 class SpartyPowerup : public PowerUp
 {
 private:
@@ -18,10 +21,6 @@ public:
     /// Disable default constructor
     SpartyPowerup() = delete;
 
-    /**
-     * Construct the powerup given the level
-     * @param level the level that contains this powerup
-     */
     SpartyPowerup(Level* level);
 };
 

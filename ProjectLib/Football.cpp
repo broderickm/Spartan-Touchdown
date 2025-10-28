@@ -41,8 +41,7 @@ const double Epsilon = 0.01;
 
 
 /**
- * Constructor
- * construct a football object
+ * Constructor to construct a football object
  * @param level the game level we are adding this football to
  */
 Football::Football(Level *level): MovingItem(level, FootballMidImageName)
@@ -271,6 +270,10 @@ void Football::Update(double elapsed)
 
 }
 
+/**
+* Activate vulnerability
+* @param duration the time power-up is active for
+*/
 void Football::ActivateInvulnerability(double duration)
 {
     mIsInvulnerable = true;
@@ -370,7 +373,7 @@ void Football::Step()
 
 /**
  * Adds to the football’s internal score counter.
- * param value The amount to increase the score by.
+ * @param value The amount to increase the score by.
  */
 void Football::AddToScore(int value)
 {
