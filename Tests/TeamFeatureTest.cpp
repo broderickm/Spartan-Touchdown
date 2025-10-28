@@ -14,8 +14,8 @@
 #include <InvulnerabilityPowerup.h>
 #include <Enemy.h>
 
-#include "DoubleJumpPowerup.h"
-#include "UMichEnemy.h"
+#include <DoubleJumpPowerup.h>
+#include <UMichEnemy.h>
 
 
 using namespace std;
