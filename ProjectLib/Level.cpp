@@ -162,6 +162,16 @@ void Level::Load(const wxString &filename)
         }
     }
 
+    std::wstring levelMessage = L"";
+    if (filename == L"levels/level1.xml")
+    {
+        levelMessage = L"Level 1 Start!";
+    }
+
+    // Set the level start message in the game
+    mGame->SetLevelStartMessage(levelMessage);
+
+
     // Create the football at the starting  position
     shared_ptr<Football> currFootball = mGame->GetFootball();
     if(!currFootball)
@@ -189,14 +199,7 @@ void Level::Load(const wxString &filename)
         std::wstring current = this->GetCurrentLevelFile();
         std::wstring next = mGame->GetNextLevelPath(current);
 
-        // Set special level
-        std::wstring levelMessage = L"";
-
-        if (filename == L"levels/level1.xml")
-        {
-            levelMessage = L"Level 1 Start!";
-        }
-        else if (current == L"levels/level2.xml")
+        if (current == L"levels/level2.xml")
         {
             // Wind Velocity
             this->SetWindVelocity(-25);
@@ -209,8 +212,6 @@ void Level::Load(const wxString &filename)
             // Special Gravitational Acceleration
             currFootball->SetSpecialGravity(850);
         }
-
-        mGame->SetLevelStartMessage(levelMessage);
 
         mItems.push_back(currFootball);
 

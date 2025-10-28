@@ -39,14 +39,11 @@ const double StepSpeed = -250;
 /// Small value to prevent getting stuck in collision
 const double Epsilon = 0.01;
 
-/// value for maximum time in between our jumps ( when double jump is active ).
-const double maxTimeInBetweenJumps = 1.7;
-
 
 /**
  * Constructor
  * construct a football object
- * the game level we are adding this football to
+ * @param level the game level we are adding this football to
  */
 Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 {
@@ -69,7 +66,7 @@ Football::Football(Level *level): MovingItem(level, FootballMidImageName)
 
 /**
  * Draw the football
- *  the graphics used to draw
+ * @param graphics the graphics used to draw
  */
 void Football::Draw(wxGraphicsContext* graphics)
 {
@@ -113,7 +110,7 @@ void Football::Draw(wxGraphicsContext* graphics)
 
 /**
  * Update the football each frame
- * param elapsed Time elapsed since last update
+ * @param elapsed Time elapsed since last update
  */
 void Football::Update(double elapsed)
 {
@@ -177,7 +174,10 @@ void Football::Update(double elapsed)
                 // falling down - land on platform
                 newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
                 mIsOnSurface = true;
-                // stop stepping incase of collision
+                mInitJump = false;
+                mHasDoubleJumped = false;
+
+                // stop stepping in case of collision
                 mIsStepping = false;
             }
             else if (newV.Y() < 0)
@@ -232,38 +232,7 @@ void Football::Update(double elapsed)
         }
     }
 
-    auto level = GetGame()->GetLevel();
-    auto collidedItem = level->CollisionTest(this);
 
-    if (collidedItem != nullptr)
-    {
-        if (auto coin = std::dynamic_pointer_cast<Coin>(collidedItem))
-        {
-            /**int value = static_cast<int>((coin->GetTheValue() * GetGame()->GetCoinMultiplier()));
-            game->AddToPlayerScore(value); // update football score
-            level->RemoveItem(coin); // remove coin when colided
-            */
-        }
-        else if (auto invulnPowerup = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
-        {
-            // // Apply invulnerability effect
-            // ActivateInvulnerability(20.0);  // 20 seconds of invulnerability
-            //
-            // // Remove powerup from level
-            // level->RemoveItem(invulnPowerup);
-        }
-        else if (auto Sparty = std::dynamic_pointer_cast<SpartyPowerup>(collidedItem))
-        {
-            // game->SetCoinMultiplier(2.0); // update football score
-            // level->RemoveItem(Sparty); // remove powerup when colided
-        }
-        else if (auto lightning = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
-        {
-            // game->GetFootball()->ActivateInvulnerability(20.0); // update football score
-            // level->RemoveItem(Sparty); // remove powerup when colided
-        }
-
-    }
     /// stop the stepping if we performed a full step
     /// this is needed so incase we step off a ledge and free fall for some time we cant keep spamming jump
     /// while free falling
@@ -300,30 +269,6 @@ void Football::Update(double elapsed)
         }
     }
 
-
-    if (mDoubleJumpTimeElapsed >= 50)
-    {
-        mDoubleJump = false;
-        mDoubleJumpTimeElapsed = 0.0;
-    }
-
-    if (mSpaceKeyElasped >= maxTimeInBetweenJumps)
-    {
-        mInitJump = false;
-        mSpaceKeyElasped = 0.0;
-    }
-
-    if (mDoubleJump)
-    {
-     mDoubleJumpTimeElapsed += elapsed;
-    }
-
-    if (mInitJump)
-    {
-        mSpaceKeyElasped += elapsed;
-    }
-
-
 }
 
 void Football::ActivateInvulnerability(double duration)
@@ -334,9 +279,9 @@ void Football::ActivateInvulnerability(double duration)
 
 /**
  * Handle a vertical collision between the football and another item.
- * aram collided The item the football collided with.
- * param newV The current velocity vector to adjust after collision.
- * param newP The current position vector to adjust after collision.
+ * @param collided The item the football collided with.
+ * @param newV The current velocity vector to adjust after collision.
+ * @param newP The current position vector to adjust after collision.
  */
 void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -358,9 +303,9 @@ void Football::VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vec
 
 /**
  * Handle a horizontal collision between the football and another item.
- * param collided The item the football collided with.
- * param newV The current velocity vector to adjust after collision.
- * param newP The current position vector to adjust after collision.
+ * @param collided The item the football collided with.
+ * @param newV The current velocity vector to adjust after collision.
+ * @param newP The current position vector to adjust after collision.
  */
 void Football::HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP)
 {
@@ -391,12 +336,14 @@ void Football::Jump()
         mIsOnSurface = false; // No longer on surface after jumping
         mIsStepping = false; // no longer stepping if we jumped
         mInitJump = true; // indicating the first jump, has been performed.
-    }else if (!mIsOnSurface && mDoubleJump && mInitJump)
+    }
+    else if (!mIsOnSurface && mDoubleJump && mInitJump && !mHasDoubleJumped)
     {
         mV.SetY(BounceSpeed); // Apply upward velocity (-800)
         mIsOnSurface = false;
         mIsStepping = false;
         mInitJump = false;
+        mHasDoubleJumped = true;
     }
 }
 
@@ -422,7 +369,7 @@ void Football::Step()
 
 
 /**
- * @brief Adds to the football’s internal score counter.
+ * Adds to the football’s internal score counter.
  * param value The amount to increase the score by.
  */
 void Football::AddToScore(int value)
@@ -430,12 +377,28 @@ void Football::AddToScore(int value)
     mScore += value;
 }
 
-
+/**
+ * Activates double jump and sets the timer for duration
+ * @param enable bool to say if Double Jump applies
+ * @param duration How long the powerup lasts
+ */
 void Football::ActivateDoubleJump(bool enable, double duration)
 {
     mDoubleJump = enable;
+
     if (enable)
     {
         mDoubleJumpTimer = duration;
     }
+}
+
+/**
+ * Sets the football's death state.
+ * @param dead True if the football is dead, false otherwise.
+ */
+void Football::SetDead(bool dead)
+{
+    mIsDead = dead;
+    mDoubleJump = false;
+    mIsInvulnerable = false;
 }

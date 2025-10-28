@@ -17,11 +17,6 @@
 class Football : public MovingItem
 {
 private:
-
-    double mDoubleJumpTimer = 0.0;
-
-
-
     /// Football holding the score
     int mScore = 0;
 
@@ -67,15 +62,23 @@ private:
     /// Gravity member variable
     double mGravity = 0;
 
+    /// Flag saying if football has invincibility
     bool mIsInvulnerable = false;
+
+    /// Invincibility time remaining
     double mInvulnerabilityTimeRemaining = 0.0;
 
+    /// Time double jump power-up has been applied for
+    double mDoubleJumpTimer = 0.0;
 
-    double mDoubleJumpTimeElapsed = 0.0;
-    double mSpaceKeyElasped = 0.0;
-
+    /// Flag marking if the football has jumped once
     bool mInitJump = false;
+
+    /// Marker to denote if Double Jump power-up has been collected
     bool mDoubleJump = false;
+
+    /// Flag marking if the football has jumped twice
+    bool mHasDoubleJumped = false;
 
 public:
 
@@ -83,6 +86,7 @@ public:
     * @brief activate double jump .
     */
     void ActivateDoubleJump(bool enable, double duration);
+    void SetDead(bool dead);
 
     /**
      * @brief Adds a value to the football's score.
@@ -90,18 +94,8 @@ public:
      */
     void AddToScore(int value);
 
-
     /**
-     * @brief Sets the football's death state.
-     * @param dead True if the football is dead, false otherwise.
-     */
-    void SetDead(bool dead)
-    {
-        mIsDead = dead;
-    }
-
-    /**
-     * @brief Checks if the football is dead.
+     * Checks if the football is dead.
      * @return True if dead, false otherwise.
      */
     bool IsDead() const
@@ -157,8 +151,9 @@ public:
      * Make the football jump (only if on a surface)
      */
     void Jump();
+
     /**
-     * @brief Advances the football’s animation step.
+     *  Advances the football’s animation step.
      */
     void Step();
 
@@ -193,17 +188,20 @@ public:
     void SetSpecialGravity(double gravity) { mGravity = gravity; }
 
     /**
-   * activate vulnerability
+    * Activate vulnerability
+    * @param duration the time power-up is active for
     */
     void ActivateInvulnerability(double duration);
-    /**
-       * check ifis vulnerable
-        */
 
+    /**
+    * Check if football is invincible or not
+    * @return a bool saying if football has invincibility
+    */
     bool IsInvulnerable() const { return mIsInvulnerable; }
 
     /**
-   * activate double jump
+    * Activate double jump
+    * @param value saying whether double jump is applied or not
     */
     void ActivateDoubleJump(bool value){mDoubleJump = value;}
 

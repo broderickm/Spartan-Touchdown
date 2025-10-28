@@ -92,6 +92,10 @@ void MainFrame::OnExit(wxCommandEvent& event)
     Close(true);
 }
 
+/**
+ * Handler for selecting Level Zero from the menu
+ * @param event selection event
+ */
 void MainFrame::OnLevelZero(wxCommandEvent& event)
 {
     auto game = mGameView->GetGame();
@@ -99,13 +103,22 @@ void MainFrame::OnLevelZero(wxCommandEvent& event)
     game->ResetTimer();
 }
 
+/**
+ * Handler for selecting Level One from the menu
+ * @param event selection event
+ */
 void MainFrame::OnLevelOne(wxCommandEvent& event)
 {
     auto game = mGameView->GetGame();
     game->GetLevel()->Load(L"levels/level1.xml");
+    game->SetLevelStartMessage(L"levels/level1.xml");
     game->ResetTimer();
 }
 
+/**
+ * Handler for selecting Level Two from the menu
+ * @param event selection event
+ */
 void MainFrame::OnLevelTwo(wxCommandEvent& event)
 {
     auto game = mGameView->GetGame();
@@ -113,6 +126,10 @@ void MainFrame::OnLevelTwo(wxCommandEvent& event)
     game->ResetTimer();
 }
 
+/**
+ * Handler for selecting Level Three from the menu
+ * @param event selection event
+ */
 void MainFrame::OnLevelThree(wxCommandEvent& event)
 {
     auto game = mGameView->GetGame();

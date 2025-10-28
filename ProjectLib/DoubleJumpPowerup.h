@@ -2,7 +2,7 @@
  * @file DoubleJumpPowerup.h
  * @author Venkata Pandiri
  *
- *
+ * Class describing a Double Jump powerup
  */
 
 #ifndef PROJECT1_DOUBLEJUMPPOWERUP_H
@@ -10,7 +10,9 @@
 #include "PowerUp.h"
 
 
-
+/**
+ * Class that descibes a double jump powerup
+ */
 class DoubleJumpPowerup: public PowerUp
 {
 private:

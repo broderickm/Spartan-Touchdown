@@ -48,13 +48,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     mScale = double(height) / double(Height);
     graphics->Scale(mScale, mScale);
 
-    auto virtualWidth = (double)width/mScale;
-
-    /// shifts pixels by an certain offset amount
-    /// somewhat works, but maybe there is problem somewhere.
-    /// note: this is not properly working, so will probably need to work on this
-    /// -Venkata
-
     graphics->PushState();
 
 
@@ -126,6 +119,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         graphics->DrawText(deathText, x, y);
     }
 
+    // Set to true in goalpost!
     if (mLevelComplete)
     {
         wxFont font(wxSize(0, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
