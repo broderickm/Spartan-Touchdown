@@ -44,10 +44,10 @@ public:
     TeamPowerUp(const TeamPowerUp&) = delete;
     void operator=(const TeamPowerUp&) = delete;
 
-    void Update(double elapsed) override;
-    void OnCollide(Football* football) override;
+    // void Update(double elapsed) override;
+    // void OnCollide(Football* football) override;
 
-    bool IsSolid() const override { return false; }
+    // bool IsSolid() const override { return false; }
 
     /// Constructor
     TeamPowerUp(Level* level);

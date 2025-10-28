@@ -16,12 +16,20 @@ using namespace std;
 
 /// File image for the powerup
 const wstring PowerUpImageName = L"Images/sparty.png";
+
+/// The downward speed of the power-up image during animation
 const double downspeed = 400;
+
+/// The maximum font size of the "Power Up!" message
 const double maxsizeofmessage = 70;
+
+/// The upward speed of the image during animation
 const double imageupspeed = 700;
+
 /**
- * Constructor of the PowerUp
- * @param level the level the powerup is in
+ * @brief Constructs a PowerUp object.
+ * @param level The level that contains this power-up.
+ * @param image The image used to represent this power-up.
  */
 PowerUp::PowerUp(Level* level, const std::wstring& image)
     : Item(level, image), mPowerUpImage(image, wxBITMAP_TYPE_ANY)
@@ -77,8 +85,8 @@ void PowerUp::Draw(wxGraphicsContext* graphics)
 }
 
 /**
- * Handle collision between this power-up and the football.
- * @param football The football that collided with this power-up.
+ * Handle collision between the football and the goal post.
+ * @param football Pointer to the football object that collided with this goal post.
  */
 void PowerUp::OnCollide(Football* football)
 {

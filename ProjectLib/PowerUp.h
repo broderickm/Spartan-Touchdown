@@ -25,14 +25,25 @@ private:
     wxBitmap mPowerUpImage;
 
 
-    ///
+    /// X-coordinate for displaying the "Power Up!" message
     double mPowerDisplayX = 0.0;
+
+    /// Y-coordinate for displaying the "Power Up!" message
     double mPowerDisplayY = 0.0;
+
+    /// The distance that the power-up display message travels
     double mPowerDisplayDist = 0.0;
+
+    /// The current display font size of the "Power Up!" message
     double mPowerDisplaySize = 0;
+
+    /// The current width of the shrinking image
     double mNewImagewWidth = 0.0;
+
+    /// The current height of the shrinking image
     double mNewImageHeight = 0.0;
 
+    /// Whether the collection animation sequence is finished
     bool mFinishSequence = false;
 
 protected:
@@ -52,9 +63,9 @@ public:
     void operator=(PowerUp const & powerup) = delete;
 
     /**
-     * Constructor for the PowerUp.
-     * @param level The level this power-up belongs to.
-     * @param image The image file used to represent this power-up.
+     * @brief Constructs a PowerUp object.
+     * @param level The level that contains this power-up.
+     * @param image The image used to represent this power-up.
      */
     PowerUp(Level* level, const std::wstring& image);
 
