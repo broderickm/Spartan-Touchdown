@@ -246,21 +246,21 @@ void Football::Update(double elapsed)
         }
         else if (auto invulnPowerup = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
         {
-            // Apply invulnerability effect
-            ActivateInvulnerability(20.0);  // 20 seconds of invulnerability
-
-            // Remove powerup from level
-            level->RemoveItem(invulnPowerup);
+            // // Apply invulnerability effect
+            // ActivateInvulnerability(20.0);  // 20 seconds of invulnerability
+            //
+            // // Remove powerup from level
+            // level->RemoveItem(invulnPowerup);
         }
         else if (auto Sparty = std::dynamic_pointer_cast<SpartyPowerup>(collidedItem))
         {
-            game->SetCoinMultiplier(2.0); // update football score
-            level->RemoveItem(Sparty); // remove powerup when colided
+            // game->SetCoinMultiplier(2.0); // update football score
+            // level->RemoveItem(Sparty); // remove powerup when colided
         }
         else if (auto lightning = std::dynamic_pointer_cast<InvulnerabilityPowerup>(collidedItem))
         {
-            game->GetFootball()->ActivateInvulnerability(20.0); // update football score
-            level->RemoveItem(Sparty); // remove powerup when colided
+            // game->GetFootball()->ActivateInvulnerability(20.0); // update football score
+            // level->RemoveItem(Sparty); // remove powerup when colided
         }
 
     }
