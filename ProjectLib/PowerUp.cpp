@@ -121,13 +121,13 @@ void PowerUp::Update(double elapsed)
         double newY = GetY() + imageupspeed * elapsed;
         SetY(newY);
 
-        if (mNewImagewWidth > 0) // prevent image width from going into negatives;
+        if (mNewImagewWidth-8 > 1) // prevent image width from going into negatives;
         {
-            mNewImageHeight-=5;
+            mNewImageHeight-=8;
         }
-        if (mNewImageHeight > 0) // prevent image height from going into negative;
+        if (mNewImageHeight-8 > 1) // prevent image height from going into negative;
         {
-            mNewImagewWidth-=5;
+            mNewImagewWidth-=8;
         }
 
         if (mPowerDisplayY >= 0) // if our message is below the top of the screen
