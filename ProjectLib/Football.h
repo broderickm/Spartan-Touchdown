@@ -79,6 +79,9 @@ private:
 
 public:
 
+    /**
+    * @brief activate double jump .
+    */
     void ActivateDoubleJump(bool enable, double duration);
 
     /**
