@@ -81,17 +81,8 @@ private:
     bool mHasDoubleJumped = false;
 
 public:
-
-    /**
-    * @brief activate double jump .
-    */
     void ActivateDoubleJump(bool enable, double duration);
     void SetDead(bool dead);
-
-    /**
-     * @brief Adds a value to the football's score.
-     * @param value The number of points to add.
-     */
     void AddToScore(int value);
 
     /**
@@ -103,10 +94,6 @@ public:
         return mIsDead;
     }
 
-    /**
-     * @brief Constructor.
-     * @param level The level this football belongs to.
-     */
     Football(Level *level);
 
     /// disable default constructor
@@ -124,20 +111,8 @@ public:
      */
     void Update(double elapsed) override;
 
-    /**
-     * Handle a vertical collision between the football and another item.
-     * @param collided The item the football collided with.
-     * @param newV The current velocity vector to adjust after collision.
-     * @param newP The current position vector to adjust after collision.
-     */
     void VerticalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
-    /**
-     * Handle a horizontal collision between the football and another item.
-     * @param collided The item the football collided with.
-     * @param newV The current velocity vector to adjust after collision.
-     * @param newP The current position vector to adjust after collision.
-     */
     void HorizontalHitTest(std::shared_ptr<Item> collided, Vector& newV, Vector& newP);
 
     /**
@@ -147,14 +122,8 @@ public:
       */
     void SetVelocity(double x, double y) { mV = Vector(x, y); }
 
-    /**
-     * Make the football jump (only if on a surface)
-     */
     void Jump();
 
-    /**
-     *  Advances the football’s animation step.
-     */
     void Step();
 
     /**
@@ -169,10 +138,6 @@ public:
      */
     void SetGoingRight(bool goingRight) { mIsGoingRight = goingRight; }
 
-    /**
-     * @brief Draws the football on the graphics context.
-     * @param graphics The wxWidgets graphics context to draw with.
-     */
     void Draw(wxGraphicsContext* graphics) override;
 
     /**
@@ -187,10 +152,6 @@ public:
      */
     void SetSpecialGravity(double gravity) { mGravity = gravity; }
 
-    /**
-    * Activate vulnerability
-    * @param duration the time power-up is active for
-    */
     void ActivateInvulnerability(double duration);
 
     /**

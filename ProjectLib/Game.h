@@ -28,7 +28,10 @@ const static int Height = 1024;
 class Game
 {
 private:
+    /// Flag to say if the next level is being loaded
     bool mNextLevelPending = false;
+
+    /// The wstring path to the next file
     std::wstring mNextLevelPath;
 
     /// Flag to show if message already shown
@@ -84,52 +87,18 @@ private:
 
 public:
 
-    /**
-     * @brief Loads the next level.
-     * @param nextLevelPath File path of the next level to load.
-     */
     void LoadNextLevel(const std::wstring& nextLevelPath);
 
-    /**
-     * @brief Displays the death message when the player dies.
-     */
     void ShowDeathMessage();
 
-    /**
-     * Get the next level file path
-     * @param currentLevelPath Current level file path
-     * @return Next level file path if available, else empty string
-     */
     std::wstring GetNextLevelPath(const std::wstring& currentLevelPath);
 
-
-
-    /**
-     * @brief Draws the game elements to the screen.
-     * @param graphics The wxGraphicsContext used for rendering.
-     * @param width The current screen width.
-     * @param height The current screen height.
-     */
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
-    /**
-     * Update the game state each frame.
-     * Handles level updates, collision detection, camera movement,
-     * and score/time tracking.
-     * @param elapsed Time elapsed since the last update, in seconds.
-     */
     void Update(double elapsed);
 
-    /**
-     * Performs a single step of the game update.
-     * @param elapsed Time step to process.
-     * Helper function to prevent tunneling
-     */
     void UpdateSingleStep(double elapsed);
 
-    /**
-     * Initializes the game
-     */
     void Initialize();
 
     /**
@@ -164,11 +133,6 @@ public:
      */
     double ScreenToWorldY(int screenY) const { return screenY / mScale; }
 
-    /**
-     * Add points to the player’s score.
-     * Called when the player collects coins.
-     * @param points The number of points to add to the player's score.
-     */
     void AddToPlayerScore(int points);
 
     /**
@@ -183,28 +147,24 @@ public:
      */
     double GetTimeElapsedSinceGameStarted() const { return mTimeElapsedSinceGameStarted; }
 
-    /**
-     * Test for a collision between the given item and other items in the level.
-     * @param item The item to test for collisions (usually the football).
-     * @return The first item that collides with the given one, or nullptr if none.
-     */
+
     std::shared_ptr<Item> CollisionTest(Item* item);
 
     /**
      * For coin multiplier when using power up
+     * @return coin multiplier being applied
      */
     double GetCoinMultiplier() const { return mCoinMultiplier; }
 
     /**
-     * Sets the coin multiplier (used when applying power-ups).
-     * @param mult the multiplier of the coins game
-`   */
+     * Sets the coin multiplier (used when applying power-ups)
+     * @param mult the multiplier being applied
+     */
     void SetCoinMultiplier(double mult) { mCoinMultiplier = mult; }
 
     /**
      * Setter for the level complete
      * @param cond says if level is complete
-     * @return indicator if level is complete
      */
     void SetLevelComplete(bool cond) {mLevelComplete = cond; }
 

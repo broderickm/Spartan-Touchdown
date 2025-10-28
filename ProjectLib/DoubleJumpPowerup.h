@@ -11,7 +11,7 @@
 
 
 /**
- * Class that descibes a double jump powerup
+ * Class that describes a double jump powerup
  */
 class DoubleJumpPowerup: public PowerUp
 {
@@ -22,9 +22,10 @@ public:
 
     DoubleJumpPowerup(Level * level);
 
-   // disable defualt constructor
+   /// disable defualt constructor
     DoubleJumpPowerup() = delete;
-    // disable copy constructor
+
+    /// disable copy constructor
     DoubleJumpPowerup(DoubleJumpPowerup & powerup) = delete;
 };
 
