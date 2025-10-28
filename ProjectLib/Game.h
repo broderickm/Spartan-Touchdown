@@ -190,18 +190,21 @@ public:
      */
     std::shared_ptr<Item> CollisionTest(Item* item);
 
-    /**for coin multiplier when using power up
+    /**
+     * For coin multiplier when using power up
      */
     double GetCoinMultiplier() const { return mCoinMultiplier; }
 
-    /**Sets the coin multiplier (used when applying power-ups).
+    /**
+     * Sets the coin multiplier (used when applying power-ups).
+     * @param mult the multiplier of the coins game
 `   */
     void SetCoinMultiplier(double mult) { mCoinMultiplier = mult; }
 
     /**
      * Setter for the level complete
-     * aram cond says if level is complete
-     * return indicator if level is complete
+     * @param cond says if level is complete
+     * @return indicator if level is complete
      */
     void SetLevelComplete(bool cond) {mLevelComplete = cond; }
 

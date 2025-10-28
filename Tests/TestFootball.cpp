@@ -46,26 +46,26 @@ private:
     double mHeight;
 };
 
-// Issue with seg fault happening here
 TEST(FootballTest, VerticalHitStopsOnPlatform)
 {
     Game game;
     Level level(&game);
 
     auto football = std::make_shared<Football>(&level);
-    football->SetLocation(100, 100);
+    football->SetVelocity(0, 1000);
+    football->SetLocation(100, 80);
 
     auto platform = std::make_shared<PlatformMock>(&level, 100, 200, 200, 20);
     level.GetItems().push_back(platform);
 
-    // Give football downward velocity
-    football->SetVelocity(0, 500);
+    // Simulate update -> Spawn time becomes 1
+    football->Update(1);
 
-    // Simulate update
-    football->Update(0.1);
+    // Now will actually move, spawn time condition has been reached
+    football->Update(0.2);
 
-    // Check that it landed correctly
-    EXPECT_GE(football->GetY(), platform->GetY() - platform->GetHeight()/2 - football->GetHeight()/2 - 0.01);}
+    // Check that it landed correctly and is above platform
+    EXPECT_LE(football->GetY(), platform->GetY() - platform->GetHeight()/2 - football->GetHeight()/2 - 0.01);}
 
 TEST(FootballTest, HorizontalHitStopsAtWall)
 {

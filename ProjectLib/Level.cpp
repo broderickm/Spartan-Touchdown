@@ -214,7 +214,7 @@ void Level::Load(const wxString &filename)
         }
 
         mItems.push_back(currFootball);
-
+        mGame->SetCoinMultiplier(1);
         mGame->SetPlayerScore(0);
 
     }
