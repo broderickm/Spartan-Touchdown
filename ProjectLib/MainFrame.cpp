@@ -58,6 +58,12 @@ void MainFrame::Initialize()
 
     CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelZero, this, IDM_LEVELZERO);
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelOne, this, IDM_LEVELONE);
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelTwo, this, IDM_LEVELTWO);
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnLevelThree, this, IDM_LEVELTHREE);
+
+
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 
@@ -84,4 +90,32 @@ void MainFrame::OnExit(wxCommandEvent& event)
 {
     mGameView->Stop();
     Close(true);
+}
+
+void MainFrame::OnLevelZero(wxCommandEvent& event)
+{
+    auto game = mGameView->GetGame();
+    game->GetLevel()->Load(L"levels/level0.xml");
+    game->ResetTimer();
+}
+
+void MainFrame::OnLevelOne(wxCommandEvent& event)
+{
+    auto game = mGameView->GetGame();
+    game->GetLevel()->Load(L"levels/level1.xml");
+    game->ResetTimer();
+}
+
+void MainFrame::OnLevelTwo(wxCommandEvent& event)
+{
+    auto game = mGameView->GetGame();
+    game->GetLevel()->Load(L"levels/level2.xml");
+    game->ResetTimer();
+}
+
+void MainFrame::OnLevelThree(wxCommandEvent& event)
+{
+    auto game = mGameView->GetGame();
+    game->GetLevel()->Load(L"levels/level3.xml");
+    game->ResetTimer();
 }

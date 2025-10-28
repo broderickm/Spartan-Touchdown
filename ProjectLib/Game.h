@@ -217,6 +217,16 @@ public:
      */
     void SetLevelStartMessage(const std::wstring& message) { mLevelStartMessage = message; }
 
+    /**
+     * Reset the game timer when starting or switching levels manually.
+     */
+    void ResetTimer()
+    {
+        mTimeElapsedSinceGameStarted = 0.0;
+        mTimerDecrease = 0.0;
+    }
+
+
 };
 
 

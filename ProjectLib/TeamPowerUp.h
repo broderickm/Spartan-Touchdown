@@ -10,6 +10,8 @@
 
 #include "MovingItem.h"
 
+class Football;
+
 /**
  * A power-up that moves around and grants special abilities
  * (invincibility + double jump) when collected.

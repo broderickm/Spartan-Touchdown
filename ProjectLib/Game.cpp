@@ -323,6 +323,12 @@ void Game::UpdateSingleStep(double elapsed)
         mLevel->Load(mLevel->GetCurrentLevelFile());
         mFootball->SetDead(false);
 
+        mFootball->SetDead(false);
+        mPlayerScore = 0;                      // reset score
+        mTimeElapsedSinceGameStarted = 0.0;    // reset timer
+        mTimerDecrease = 0.0;                  // reset internal timer
+        mCameraOffsetX = 0;                    // reset camera
+
     }
 
     if (mLevelCompleteMessage)
