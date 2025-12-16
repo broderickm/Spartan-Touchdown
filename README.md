@@ -1,4 +1,4 @@
-# project1
+# Spartan-Touchdown
 
 ## Name
 Spartan Touchdown
