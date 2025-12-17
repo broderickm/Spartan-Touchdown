@@ -19,7 +19,7 @@ Background3.png taken from Shutterstock!
 Contact any listed authors
 
 ## Authors and acknowledgment
-Annika, Maggie, Sanika, Shlok, and Venkata!
+Annika Valaboju, Maggie Broderick, Sanika Kapre, Shlok Masurkar, and Venkata Pandiri!
 
 ## License
 Academic
